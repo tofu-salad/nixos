@@ -59,10 +59,6 @@ in
 			LC_TIME = "es_AR.UTF-8";
 	};
 
-	services.xserver = {
-			layout = "us";
-			xkbVariant = "";
-	};
 
 	users.users.dezequiel = {
 			isNormalUser = true;
@@ -73,13 +69,31 @@ in
 
 	nixpkgs.config.allowUnfree = true;
 
-	services.pipewire = {
-		enable = true;
-		alsa.enable = true;
-		pulse.enable = true;
+	services = {
+		xserver = {
+			layout = "us";
+			xkbVariant = "";
+		};
+		pipewire = {
+			enable = true;
+			alsa.enable = true;
+			pulse.enable = true;
+		};
+		dbus = {
+			enable = true;
+		};
+		greetd = {
+			enable = true;
+			settings = rec {
+				initial_session = {
+					command ="${pkgs.sway}/bin/sway";
+					user = "dezequiel";
+				};
+				default_session = initial_session;
+			};
+		};
 	};
 
-	services.dbus.enable = true;
 
 	xdg.portal = {
 		enable = true;
@@ -90,6 +104,7 @@ in
 		enable = true;
 		wrapperFeatures.gtk = true;
 	};
+	
 
 	environment.systemPackages = with pkgs; [
 		alacritty
