@@ -158,20 +158,22 @@ in
 
 	environment.systemPackages = with pkgs; [
 		xfce.thunar
-		alacritty
 		kitty
 		configure-gtk
 		wayland
 		xdg-utils
 		gnome3.adwaita-icon-theme
-		grim
 		glib
-		slurp
 		dunst
 		wdisplays
 		dunst
 		tofi
 		neovim
+
+		# Screenshot
+		grim
+		slurp
+		swappy
 
 		# Web Browsers
 		chromium
