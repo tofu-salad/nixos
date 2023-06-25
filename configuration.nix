@@ -178,6 +178,7 @@ in
 		firefox
 
 		# Media
+		pavucontrol
 		mpv
 		swayimg
 
@@ -203,7 +204,6 @@ in
 		# Programming Languages
 		go
 		lua
-		libgccjit
 		gcc
 		(python3.withPackages my-python-packages)
 		# Javascript
