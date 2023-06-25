@@ -37,14 +37,35 @@ in
 	imports = [ ./hardware-configuration.nix ];
 
 	# Bootloader.
-	boot.loader.grub.enable = true;
-	boot.loader.grub.device = "/dev/vda";
-	boot.loader.grub.useOSProber = true;
+	boot.loader = {
+		efi = {
+			canTouchEfiVariables = true;
+			efiSysMountPoint = "/boot";
+		};
+		grub = {
+			enable = true;
+			devices = [ "nodev" ];
+			efiSupport = true;
+			extraEntries = ''
+				menuentry "Windows" {
+				insmod part_gpt
+				insmod fat
+				insmod search_fs_uuid
+				insmod chain
+				search --fs-uuid --set=root $FS_UUID
+				chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+			}
+			'';
+		};
+	};
 
 	networking.hostName = "nixos"; # Define your hostname.
 	networking.networkmanager.enable = true;
 
-	time.timeZone = "America/Argentina/Cordoba";
+	time = {
+		hardwareClockInLocalTime = true;
+		timeZone = "America/Argentina/Cordoba";
+	};
 	i18n.defaultLocale = "en_US.UTF-8";
 
 	i18n.extraLocaleSettings = {
