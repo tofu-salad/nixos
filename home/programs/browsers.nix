@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-  home.programs = with pkgs; [ firefox chromium ];
+  home.packages = with pkgs; [ firefox chromium ];
 }

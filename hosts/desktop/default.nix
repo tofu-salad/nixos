@@ -1,7 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../../modules/system.nix ./hardware-configuration.nix ];
+  imports = [
+    ../../modules/system.nix
+    ../../modules/sway.nix
+    ../../modules/virtualization.nix
+    ../../modules/android.nix
+    ./hardware-configuration.nix
+  ];
 
   boot = {
     loader = {
