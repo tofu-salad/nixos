@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    vscode
     glib
     kitty
     neovim
