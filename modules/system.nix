@@ -3,9 +3,9 @@
 {
   users = {
     users = {
-      dezequiel = {
+      soda = {
         isNormalUser = true;
-        description = "Diego Ezequiel";
+        description = "soda's nixos config";
         extraGroups = [ "networkmanager" "wheel" "plugdev" ];
       };
     };
@@ -35,11 +35,6 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
-      liberation_ttf
-      mplus-outline-fonts.githubRelease
-      dina-font
-      proggyfonts
     ];
   };
 
@@ -58,17 +53,16 @@
       enable = true;
       settings = rec {
         initial_session = {
-          command = "${pkgs.sway}/bin/sway";
-          user = "dezequiel";
+          command = "Hyprland";
+          user = "soda";
         };
         default_session = initial_session;
       };
     };
     gvfs = { enable = true; };
     tumbler = { enable = true; };
-    udev = { packages = [ pkgs.android-udev-rules ]; };
+    # udev = { packages = [ pkgs.android-udev-rules ]; };
   };
-  nixpkgs.config.allowUnfree = true;
   networking = {
     firewall = {
       enable = true;
@@ -94,7 +88,5 @@
     sysstat
     lm_sensors
     scrot
-    neofetch
-    xfce.thunar
   ];
 }

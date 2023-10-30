@@ -3,8 +3,8 @@
 {
   programs.git = {
     enable = true;
-    userName = "zeroCalSoda";
-    userEmail = "diego.ezequiel.scardulla@gmail.com";
+    userName = "soda zero";
+    userEmail = "soda.zero.sip@proton.me";
     extraConfig = {
       color = { ui = "auto"; };
       init = { defaultBranch = "main"; };
