@@ -38,7 +38,6 @@ in{
           {
             home-manager = {
               useGlobalPkgs = true;
-              useUserPackages = true;
               users = { soda = import ./home; };
             };
           }

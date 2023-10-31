@@ -4,7 +4,10 @@
   home.packages = with pkgs; [
 #    vscode
 #    glib
+    dbus
     kitty
+    networkmanagerapplet
+    wofi
     neovim
     xdg-utils
 #    krita
@@ -20,5 +23,6 @@
 #    udev
     unzip
     wl-clipboard
+    glib
   ];
 }

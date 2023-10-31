@@ -5,5 +5,7 @@
   };
   environment.systemPackages = with pkgs; [
     waybar
+    swaybg
+    cinnamon.nemo
   ];
 }
