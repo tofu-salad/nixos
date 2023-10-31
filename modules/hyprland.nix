@@ -7,5 +7,6 @@
     waybar
     swaybg
     cinnamon.nemo
+    lxqt.lxqt-policykit
   ];
 }

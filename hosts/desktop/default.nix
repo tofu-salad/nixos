@@ -20,15 +20,11 @@
 
   networking = {
     hostName = "desktop";
-    wireless.enable = true;
     networkmanager = { 
         enable = true; 
-         unmanaged = [
-            "*" "except:type:wwan" "except:type:gsm"
-    ];
     };
     firewall = {
-      enable = false;
+      enable = true;
     };
   };
 
