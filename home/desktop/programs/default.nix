@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
-
+# { config, pkgs, ... }:
+#
 {
   imports = [ 
 	./git.nix 
-	# ./media.nix 
+	 ./media.nix 
 	./browsers.nix 
 	./common.nix ];
 }
