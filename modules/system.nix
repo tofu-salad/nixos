@@ -38,6 +38,7 @@
     ];
   };
 
+services.flatpak.enable = true;
   services = {
     xserver = {
       layout = "us";
@@ -63,30 +64,22 @@
     tumbler = { enable = true; };
     # udev = { packages = [ pkgs.android-udev-rules ]; };
   };
-  networking = {
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 80 443 19000 8081 ];
-      allowedUDPPortRanges = [
-        {
-          from = 4000;
-          to = 4007;
-        }
-        {
-          from = 8000;
-          to = 8010;
-        }
-      ];
-    };
-  };
 
   environment.systemPackages = with pkgs; [
+  gnome-network-displays
     vim
     wget
     curl
+    cinnamon.nemo
+    networkmanager-l2tp
+    networkmanager-openconnect
+    networkmanager-sstp
     git
     sysstat
     lm_sensors
+    networkmanager-vpnc
+    networkmanagerapplet
+    iw
     scrot
   ];
 }

@@ -2,7 +2,7 @@
 
 {
   imports = [
- # ./programming 
+./programming 
 ./programs ];
 
   home = {
