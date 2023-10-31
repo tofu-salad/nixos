@@ -6,7 +6,7 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     lutris
   ];
 }
