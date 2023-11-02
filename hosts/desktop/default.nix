@@ -4,10 +4,11 @@
   imports = [
     ../../modules/system.nix
     ../../modules/hyprland.nix
-     ../../modules/services.nix
-     ../../modules/gaming.nix
+    ../../modules/services.nix
+    ../../modules/gaming.nix
     ./hardware-configuration.nix
   ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot = {
     loader = {
@@ -21,8 +22,8 @@
 
   networking = {
     hostName = "desktop";
-    networkmanager = { 
-        enable = true; 
+    networkmanager = {
+      enable = true;
     };
     firewall = {
       enable = true;

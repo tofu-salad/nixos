@@ -30,11 +30,13 @@
       persona = "soda";
       sodaNixOs = "desktop";
       sodaNonNixOs = "manager";
-    in {
+    in
+    {
       nixosConfigurations = {
         ${sodaNixOs} = nixpkgs.lib.nixosSystem
           {
             inherit system;
+            inherit pkgs;
             specialArgs = { inherit inputs; };
             modules = [
               ./hosts/desktop

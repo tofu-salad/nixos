@@ -8,5 +8,9 @@
   };
   environment.systemPackages = with pkgs; [
     lutris
+
+    wineWowPackages.staging
+    winetricks
+    wineWowPackages.waylandFull
   ];
 }
