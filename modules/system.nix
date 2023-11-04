@@ -43,13 +43,13 @@
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   environment.systemPackages = with pkgs; [
-    gnome-network-displays
+    gsettings-desktop-schemas
     vim
     wget
     curl
     git
     gcc
-    glib
   ];
 }

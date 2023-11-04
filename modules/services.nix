@@ -1,9 +1,11 @@
-
 { config, pkgs, ... }:
 {
   hardware.pulseaudio.enable = false;
   services = {
     xserver = {
+      # enable = true;
+      # displayManager.sddm.enable = true;
+      # desktopManager.plasma5.enable = true;
       layout = "us";
       xkbVariant = "";
     };
@@ -13,18 +15,18 @@
       pulse.enable = true;
     };
     dbus = { enable = true; };
-     greetd = {
-       enable = true;
-       settings = rec {
-         initial_session = {
-           command = "Hyprland";
-           user = "soda";
-         };
-         default_session = initial_session;
-       };
-     };
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "Hyprland";
+          user = "soda";
+        };
+        default_session = initial_session;
+      };
+    };
     gvfs = { enable = true; };
     tumbler = { enable = true; };
-    avahi = {enable = true; };
+    avahi = { enable = true; };
   };
 }
