@@ -50,7 +50,6 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.users.${persona} = ./home/${sodaNixOs};
               }
-              (args: { nixpkgs.overlays = import ./overlays args; })
             ];
           };
       };
