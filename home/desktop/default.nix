@@ -3,7 +3,6 @@
 {
   imports = [ ./programs ./languages ];
 
-  
   home = {
     username = "soda";
     homeDirectory = "/home/soda";
