@@ -19,7 +19,10 @@ let
         schema = pkgs.gsettings-desktop-schemas;
         datadir = "${schema}/share/gsettings-schemas/${schema.name}";
       in
-      "	export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS\n	gnome_schema=org.gnome.desktop.interface\n	gsettings set $gnome_schema gtk-theme 'Dracula'\n";
+      ''
+        export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+        gnome_schema=org.gnome.desktop.interface
+      '';
   };
 in
 {
@@ -48,21 +51,8 @@ in
   # Packages are in system.nix
   environment.systemPackages = with pkgs; [
     configure-gtk
-    dunst
-    gnome3.adwaita-icon-theme
-    tofi
-    wdisplays
-    wayland
-
-    grim
-    slurp
-    swappy
-    wl-clipboard
-
     dbus-sway-environment
-    i3blocks
-    swayidle
-    swaylock
-    waybar
+    swaynotificationcenter
+    lxqt.lxqt-policykit
   ];
 }

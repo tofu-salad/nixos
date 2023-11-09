@@ -1,11 +1,14 @@
 { config, pkgs, ... }:
 {
-  hardware.pulseaudio.enable = false;
   services = {
     xserver = {
       enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
+      displayManager = {
+        defaultSession = "sway";
+        sddm = {
+          enable = true;
+        };
+      };
       layout = "us";
       xkbVariant = "";
     };
@@ -14,7 +17,6 @@
       alsa.enable = true;
       pulse.enable = true;
     };
-    dbus = { enable = true; };
     # greetd = {
     #   enable = true;
     #   settings = rec {
@@ -25,6 +27,7 @@
     #     default_session = initial_session;
     #   };
     # };
+    dbus = { enable = true; };
     gvfs = { enable = true; };
     tumbler = { enable = true; };
     avahi = { enable = true; };

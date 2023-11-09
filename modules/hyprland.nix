@@ -3,13 +3,15 @@
 {
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    xwayland.enable = true;
   };
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
       thunar-archive-plugin
       thunar-volman
+      thunar-media-tags-plugin
     ];
   };
 
