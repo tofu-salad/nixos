@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     wl-clipboard
-    dbus
     tree
 
     waybar
@@ -28,6 +27,5 @@
     slurp
     grim
     direnv
-
   ];
 }

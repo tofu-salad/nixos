@@ -50,8 +50,10 @@
     gsettings-desktop-schemas
     vim
     wget
+    neofetch
     curl
     git
     gcc
+    gnome.adwaita-icon-theme
   ];
 }

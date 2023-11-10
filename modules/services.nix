@@ -1,13 +1,17 @@
 { config, pkgs, ... }:
 {
+  # Autologin Workaround
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
+
   services = {
     xserver = {
-      enable = true;
       displayManager = {
-        defaultSession = "sway";
-        sddm = {
+        autoLogin = {
           enable = true;
+          user = "soda";
         };
+        defaultSession = "hyprland";
       };
       layout = "us";
       xkbVariant = "";
@@ -28,8 +32,6 @@
     #   };
     # };
     dbus = { enable = true; };
-    gvfs = { enable = true; };
-    tumbler = { enable = true; };
     avahi = { enable = true; };
   };
 }

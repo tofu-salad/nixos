@@ -3,11 +3,14 @@
 {
   imports = [
     ../../modules/system.nix
-    ../../modules/hyprland.nix
     ../../modules/services.nix
     ../../modules/gaming.nix
     ./hardware-configuration.nix
-    ../../modules/sway.nix
+
+    # Desktop environments
+    ../../modules/hyprland.nix
+    ../../modules/kde.nix
+    # ../../modules/sway.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

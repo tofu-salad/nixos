@@ -9,7 +9,5 @@
     pamixer
     pavucontrol
     stremio
-
-    zathura
   ];
 }
