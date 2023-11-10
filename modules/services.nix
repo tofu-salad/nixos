@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 {
+  services.flatpak.enable = true;
+
+
   # Autologin Workaround
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
-
   services = {
     xserver = {
       displayManager = {
