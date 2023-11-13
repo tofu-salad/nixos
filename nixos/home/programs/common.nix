@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     wl-clipboard
     tree
 
@@ -13,7 +13,6 @@
     neovim
 
     bat
-    eza
     fd
     fzf
     jq
@@ -27,5 +26,8 @@
     slurp
     grim
     direnv
-  ];
+  ]) ++ (with pkgs-unstable;[
+    eza
+    turso-cli
+  ]);
 }
