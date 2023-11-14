@@ -1,11 +1,5 @@
 { inputs, pkgs, ... }:
 {
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-kde ];
-    };
-  };
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
