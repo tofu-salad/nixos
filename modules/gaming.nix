@@ -7,9 +7,9 @@
     dedicatedServer.openFirewall = true;
   };
   environment.systemPackages = with pkgs; [
-    lutris
     wineWowPackages.staging
     winetricks
+    lutris
   ];
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
 }

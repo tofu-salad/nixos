@@ -31,7 +31,7 @@
       LC_TIME = "es_AR.UTF-8";
     };
   };
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji

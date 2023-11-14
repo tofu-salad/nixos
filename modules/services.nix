@@ -9,10 +9,10 @@
   services = {
     xserver = {
       displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "soda";
-        };
+        # autoLogin = {
+        #   enable = true;
+        #   user = "soda";
+        # };
         defaultSession = "hyprland";
       };
       layout = "us";

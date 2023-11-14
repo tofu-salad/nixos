@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = (with pkgs; [
@@ -6,5 +6,5 @@
     swayimg
     swappy
     font-manager
-  ]) ++ (with pkgs-unstable; [ nwg-look ]);
+  ]);
 }

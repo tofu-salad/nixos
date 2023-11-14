@@ -26,6 +26,6 @@
   };
   environment.systemPackages = with pkgs; [
     swaynotificationcenter
-    lxqt.lxqt-policykit
+    polkit_gnome
   ];
 }
