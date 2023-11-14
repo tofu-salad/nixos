@@ -17,8 +17,8 @@
 
     ];
     shellAliases = {
-      ls = "exa -al --color=always --group-directories-first";
-      ll = "ls -l";
+      # ls = "exa -al --color=always --group-directories-first";
+      # ll = "ls -l";
       vim = "nvim";
       dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
       update = "sudo nixos-rebuild switch";
