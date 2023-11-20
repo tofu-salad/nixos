@@ -26,7 +26,6 @@
 
     slurp
     grim
-    direnv
     eza
     waybar
     turso-cli

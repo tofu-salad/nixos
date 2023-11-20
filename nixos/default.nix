@@ -10,6 +10,7 @@
     # Desktop environments
     ../modules/hyprland.nix
     ../modules/kde.nix
+    ../modules/fhs.nix
     # ../../modules/sway.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -31,7 +32,8 @@
       enable = true;
     };
     firewall = {
-      enable = true;
+      enable = false;
+      allowedTCPPorts = [ 8010 ];
     };
   };
 
