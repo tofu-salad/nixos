@@ -6,5 +6,6 @@
     swayimg
     swappy
     font-manager
+    qbittorrent
   ]);
 }

@@ -14,7 +14,6 @@ in
         "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancmenet Suite
         "fadndhdgpmmaapbmfcknlfgcflmmmieb" # FrankerFaceZ
       ];
-      commandLineArgs = [ "--password-store=kwallet5" ];
     };
     firefox = {
       enable = true;
@@ -23,7 +22,8 @@ in
 
   };
   home.packages = [
+    brave
     google-chrome
-    (patchDesktop google-chrome "google-chrome" "^Exec=${google-chrome}/bin/google-chrome-stable %U" "Exec=env LANGUAGE=es_ES ${google-chrome}/bin/google-chrome-stable %U --password-store=kwallet5")
+    (patchDesktop google-chrome "google-chrome" "^Exec=${google-chrome}/bin/google-chrome-stable %U" "Exec=env LANGUAGE=es_ES ${google-chrome}/bin/google-chrome-stable %U")
   ];
 }
