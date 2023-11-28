@@ -11,7 +11,7 @@
     ../modules/hyprland.nix
     ../modules/kde.nix
     ../modules/fhs.nix
-    # ../../modules/sway.nix
+    ../modules/virtualization.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -33,7 +33,7 @@
     };
     firewall = {
       enable = false;
-      allowedTCPPorts = [ 80 443 8010];
+      allowedTCPPorts = [ 80 443 8010 1118 ];
       allowedUDPPortRanges = [
         { from = 4000; to = 4007; }
         { from = 8000; to = 8010; }
