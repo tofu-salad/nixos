@@ -16,7 +16,7 @@
       ];
   };
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
     home-manager.url = "github:nix-community/home-manager";
@@ -65,10 +65,10 @@
 
       homeConfigurations.${persona} =
         home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          inherit  pkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = [
-            ./home/${sodaNonNixOs}
+            ./home-manager
           ];
         };
     };
