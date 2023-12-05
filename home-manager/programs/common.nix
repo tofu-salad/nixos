@@ -23,5 +23,8 @@
     eza
     turso-cli
     tmux
+
+    nodejs_20
+    libgcc
   ];
 }
