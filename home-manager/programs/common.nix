@@ -3,7 +3,6 @@
 
 {
   home.packages = with pkgs; [
-    dconf
     tree
 
     neovim
@@ -25,6 +24,6 @@
     tmux
 
     nodejs_20
-    libgcc
+    gcc
   ];
 }
