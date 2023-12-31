@@ -7,6 +7,10 @@
     username = "soda";
     homeDirectory = "/home/soda";
   };
+  fonts.fontconfig.enable = true;
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+  ];
   programs = {
     direnv = {
       enable = true;
