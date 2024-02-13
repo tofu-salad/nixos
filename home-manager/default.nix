@@ -9,7 +9,10 @@
   };
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+    (nerdfonts.override { fonts = [ 
+    "IBMPlexMono"
+    "GeistMono"
+    ]; })
   ];
   programs = {
     direnv = {
