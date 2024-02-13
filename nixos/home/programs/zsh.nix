@@ -36,7 +36,10 @@
       export PATH=$PATH:/usr/local/go/bin
       export PATH=$PATH:$HOME/go/bin/
       export PATH=$PATH:$HOME/.turso
+      export PATH="$PATH":"$HOME/.local/scripts/"
+      export PATH="$PATH":"$HOME/.cargo/bin/"
       bindkey -e
+      bindkey -s ^f "tmux-sessionizer\n"
     '';
   };
 }
