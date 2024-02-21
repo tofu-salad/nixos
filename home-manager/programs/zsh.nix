@@ -18,6 +18,7 @@
     ];
     shellAliases = {
       la = "eza -abgHlS --color=always --group-directories-first";
+      ls = "ls --color=auto";
       vim = "nvim";
       dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
       update = "home-manager switch";
@@ -39,7 +40,7 @@
       export PATH=$PATH:$HOME/Scripts
       export PATH=$PATH:$HOME/.cargo/bin/
       bindkey -e
-      bindkey -s ^t "tmux-sessionizer\n"
+      bindkey -s ^t "$HOME/Scripts/bin/tmux_session\n"
     '';
   };
 }
