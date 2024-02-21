@@ -8,5 +8,6 @@
     rustup
     nodejs_20
     gh
+    turso-cli
   ];
 }
