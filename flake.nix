@@ -49,7 +49,7 @@
       };
 
       homeConfigurations = {
-        ${persona} = home-manager.lib.homeManagerConfiguration {
+        ${standAlone} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = [
