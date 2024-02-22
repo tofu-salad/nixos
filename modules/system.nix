@@ -3,13 +3,14 @@
 {
   hardware.opengl = {
     enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiVdpau
-      vaapiIntel
-      libvdpau-va-gl
-      # intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
-    ];
+    # Extra GPU packages
+    # extraPackages = with pkgs; [
+    # intel-media-driver
+    # vaapiVdpau
+    # vaapiIntel
+    # libvdpau-va-gl
+    # intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+    # ];
   };
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
@@ -49,7 +50,8 @@
     noto-fonts-cjk
     noto-fonts-emoji
     ibm-plex
-    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+    geist-font
+    (nerdfonts.override { fonts = [ "IBMPlexMono" "GeistMono" ]; })
   ];
 
   programs.zsh.enable = true;

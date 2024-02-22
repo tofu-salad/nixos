@@ -4,17 +4,15 @@
   imports = [
     ../modules/system.nix
     ../modules/services.nix
-    ../modules/gaming.nix
+    # ../modules/gaming.nix
     ./hardware-configuration.nix
 
     # Desktop environments
     ../modules/hyprland.nix
-    ../modules/kde.nix
+    # ../modules/kde.nix
     ../modules/fhs.nix
     ../modules/virtualization.nix
   ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   boot = {
     loader = {
       timeout = 2;
@@ -41,5 +39,5 @@
     };
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
