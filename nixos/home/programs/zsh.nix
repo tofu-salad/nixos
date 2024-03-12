@@ -17,10 +17,8 @@
 
     ];
     shellAliases = {
-      la = "eza -abgHlS --color=always --group-directories-first";
-      vim = "nvim";
       dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
-      update = "sudo nixos-rebuild switch";
+      update = "sudo nixos-rebuild switch --flake $HOME/.config/nixos/.#desktop";
     };
     history = {
       path = "${config.xdg.dataHome}/zsh/history";
