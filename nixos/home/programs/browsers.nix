@@ -6,7 +6,8 @@
       extensions = [
         "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-        "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancmenet Suite
+        "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancement Suite
+        "jinjaccalgkegednnccohejagnlnfdag" # Violentmonkey
       ];
     };
     firefox = {

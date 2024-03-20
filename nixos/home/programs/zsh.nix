@@ -19,6 +19,7 @@
     shellAliases = {
       dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
       update = "sudo nixos-rebuild switch --flake $HOME/.config/nixos/.#desktop";
+      vim = "nvim";
     };
     history = {
       path = "${config.xdg.dataHome}/zsh/history";
@@ -37,7 +38,7 @@
       export PATH="$PATH":"$HOME/.local/scripts/"
       export PATH="$PATH":"$HOME/.cargo/bin/"
       bindkey -e
-      bindkey -s ^f "tmux-sessionizer\n"
+      bindkey -s ^t "$HOME/Scripts/bin/tmux_session\n"
     '';
   };
 }
