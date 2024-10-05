@@ -1,15 +1,14 @@
 { pkgs, ... }:
 
 {
+
   home.packages = with pkgs; [
     dconf
     wl-clipboard
     tree
 
-
     wofi
-    kitty
-    wezterm
+    alacritty
     swaybg
 
     neovim
@@ -22,7 +21,6 @@
     unzip
     gh
 
-
     openssl
     ripgrep
 
@@ -30,7 +28,8 @@
     grim
     eza
     waybar
-    turso-cli
-    adw-gtk3
+
+    webcord
+    tidal-hifi
   ];
 }

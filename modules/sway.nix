@@ -30,14 +30,19 @@ in
     portal = {
       enable = true;
       wlr.enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gtk
+      ];
     };
   };
 
   programs = {
     sway = {
       enable = true;
-      wrapperFeatures = { gtk = true; };
+      wrapperFeatures = {
+        gtk = true;
+      };
     };
     thunar = {
       plugins = with pkgs.xfce; [
@@ -52,7 +57,7 @@ in
   environment.systemPackages = with pkgs; [
     configure-gtk
     dbus-sway-environment
-    swaynotificationcenter
+    dunst
     lxqt.lxqt-policykit
   ];
 }

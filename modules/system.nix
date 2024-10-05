@@ -1,33 +1,26 @@
-{ config, pkgs, lib, ... }:
-
+{ pkgs, ... }:
 {
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    # Extra GPU packages
-    # extraPackages = with pkgs; [
-    # intel-media-driver
-    # vaapiVdpau
-    # vaapiIntel
-    # libvdpau-va-gl
-    # intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
-    # ];
+    enable32Bit = true;
   };
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
 
   users = {
     users = {
-      soda = {
-        shell = pkgs.zsh;
+      tofu = {
         isNormalUser = true;
-        description = "soda's nixos config";
-        extraGroups = [ "networkmanager" "wheel" "plugdev" ];
+        description = "tofu's salad nixos config";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "plugdev"
+        ];
       };
     };
   };
 
   time = {
-    hardwareClockInLocalTime = true;
+    hardwareClockInLocalTime = false;
     timeZone = "America/Argentina/Cordoba";
   };
 
@@ -46,15 +39,20 @@
     };
   };
   fonts.packages = with pkgs; [
+    font-awesome
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     ibm-plex
-    geist-font
-    (nerdfonts.override { fonts = [ "IBMPlexMono" "GeistMono" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "IBMPlexMono"
+        "GeistMono"
+      ];
+    })
   ];
 
-  programs.zsh.enable = true;
+  programs.zsh.enable = false;
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -70,6 +68,6 @@
     gcc
     libnotify
     libva-utils
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
   ];
 }

@@ -1,15 +1,32 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [ ./programs ./languages ];
+  imports = [
+    ./programs
+    ./languages
+  ];
 
   home = {
-    username = "soda";
-    homeDirectory = "/home/soda";
+    username = "tofu";
     pointerCursor = {
       name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
       size = 32;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
+    };
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = "1";
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = "1";
     };
   };
   dconf = {
@@ -20,6 +37,7 @@
       };
     };
   };
+
   programs = {
     direnv = {
       enable = true;
@@ -27,7 +45,7 @@
     };
 
   };
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
 }

@@ -2,7 +2,6 @@
 {
   # services.flatpak.enable = true;
 
-
   # Autologin Workaround
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
@@ -30,7 +29,7 @@
       settings = rec {
         initial_session = {
           command = "Hyprland";
-          user = "soda";
+          user = "tofu";
         };
         default_session = initial_session;
       };
@@ -39,7 +38,11 @@
     #   enable = true;
     #   openFirewall = true;
     # };
-    dbus = { enable = true; };
-    avahi = { enable = true; };
+    dbus = {
+      enable = true;
+    };
+    avahi = {
+      enable = true;
+    };
   };
 }
