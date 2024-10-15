@@ -1,8 +1,18 @@
 { pkgs, ... }:
 {
+
+  zramSwap.enable = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    # extraPackages = with pkgs; [
+    #   intel-media-sdk
+    #   intel-media-driver
+    #   libvdpau-va-gl
+    # ];
+  };
+  environment.variables = {
+    ROC_ENABLE_PRE_VEGA = "1";
   };
 
   users = {
@@ -38,6 +48,7 @@
       LC_TIME = "es_AR.UTF-8";
     };
   };
+  fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
     font-awesome
     noto-fonts
