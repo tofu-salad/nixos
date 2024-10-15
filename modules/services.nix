@@ -7,13 +7,6 @@
   systemd.services."autovt@tty1".enable = false;
   services = {
     xserver = {
-      # displayManager = {
-      #   # autoLogin = {
-      #   #   enable = true;
-      #   #   user = "soda";
-      #   # };
-      #   defaultSession = "hyprland";
-      # };
       xkb = {
         variant = "";
         layout = "us";
@@ -34,10 +27,6 @@
         default_session = initial_session;
       };
     };
-    # jellyfin = {
-    #   enable = true;
-    #   openFirewall = true;
-    # };
     dbus = {
       enable = true;
     };

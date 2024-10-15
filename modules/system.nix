@@ -11,9 +11,6 @@
     #   libvdpau-va-gl
     # ];
   };
-  environment.variables = {
-    ROC_ENABLE_PRE_VEGA = "1";
-  };
 
   users = {
     users = {
@@ -55,12 +52,7 @@
     noto-fonts-cjk
     noto-fonts-emoji
     ibm-plex
-    (nerdfonts.override {
-      fonts = [
-        "IBMPlexMono"
-        "GeistMono"
-      ];
-    })
+    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
   ];
 
   programs.zsh.enable = false;
@@ -73,7 +65,6 @@
     gsettings-desktop-schemas
     vim
     wget
-    neofetch
     curl
     git
     gcc

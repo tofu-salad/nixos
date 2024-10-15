@@ -1,4 +1,5 @@
 {
+  lib,
   nixpkgs,
   inputs,
   pkgs,
@@ -29,6 +30,7 @@
   services = {
     gvfs = {
       enable = true;
+      package = lib.mkForce pkgs.gnome3.gvfs;
     };
     tumbler = {
       enable = true;
@@ -45,5 +47,7 @@
     hypridle
     hyprlock
 
+    # needed to store smb config
+    gnome-keyring
   ];
 }
