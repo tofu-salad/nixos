@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
   services.flatpak.enable = true;
 
@@ -21,7 +21,7 @@
       enable = true;
       settings = rec {
         initial_session = {
-          command = "Hyprland";
+          command = "${pkgs.hyprland}/bin/Hyprland";
           user = "tofu";
         };
         default_session = initial_session;
@@ -29,6 +29,7 @@
     };
     dbus = {
       enable = true;
+      packages = with pkgs; [ gnome-keyring ];
     };
     avahi = {
       enable = true;

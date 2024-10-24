@@ -1,10 +1,4 @@
-{
-  lib,
-  nixpkgs,
-  inputs,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   programs.hyprland = {
@@ -19,18 +13,17 @@
   };
 
   # Thunar
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-      thunar-media-tags-plugin
-    ];
-  };
+  # programs.thunar = {
+  #   enable = true;
+  #   plugins = with pkgs.xfce; [
+  #     thunar-archive-plugin
+  #     thunar-volman
+  #     thunar-media-tags-plugin
+  #   ];
+  # };
   services = {
     gvfs = {
       enable = true;
-      package = lib.mkForce pkgs.gnome3.gvfs;
     };
     tumbler = {
       enable = true;
@@ -41,13 +34,18 @@
     POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
   };
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
   environment.systemPackages = with pkgs; [
     dunst
     polkit_gnome
     hypridle
     hyprlock
+    nautilus
 
-    # needed to store smb config
-    gnome-keyring
+    libsecret
+    seahorse # GUI for managing passwords
+
   ];
 }
