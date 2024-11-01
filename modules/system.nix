@@ -1,11 +1,9 @@
 { pkgs, ... }:
 {
-
   zramSwap.enable = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [ intel-media-driver ];
   };
 
   users = {
@@ -55,9 +53,6 @@
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  }; # Force intel-media-driver
 
   fonts.fontconfig.subpixel.lcdfilter = "light";
 

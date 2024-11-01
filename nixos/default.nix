@@ -4,14 +4,15 @@
   imports = [
     ../modules/system.nix
     ../modules/services.nix
-    # ../modules/gaming.nix
+    ../modules/gaming.nix
     ./hardware-configuration.nix
 
     # Desktop environments
-    ../modules/hyprland.nix
-    # ../modules/kde.nix
+    ../modules/desktops-environments
     ../modules/fhs.nix
     ../modules/virtualization.nix
+
+    ../modules/rnnoise.nix
   ];
   boot = {
     loader = {
