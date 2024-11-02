@@ -2,17 +2,14 @@
 
 {
   imports = [
-    ../modules/system.nix
-    ../modules/services.nix
-    ../modules/gaming.nix
     ./hardware-configuration.nix
-
-    # Desktop environments
-    ../modules/desktops-environments
-    ../modules/fhs.nix
     ../modules/virtualization.nix
-
+    ../modules/system.nix
+    ../modules/fhs.nix
+    ../modules/gaming.nix
     ../modules/rnnoise.nix
+    ../modules/desktops-environments
+    ../modules/services.nix
   ];
   boot = {
     loader = {
