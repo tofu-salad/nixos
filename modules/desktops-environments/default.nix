@@ -2,7 +2,7 @@
   imports = [
     # ./kde.nix
     ./sway.nix
-    ./gnome.nix
+    # ./gnome.nix
     # ./hyprland.nix
   ];
 }

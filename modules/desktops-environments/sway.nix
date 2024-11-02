@@ -28,10 +28,28 @@
   };
 
   environment.systemPackages = with pkgs; [
+    swayimg
+    wl-clipboard
     hyprpicker
-    dunst
+
+    dunst # notifications
+    # screenshots
     grim
     slurp
-    wl-clipboard
+    swappy
+
+    # gui apps
+    gnome-calculator
+    gnome-calendar
+    gnome-characters
+    gnome-font-viewer
+    gnome-system-monitor
+    gnome-text-editor
+    gnome-weather
+    baobab # Gnome Disk Usage Analyzer
+    evince # Gnome Document Viewer
+    nautilus # Gnome Files
+    loupe # Gnome Image Viewer
+
   ];
 }
