@@ -65,6 +65,7 @@
     gcc
     libnotify
     libva-utils
+
     adwaita-icon-theme
   ];
 }
