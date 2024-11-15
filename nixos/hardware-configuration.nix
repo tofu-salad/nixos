@@ -18,9 +18,6 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.kernelParams = [
-    "acpi=force"
-  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];

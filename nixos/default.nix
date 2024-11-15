@@ -10,6 +10,10 @@
     ../modules/services
   ];
   boot = {
+    # idk if this fixes my shutdown issue
+    kernelParams = [
+      "acpi=force"
+    ];
     loader = {
       timeout = 2;
       grub = {
