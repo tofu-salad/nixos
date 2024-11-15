@@ -40,9 +40,9 @@
     };
   };
 
+  fontconfig.subpixel.lcdfilter = "light";
   fonts = {
     fontDir.enable = true;
-    fontconfig.subpixel.lcdfilter = "light";
     fonts.packages = with pkgs; [
       font-awesome
       noto-fonts
@@ -54,19 +54,19 @@
   };
 
   # programs.zsh.enable = false;
+  #
   # environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs; [
-    gsettings-desktop-schemas
-    vim
-    wget
+    adwaita-icon-theme
     curl
-    git
     gcc
+    git
+    gsettings-desktop-schemas
     libnotify
     libva-utils
-
-    adwaita-icon-theme
+    vim
+    wget
   ];
 }
