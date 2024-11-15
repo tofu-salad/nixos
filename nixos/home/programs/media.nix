@@ -10,9 +10,9 @@
 
   home.packages = with pkgs; [
     gimp
-    obs-studio
     pamixer
     pavucontrol
     stremio
+    # obs-studio
   ];
 }

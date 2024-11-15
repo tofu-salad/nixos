@@ -1,8 +1,8 @@
 {
   programs.git = {
     enable = true;
-    userName = "soda zero";
-    userEmail = "soda.zero.sip@proton.me";
+    userName = "tofu-salad";
+    userEmail = "tofu salad";
     extraConfig = {
       color = {
         ui = "auto";

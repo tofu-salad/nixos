@@ -1,5 +1,13 @@
 { pkgs, config, ... }:
+
 {
+  imports = [
+    ./gc.nix
+    ./audio.nix
+    ./firewall.nix
+    ./virtualization.nix
+  ];
+
   services.flatpak.enable = true;
 
   services = {
@@ -11,12 +19,6 @@
         variant = "";
         layout = "us";
       };
-    };
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
     };
 
     greetd = {

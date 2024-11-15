@@ -1,5 +1,5 @@
 {
-  description = "tofu's salad nix flake";
+  description = "tofu salad nix flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
