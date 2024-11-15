@@ -2,10 +2,9 @@
 {
   services.flatpak.enable = true;
 
-  # Autologin Workaround
   services = {
     xserver = {
-      enable = true;
+      enable = false;
       displayManager.gdm.enable = false;
       desktopManager.gnome.enable = false;
       xkb = {
@@ -13,11 +12,13 @@
         layout = "us";
       };
     };
+
     pipewire = {
       enable = true;
       alsa.enable = true;
       pulse.enable = true;
     };
+
     greetd = {
       enable = true;
       vt = 7;
@@ -28,10 +29,12 @@
         };
       };
     };
+
     dbus = {
       enable = true;
       packages = with pkgs; [ gnome-keyring ];
     };
+
     avahi = {
       enable = true;
     };

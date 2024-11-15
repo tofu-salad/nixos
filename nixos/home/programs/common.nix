@@ -13,35 +13,23 @@ let
   );
 in
 {
-
   home.packages = with pkgs; [
-    dconf
-    wl-clipboard
-    tree
     (rsmiGpuBtop.override { rocmSupport = true; })
-
-    wofi
-    swaybg
-
-    neovim
-
     bat
+    dconf
+    eza
     fd
     fzf
-    jq
-    tmux
-    unzip
     gh
-
+    jq
+    neovim
     openssl
     ripgrep
-
-    slurp
-    grim
-    eza
-    waybar
-
-    webcord
     tidal-hifi
+    tmux
+    tree
+    unzip
+    webcord
+    wl-clipboard
   ];
 }
