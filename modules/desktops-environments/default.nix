@@ -1,8 +1,8 @@
 {
   imports = [
-    # ./kde.nix
-    ./sway.nix
     # ./gnome.nix
     # ./hyprland.nix
+    # ./kde.nix
+    ./sway.nix
   ];
 }

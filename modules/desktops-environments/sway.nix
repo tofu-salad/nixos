@@ -50,9 +50,18 @@ in
     POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
   };
 
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+      uosc
+    ];
+  };
+
   environment.systemPackages =
     (with pkgs; [
       dunst
+      pamixer
+      pavucontrol
       swaybg
       swayimg
       waybar
