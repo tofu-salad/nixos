@@ -67,6 +67,7 @@
     libnotify
     libva-utils
     vim
+    dbus
     wget
   ];
 }

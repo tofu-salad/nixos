@@ -9,9 +9,9 @@
   ];
 
   services.flatpak.enable = true;
-
   services = {
     xserver = {
+      updateDbusEnvironment = true;
       enable = false;
       displayManager.gdm.enable = false;
       desktopManager.gnome.enable = false;
