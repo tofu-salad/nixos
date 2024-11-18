@@ -61,6 +61,7 @@ in
       waybar
       wl-clipboard
       wofi
+      rofi-wayland
     ])
     ++ screenshotPackages
     ++ gnomePackages;
