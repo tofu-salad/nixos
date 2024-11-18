@@ -24,7 +24,6 @@ let
 in
 {
   programs.sway = {
-    xwayland.enable = false;
     enable = true;
     wrapperFeatures.gtk = true;
   };
