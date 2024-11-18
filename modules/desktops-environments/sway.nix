@@ -37,7 +37,7 @@ in
         settings = {
           screencast = {
             chooser_type = "dmenu";
-            chooser_cmd = "${pkgs.rofi-wayland}/bin/rofi --show dmenu";
+            chooser_cmd = "${pkgs.rofi-wayland}/bin/rofi -show drun";
           };
         };
       };
