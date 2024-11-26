@@ -10,7 +10,7 @@
 
   home.packages = with pkgs; [
     gimp
-    qbittorrent
+    transmission_4 # torrent app
     stremio
     tidal-hifi
     webcord
