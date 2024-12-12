@@ -4,10 +4,10 @@
   imports = [
     # ../modules/gaming.nix
     ./hardware-configuration.nix
-    ../modules/system.nix
-    ../modules/fhs.nix
-    ../modules/desktops-environments
-    ../modules/services
+    ../../modules/system.nix
+    ../../modules/fhs.nix
+    ../../modules/desktops-environments
+    ../../modules/services
   ];
   boot = {
     # idk if this fixes my shutdown issue
@@ -20,7 +20,7 @@
         enable = true;
         efiSupport = true;
         configurationLimit = 3;
-	useOSProber = true;
+        useOSProber = true;
         device = "nodev";
       };
       efi.canTouchEfiVariables = true;
