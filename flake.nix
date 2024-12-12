@@ -43,10 +43,10 @@
         ];
       };
 
-      homeManagerDesktopBaseConfig = {
+      homeManagerBaseConfig = {
         useUserPackages = true;
         useGlobalPkgs = true;
-        users.${vars.persona} = ./hosts/${vars.desktop}/home;
+        users.${vars.persona} = ./hosts/desktop/home;
         extraSpecialArgs = {
           inherit inputs;
         };
@@ -71,12 +71,10 @@
             inherit inputs;
           };
           modules = [
-            ./hosts/${vars.desktop}
+            ./hosts/desktop
             home-manager.nixosModules.home-manager
             {
-              home-manager = homeManagerDesktopBaseConfig // {
-                users.${vars.persona} = ./hosts/${vars.desktop};
-              };
+              home-manager = homeManagerBaseConfig;
             }
             commonSettings
           ];
