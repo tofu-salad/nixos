@@ -9,6 +9,26 @@
     ../../modules/desktops-environments
     ../../modules/services
   ];
+  users = {
+    users = {
+      tofu = {
+        isNormalUser = true;
+        description = "tofu salad nixos config";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "plugdev"
+        ];
+      };
+    };
+  };
+  networking = {
+    hostName = "nixos";
+    networkmanager = {
+      enable = true;
+    };
+  };
+
   boot = {
     # idk if this fixes my shutdown issue
     kernelParams = [
@@ -24,13 +44,6 @@
         device = "nodev";
       };
       efi.canTouchEfiVariables = true;
-    };
-  };
-
-  networking = {
-    hostName = "nixos";
-    networkmanager = {
-      enable = true;
     };
   };
 
