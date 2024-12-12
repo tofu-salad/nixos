@@ -16,10 +16,11 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , ...
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -45,7 +46,7 @@
       homeManagerDesktopBaseConfig = {
         useUserPackages = true;
         useGlobalPkgs = true;
-        users.${vars.persona} = ./hosts/${desktop}/home;
+        users.${vars.persona} = ./hosts/${vars.desktop}/home;
         extraSpecialArgs = {
           inherit inputs;
         };
