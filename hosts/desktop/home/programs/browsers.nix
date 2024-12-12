@@ -20,7 +20,6 @@
       ];
       commandLineArgs = [
         "--enable-features=MiddleClickAutoscroll"
-        "--enable-tab-audio-muting"
       ];
       package = with pkgs; (chromium.override { enableWideVine = true; });
     };
