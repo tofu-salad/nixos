@@ -18,7 +18,11 @@
         { id = "kbmfpngjjgdllneeigpgjifpgocmfgmb"; } # reddit enhancement suite
         { id = "ajopnjidmegmdimjlfnijceegpefgped"; } # betterttv
       ];
-      commandLineArgs = [ "--enable-features=MiddleClickAutoscroll" ];
+      commandLineArgs = [
+        "--enable-features=MiddleClickAutoscroll"
+        "--enable-tab-audio-muting"
+      ];
+      package = with pkgs; (chromium.override { enableWideVine = true; });
     };
   };
 }
