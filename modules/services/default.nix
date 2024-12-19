@@ -10,6 +10,7 @@
 
   services.flatpak.enable = false;
   services = {
+    fstrim.enable = true;
     xserver = {
       updateDbusEnvironment = true;
       enable = false;
