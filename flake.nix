@@ -2,6 +2,7 @@
   description = "tofu salad nix flake";
 
   nixConfig = {
+    trusted-users = [ "tofu" ];
     substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
