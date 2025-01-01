@@ -7,12 +7,17 @@
 
 {
   imports = [
-    # ../modules/gaming.nix
     ./hardware-configuration.nix
-    ../../modules/fhs.nix
-    ../../modules/desktops-environments
-    ../../modules/services
+    ./services
   ];
+
+  fhs.enable = true;
+  desktopEnvironment = {
+    loginManager = {
+      manager = "greetd";
+    };
+    sway.enable = true;
+  };
 
   users = {
     users = {

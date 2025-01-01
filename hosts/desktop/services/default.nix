@@ -13,9 +13,6 @@
     fstrim.enable = true;
     xserver = {
       updateDbusEnvironment = true;
-      enable = false;
-      displayManager.gdm.enable = false;
-      desktopManager.gnome.enable = false;
       xkb = {
         variant = "";
         layout = "us";
@@ -26,17 +23,6 @@
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
-
-    greetd = {
-      enable = true;
-      vt = 7;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
-          user = "greeter";
-        };
-      };
-    };
 
     dbus = {
       enable = true;
