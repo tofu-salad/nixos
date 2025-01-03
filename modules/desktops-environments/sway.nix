@@ -14,8 +14,8 @@ let
   ];
 
   gnomePackages = with pkgs; [
-    baobab # Gnome Disk Usage Analyzer
-    evince # Gnome Document Viewer
+    baobab # gnome disk usage analyzer
+    evince # gnome document viewer
     gnome-calculator
     gnome-calendar
     gnome-characters
@@ -23,8 +23,8 @@ let
     gnome-system-monitor
     gnome-text-editor
     hyprpicker
-    loupe # Gnome Image Viewer
-    nautilus # Gnome Files
+    loupe # gnome image viewer
+    nautilus # gnome Files
   ];
 in
 {
