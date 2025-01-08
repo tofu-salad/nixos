@@ -5,16 +5,6 @@
   inputs,
   ...
 }:
-let
-  gnomeNetworkDisplays = pkgs.gnome-network-displays.overrideAttrs (
-    finalAttrs: previousAttrs: {
-      version = "0.93.0";
-src = pkgs.fetchurl {
-      url = "https://download.gnome.org/sources/gnome-network-displays/0.93/gnome-network-displays-0.93.0.tar.xz";
-    sha256 = "sha256-xxvR8zR+Yglo0e9HRrSFPbgEriYpcRN5K0SXg/D0Oo4=";
-    };
-  });
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -126,7 +116,31 @@ in
   # programs.zsh.enable = false;
   # environment.pathsToLink = [ "/share/zsh" ];
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
+  programs = {
+    dconf = {
+      profiles = {
+        user = {
+          databases = [
+            {
+              lockAll = true;
+              settings = {
+                "org/gnome/desktop/interface" = {
+                  gtk-theme = "adw-gtk3";
+                  font-hinting = "slight";
+                  font-antialiasing = "rgba";
+                  font-name = "Inter Variable 11";
+                };
+              };
+            }
+          ];
+        };
+      };
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     google-chrome
@@ -134,7 +148,6 @@ in
 
     stremio
     vlc
-
     libreoffice-qt
 
     adwaita-icon-theme
@@ -149,10 +162,13 @@ in
     dbus
     wget
     alacritty
-    adw-gtk3
-    nwg-look
-    gnomeNetworkDisplays
 
+    # dev
+    tmux
+    gh
+
+    adw-gtk3
+    gnome-network-displays
   ];
 
   system.stateVersion = "24.11";

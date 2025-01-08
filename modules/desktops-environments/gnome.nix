@@ -30,7 +30,7 @@ in
       (with pkgs; [ gnome-tweaks ])
       ++ (with pkgs.gnomeExtensions; [
         dash-to-dock
-	openweather-refined
+        openweather-refined
       ]);
   };
 }

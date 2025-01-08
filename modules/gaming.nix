@@ -1,7 +1,7 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-lutris
+    lutris
     wineWowPackages.stable
     winetricks
   ];
