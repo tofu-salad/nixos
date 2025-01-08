@@ -1,47 +1,43 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   inputs,
-  ghostty,
   ...
 }:
-
+let
+  gnomeNetworkDisplays = pkgs.gnome-network-displays.overrideAttrs (
+    finalAttrs: previousAttrs: {
+      version = "0.93.0";
+src = pkgs.fetchurl {
+      url = "https://download.gnome.org/sources/gnome-network-displays/0.93/gnome-network-displays-0.93.0.tar.xz";
+    sha256 = "sha256-xxvR8zR+Yglo0e9HRrSFPbgEriYpcRN5K0SXg/D0Oo4=";
+    };
+  });
+in
 {
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   imports = [
     ./hardware-configuration.nix
+    ./services
+    ../../modules/gaming.nix
   ];
 
-  fhs.enable = true;
-  desktopEnvironment = {
-    gnome.enable = true;
-    loginManager.manager = "gdm";
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 1w";
   };
 
-  users = {
-    users = {
-      tofu = {
-        isNormalUser = true;
-        description = "tofu salad laptop config";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "plugdev"
-        ];
-      };
-    };
-  };
-
-  networking = {
-    hostName = "laptop";
-    networkmanager = {
-      enable = true;
-    };
-  };
+  nix.settings.auto-optimise-store = true;
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   boot = {
+    kernelParams = [
+      "quiet"
+      "splash"
+    ];
     loader = {
-      timeout = 3;
+      timeout = 1;
       grub = {
         enable = true;
         efiSupport = true;
@@ -53,14 +49,11 @@
     };
   };
 
-  zramSwap.enable = true;
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-    ];
+  networking = {
+    hostName = "laptop";
+    networkmanager = {
+      enable = true;
+    };
   };
 
   time = {
@@ -70,6 +63,12 @@
 
   i18n = {
     defaultLocale = "es_AR.UTF-8";
+    supportedLocales = [
+      "C.UTF-8/UTF-8"
+      "es_ES.UTF-8/UTF-8"
+      "es_AR.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
+    ];
     extraLocaleSettings = {
       LC_ADDRESS = "es_AR.UTF-8";
       LC_IDENTIFICATION = "es_AR.UTF-8";
@@ -81,6 +80,33 @@
       LC_TELEPHONE = "es_AR.UTF-8";
       LC_TIME = "es_AR.UTF-8";
     };
+  };
+
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  users.users.tofu = {
+    isNormalUser = true;
+    description = "tofu salad laptop config";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "plugdev"
+    ];
+  };
+
+  fhs.enable = true;
+  desktopEnvironment = {
+    gnome.enable = true;
+    loginManager.manager = "gdm";
+  };
+
+  zramSwap.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
   };
 
   fonts = {
@@ -102,21 +128,32 @@
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      adwaita-icon-theme
-      curl
-      gcc
-      git
-      gsettings-desktop-schemas
-      libnotify
-      libva-utils
-      vim
-      dbus
-      wget
-    ]
-    ++ [ ghostty.packages.x86_64-linux.default ];
+  environment.systemPackages = with pkgs; [
+    google-chrome
+    firefox
+
+    stremio
+    vlc
+
+    libreoffice-qt
+
+    adwaita-icon-theme
+    curl
+    gcc
+    git
+    gsettings-desktop-schemas
+    libnotify
+    libva-utils
+    vim
+    neovim
+    dbus
+    wget
+    alacritty
+    adw-gtk3
+    nwg-look
+    gnomeNetworkDisplays
+
+  ];
 
   system.stateVersion = "24.11";
 }
