@@ -44,7 +44,6 @@
           "nix-command"
           "flakes"
         ];
-        nix.settings.trusted-users = [ "tofu" ];
       };
 
       homeManagerBaseConfig = {
