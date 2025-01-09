@@ -2,10 +2,6 @@
   description = "tofu salad nix flake";
 
   nixConfig = {
-    trusted-users = [ "tofu" ];
-    substituters = [
-      "https://cache.nixos.org"
-    ];
     extra-substituters = [
       "https://nix-community.cachix.org"
     ];
@@ -48,6 +44,7 @@
           "nix-command"
           "flakes"
         ];
+        nix.settings.trusted-users = [ "tofu" ];
       };
 
       homeManagerBaseConfig = {
