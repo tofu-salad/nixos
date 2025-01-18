@@ -9,7 +9,7 @@
       enable = true;
     };
     chromium = {
-      enable = true;
+      enable = false;
       extensions = [
         { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
