@@ -153,6 +153,9 @@
 
     adwaita-icon-theme
     curl
+    wl-clipboard
+    eza
+    btop
     gcc
     git
     gsettings-desktop-schemas
