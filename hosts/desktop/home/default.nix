@@ -41,6 +41,7 @@
     };
   };
 
+  fonts.fontconfig.enable = true;
   programs = {
     direnv = {
       enable = true;

@@ -10,9 +10,9 @@
 
   home.packages = with pkgs; [
     gimp
-    transmission_4-gtk # torrent app
+    qbittorrent
     stremio
     tidal-hifi
-    webcord
+    discord-canary
   ];
 }
