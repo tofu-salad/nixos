@@ -9,7 +9,6 @@
   imports = [
     ./hardware-configuration.nix
     ./services
-    ../../modules/gaming.nix
   ];
 
   nix.gc = {
@@ -87,6 +86,7 @@
     ];
   };
 
+  gaming.enable = true;
   fhs.enable = true;
   desktopEnvironment = {
     gnome.enable = true;
@@ -106,8 +106,14 @@
     fontconfig.subpixel.lcdfilter = "light";
     fontDir.enable = true;
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "IBMPlexMono"
+          "IosevkaTerm"
+        ];
+      })
       font-awesome
+      iosevka
       ibm-plex
       inter
       noto-fonts
@@ -121,35 +127,34 @@
   };
 
   environment.systemPackages = with pkgs; [
-    google-chrome
-    firefox
-
-    stremio
-    vlc
-    libreoffice-qt
-
-    adwaita-icon-theme
-    curl
-    wl-clipboard
-    eza
-    btop
-    gcc
-    git
-    gsettings-desktop-schemas
-    libnotify
-    libva-utils
-    vim
-    neovim
-    dbus
-    wget
-    alacritty
-
-    # dev
-    tmux
-    gh
-
     adw-gtk3
+    adwaita-icon-theme
+    alacritty
+    btop
+    curl
+    dbus
+    eza
+    fd
+    firefox
+    gcc
+    gh
+    git
     gnome-network-displays
+    google-chrome
+    gsettings-desktop-schemas
+    jq
+    libnotify
+    libreoffice-qt
+    libva-utils
+    neovim
+    ripgrep
+    stremio
+    tmux
+    unzip
+    vim
+    vlc
+    wget
+    wl-clipboard
   ];
 
   system.stateVersion = "24.11";
