@@ -90,7 +90,10 @@
   fhs.enable = true;
   desktopEnvironment = {
     gnome.enable = true;
-    loginManager.manager = "gdm";
+    loginManager = {
+      enable = true;
+      manager = "gdm";
+    };
   };
 
   zramSwap.enable = true;
@@ -113,34 +116,8 @@
     ];
   };
 
-  # programs.zsh.enable = false;
-  # environment.pathsToLink = [ "/share/zsh" ];
-
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    GTK_THEME = "adw-gtk3";
-  };
-
-  programs = {
-    dconf = {
-      profiles = {
-        user = {
-          databases = [
-            {
-              lockAll = true;
-              settings = {
-                "org/gnome/desktop/interface" = {
-                  gtk-theme = "adw-gtk3";
-                  font-hinting = "slight";
-                  font-antialiasing = "rgba";
-                  font-name = "Inter Variable 11";
-                };
-              };
-            }
-          ];
-        };
-      };
-    };
   };
 
   environment.systemPackages = with pkgs; [

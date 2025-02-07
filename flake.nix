@@ -34,8 +34,29 @@
         desktop = {
           name = "desktop";
           user = "tofu";
+          homeConfig = {
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            users.tofu = ./hosts/desktop/home;
+            extraSpecialArgs = {
+              inherit inputs;
+            };
+
+          };
         };
-        laptop.name = "laptop";
+        laptop = {
+          name = "laptop";
+          user = "tofu";
+          homeConfig = {
+            backupFileExtension = "backup";
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            users.tofu = ./hosts/laptop/home;
+            extraSpecialArgs = {
+              inherit inputs;
+            };
+          };
+        };
         home-manager.name = "home-manager";
       };
 
@@ -44,15 +65,6 @@
           "nix-command"
           "flakes"
         ];
-      };
-
-      homeManagerBaseConfig = {
-        useUserPackages = true;
-        useGlobalPkgs = true;
-        users.${hosts.desktop.user} = ./hosts/desktop/home;
-        extraSpecialArgs = {
-          inherit inputs;
-        };
       };
     in
     {
@@ -65,6 +77,10 @@
           modules = [
             ./modules
             ./hosts/laptop
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = hosts.laptop.homeConfig;
+            }
             commonSettings
           ];
         };
@@ -79,7 +95,7 @@
             ./hosts/desktop
             home-manager.nixosModules.home-manager
             {
-              home-manager = homeManagerBaseConfig;
+              home-manager = hosts.desktop.homeConfig;
             }
             commonSettings
           ];
