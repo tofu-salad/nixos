@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = false;
     autosuggestion.enable = true;

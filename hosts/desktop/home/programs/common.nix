@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   rsmiGpuBtop = pkgs.btop.overrideAttrs (
     finalAttrs: previousAttrs: {
       src = pkgs.fetchFromGitHub {
@@ -9,9 +10,10 @@
       };
     }
   );
-in {
+in
+{
   home.packages = with pkgs; [
-    (rsmiGpuBtop.override {rocmSupport = true;})
+    (rsmiGpuBtop.override { rocmSupport = true; })
     bat
     dconf
     eza
