@@ -32,6 +32,7 @@ in
       [
         dash-to-dock
         openweather-refined
+        tailscale-qs
         appindicator
       ]
     );
