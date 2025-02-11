@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.desktopEnvironment.gnome;
-in {
+in
+{
   config = mkIf cfg.enable {
     services.xserver = {
       desktopManager.gnome.enable = true;
@@ -26,7 +28,8 @@ in {
       snapshot
     ];
     environment.systemPackages = (
-      with pkgs.gnomeExtensions; [
+      with pkgs.gnomeExtensions;
+      [
         dash-to-dock
         openweather-refined
         appindicator

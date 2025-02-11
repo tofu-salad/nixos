@@ -4,7 +4,8 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.desktopEnvironment.sway;
   screenshotPackages = with pkgs; [
     grim
@@ -23,7 +24,8 @@ with lib; let
     loupe # gnome image viewer
     nautilus # gnome Files
   ];
-in {
+in
+{
   config = mkIf cfg.enable {
     programs.sway = {
       enable = true;
@@ -41,7 +43,7 @@ in {
             };
           };
         };
-        extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       };
     };
     services.gnome.tinysparql.enable = true;

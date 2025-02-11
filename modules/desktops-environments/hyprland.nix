@@ -4,7 +4,8 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.desktopEnvironment.hyprland;
   screenshotPackages = with pkgs; [
     grim
@@ -24,7 +25,8 @@ with lib; let
     loupe # gnome image viewer
     nautilus # gnome Files
   ];
-in {
+in
+{
   config = mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
@@ -33,7 +35,7 @@ in {
     xdg = {
       portal = {
         enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       };
     };
 
