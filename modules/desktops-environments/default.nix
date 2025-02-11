@@ -4,16 +4,14 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.desktopEnvironment;
   loginManagerType = types.enum [
     "gdm"
     "sddm"
     "greetd"
   ];
-in
-{
+in {
   imports = [
     ./gnome.nix
     ./hyprland.nix
@@ -77,7 +75,7 @@ in
           };
           extraSettings = mkOption {
             type = types.attrs;
-            default = { };
+            default = {};
             description = "additional greetd settings";
           };
         };
@@ -86,19 +84,23 @@ in
   };
   config = mkMerge [
     # desktop environments configurations
-    (mkIf cfg.gnome.enable
+    (
+      mkIf cfg.gnome.enable
       {
       }
     )
-    (mkIf cfg.kde.enable
+    (
+      mkIf cfg.kde.enable
       {
       }
     )
-    (mkIf cfg.hyprland.enable
+    (
+      mkIf cfg.hyprland.enable
       {
       }
     )
-    (mkIf cfg.sway.enable
+    (
+      mkIf cfg.sway.enable
       {
       }
     )
@@ -106,8 +108,8 @@ in
     # login managers configurations
     (mkIf cfg.loginManager.enable (mkMerge [
       (mkIf (cfg.loginManager.manager == "gdm") {
-      services.xserver.displayManager.gdm.enable = true;
-      services.xserver.displayManager.gdm.wayland = true;
+        services.xserver.displayManager.gdm.enable = true;
+        services.xserver.displayManager.gdm.wayland = true;
       })
       (mkIf (cfg.loginManager.manager == "sddm") {
         services.xserver.displayManager.sddm.enable = true;

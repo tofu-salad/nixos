@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -14,7 +17,6 @@
           sha256 = "sha256-TR4CyBZ+KoZRs9XDmWE5lJuUXXU1J8E2Z63nt+FS+5w=";
         };
       }
-
     ];
     shellAliases = {
       dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";

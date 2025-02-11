@@ -1,7 +1,9 @@
-{ config, pkgs, ... }:
-
 {
-  imports = [ ./programs ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./programs];
 
   home = {
     username = "tofu";
@@ -22,7 +24,6 @@
       enable = true;
       nix-direnv.enable = true;
     };
-
   };
   home.stateVersion = "24.11";
 
