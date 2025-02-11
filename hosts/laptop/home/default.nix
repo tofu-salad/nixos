@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  imports = [ ./chromium.nix ];
   home = {
     username = "tofu";
     pointerCursor = {

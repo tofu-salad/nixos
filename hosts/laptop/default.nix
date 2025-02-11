@@ -126,35 +126,35 @@
   };
 
   environment.systemPackages = with pkgs; [
-    adw-gtk3
-    adwaita-icon-theme
-    alacritty
-    btop
-    curl
-    dbus
-    eza
-    fd
-    firefox
-    fzf
-    gcc
-    gh
-    git
-    gnome-network-displays
-    google-chrome
-    gsettings-desktop-schemas
-    jq
-    libnotify
-    libreoffice-qt
-    libva-utils
-    neovim
-    ripgrep
-    stremio
-    tmux
-    unzip
-    vim
-    vlc
-    wget
-    wl-clipboard
+      adw-gtk3
+      adwaita-icon-theme
+      alacritty
+      btop
+      curl
+      dbus
+      eza
+      fd
+      firefox
+      fzf
+      gcc
+      gh
+      git
+      gnome-network-displays
+      google-chrome
+      gsettings-desktop-schemas
+      jq
+      libnotify
+      libreoffice-qt
+      libva-utils
+      neovim
+      ripgrep
+      stremio
+      tmux
+      unzip
+      vim
+      vlc
+      wget
+      wl-clipboard
   ];
 
   system.stateVersion = "24.11";
