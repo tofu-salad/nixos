@@ -10,13 +10,15 @@
     ../modules/rnnoise.nix
     ../modules/desktops-environments
     ../modules/services.nix
+    ../modules/gc.nix
   ];
   boot = {
     loader = {
       timeout = 2;
-      systemd-boot = {
+      grub = {
         enable = true;
         configurationLimit = 3;
+        device = "nodev";
       };
       efi.canTouchEfiVariables = true;
     };
