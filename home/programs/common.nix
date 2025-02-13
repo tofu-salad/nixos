@@ -2,22 +2,22 @@
 
 {
   home.packages = with pkgs; [
-    vscode
-    glib
+#    vscode
+#    glib
     kitty
     neovim
     xdg-utils
-    krita
-    bat
-    exa
+#    krita
+#    bat
+    eza
     fd
     fzf
     jq
     openssl
     ripgrep
     tmux
-    trash-cli
-    udev
+#    trash-cli
+#    udev
     unzip
     wl-clipboard
   ];

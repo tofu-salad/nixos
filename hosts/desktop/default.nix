@@ -3,9 +3,10 @@
 {
   imports = [
     ../../modules/system.nix
-    ../../modules/sway.nix
-    ../../modules/virtualization.nix
-    ../../modules/android.nix
+    ../../modules/hyprland.nix
+#    ../../modules/sway.nix
+#    ../../modules/virtualization.nix
+#    ../../modules/android.nix
     ./hardware-configuration.nix
   ];
 

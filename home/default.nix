@@ -1,11 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./programming ./programs ];
+  imports = [
+ # ./programming 
+./programs ];
 
   home = {
-    username = "dezequiel";
-    homeDirectory = "/home/dezequiel";
+    username = "soda";
+    homeDirectory = "/home/soda";
     pointerCursor = {
       name = "Adwaita";
       package = pkgs.gnome.adwaita-icon-theme;
