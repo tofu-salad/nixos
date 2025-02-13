@@ -36,6 +36,8 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      ibm-plex
+      (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
     ];
   };
   programs.dconf.enable = true;

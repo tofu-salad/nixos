@@ -6,5 +6,6 @@
     gnome-text-editor
     swayimg
     swappy
+    font-manager
   ];
 }
