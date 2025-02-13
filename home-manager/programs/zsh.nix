@@ -20,7 +20,7 @@
       la = "eza -abgHlS --color=always --group-directories-first";
       vim = "nvim";
       dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
-      update = "sudo nixos-rebuild switch";
+      update = "home-manager switch";
     };
     history = {
       path = "${config.xdg.dataHome}/zsh/history";
