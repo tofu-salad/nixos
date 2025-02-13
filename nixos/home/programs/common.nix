@@ -30,5 +30,6 @@
     eza
     waybar
     turso-cli
+    adw-gtk3
   ];
 }
