@@ -28,7 +28,7 @@
       };
 
       persona = "soda";
-      sodaNixOs = "os";
+      sodaNixOs = "desktop";
       sodaNonNixOs = "manager";
     in {
       nixosConfigurations = {

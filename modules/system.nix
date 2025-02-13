@@ -46,5 +46,7 @@
     wget
     curl
     git
+    gcc
+    glib
   ];
 }
