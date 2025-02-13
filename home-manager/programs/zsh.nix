@@ -30,13 +30,16 @@
       autoload -Uz compinit && compinit
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
       zstyle ':completion:*' menu select
-      export VISUAL=vim
+      export VISUAL=nvim
       export EDITOR="$VISUAL"
-      export GIT_EDITOR=vim
+      export GIT_EDITOR=nvim
       export PATH=$PATH:/usr/local/go/bin
       export PATH=$PATH:$HOME/go/bin/
       export PATH=$PATH:$HOME/.turso
+      export PATH=$PATH:$HOME/Scripts
+      export PATH=$PATH:$HOME/.cargo/bin/
       bindkey -e
+      bindkey -s ^t "tmux-sessionizer\n"
     '';
   };
 }

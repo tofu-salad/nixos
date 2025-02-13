@@ -5,6 +5,7 @@
     rnix-lsp
     nixfmt
     nodejs_20
+    nodePackages.pnpm
     go
 
     rustc
