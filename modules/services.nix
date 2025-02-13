@@ -33,6 +33,10 @@
     #     default_session = initial_session;
     #   };
     # };
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
     dbus = { enable = true; };
     avahi = { enable = true; };
   };

@@ -5,12 +5,14 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+      vaapiVdpau
+      vaapiIntel
+      libvdpau-va-gl
+      # intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
     ];
   };
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
-    services.jellyfin.enable = true;
 
   users = {
     users = {
@@ -63,6 +65,7 @@
     curl
     git
     gcc
+    libva-utils
     gnome.adwaita-icon-theme
   ];
 }

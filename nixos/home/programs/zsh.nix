@@ -17,8 +17,7 @@
 
     ];
     shellAliases = {
-      ls = "eza -abgHlS --color=always --group-directories-first";
-      ll = "eza -l";
+      la = "eza -abgHlS --color=always --group-directories-first";
       vim = "nvim";
       dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
       update = "sudo nixos-rebuild switch";
@@ -37,6 +36,7 @@
       export PATH=$PATH:/usr/local/go/bin
       export PATH=$PATH:$HOME/go/bin/
       export PATH=$PATH:$HOME/.turso
+      bindkey -e
     '';
   };
 }
