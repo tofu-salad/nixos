@@ -1,15 +1,12 @@
 { pkgs, ... }:
 {
-
-  home.packages = with pkgs; [
-    google-chrome
-  ];
   programs = {
     firefox = {
       enable = true;
     };
     chromium = {
-      enable = false;
+      enable = true;
+      package = pkgs.google-chrome;
       extensions = [
         { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
@@ -20,7 +17,6 @@
       commandLineArgs = [
         "--enable-features=MiddleClickAutoscroll"
       ];
-      package = with pkgs; (chromium.override { enableWideVine = true; });
     };
   };
 }

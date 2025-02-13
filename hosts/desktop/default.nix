@@ -16,6 +16,7 @@
   desktopEnvironment = {
     loginManager = {
       manager = "greetd";
+      greetd.defaultSession = "sway";
     };
     sway.enable = true;
   };
@@ -85,7 +86,14 @@
     fontconfig.subpixel.lcdfilter = "light";
     fontDir.enable = true;
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "IBMPlexMono"
+          "Iosevka"
+          "IosevkaTerm"
+        ];
+      })
+      iosevka
       font-awesome
       ibm-plex
       inter
@@ -104,7 +112,6 @@
     libnotify
     libva-utils
     vim
-    dbus
     wget
   ];
 

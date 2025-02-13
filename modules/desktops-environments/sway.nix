@@ -17,10 +17,8 @@ let
     baobab # gnome disk usage analyzer
     evince # gnome document viewer
     gnome-calculator
-    gnome-calendar
     gnome-characters
     gnome-font-viewer
-    gnome-system-monitor
     gnome-text-editor
     hyprpicker
     loupe # gnome image viewer
@@ -48,9 +46,9 @@ in
         extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       };
     };
-
+    services.gnome.tinysparql.enable = true;
+    services.gnome.localsearch.enable = true;
     services.gnome.gnome-keyring.enable = true;
-
     environment.sessionVariables = {
       POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     };

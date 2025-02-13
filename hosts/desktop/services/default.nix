@@ -24,9 +24,9 @@
     gvfs.enable = true;
     udisks2.enable = true;
 
+    upower.enable = true;
     dbus = {
       enable = true;
-      packages = with pkgs; [ gnome-keyring ];
     };
 
     avahi = {
