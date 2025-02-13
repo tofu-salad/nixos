@@ -2,7 +2,7 @@
   description = "tofu salad nix flake";
 
   nixConfig = {
-    extra-substituters = ["https://nix-community.cachix.org"];
+    extra-substituters = [ "https://nix-community.cachix.org" ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
@@ -16,6 +16,9 @@
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7d3729f ( back to nixfmt)
   outputs =
     {
       self,
@@ -29,6 +32,10 @@
         inherit system;
         config.allowUnfree = true;
       };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7d3729f ( back to nixfmt)
       hosts = {
         desktop = {
           name = "desktop";
@@ -40,9 +47,15 @@
             extraSpecialArgs = {
               inherit inputs;
             };
+<<<<<<< HEAD
 
           };
         };
+=======
+          };
+        };
+
+>>>>>>> 7d3729f ( back to nixfmt)
         laptop = {
           name = "laptop";
           user = "tofu";
@@ -65,6 +78,7 @@
           "flakes"
         ];
       };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
       homeManagerDesktopBaseConfig = {
@@ -135,11 +149,35 @@
             commonSettings
           ];
         };
+=======
+
+      mkNixosSystem =
+        host:
+        nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./modules
+            ./hosts/${host.name}
+            home-manager.nixosModules.home-manager
+            { home-manager = host.homeConfig; }
+            commonSettings
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        ${hosts.desktop.name} = mkNixosSystem hosts.desktop;
+        ${hosts.laptop.name} = mkNixosSystem hosts.laptop;
+>>>>>>> 7d3729f ( back to nixfmt)
       };
 
       homeConfigurations = {
         ${hosts.home-manager.name} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+<<<<<<< HEAD
 =======
   outputs = {
     self,
@@ -153,77 +191,18 @@
       config.allowUnfree = true;
     };
 >>>>>>> 04efe6b (format with alejandra)
+=======
+>>>>>>> 7d3729f ( back to nixfmt)
 
-    hosts = {
-      desktop = {
-        name = "desktop";
-        user = "tofu";
-        homeConfig = {
-          useUserPackages = true;
-          useGlobalPkgs = true;
-          users.tofu = ./hosts/desktop/home;
           extraSpecialArgs = {
             inherit inputs;
           };
+
+          modules = [
+            ./hosts/home-manager
+            commonSettings
+          ];
         };
       };
-
-      laptop = {
-        name = "laptop";
-        user = "tofu";
-        homeConfig = {
-          backupFileExtension = "backup";
-          useUserPackages = true;
-          useGlobalPkgs = true;
-          users.tofu = ./hosts/laptop/home;
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
-      };
-      home-manager.name = "home-manager";
     };
-
-    commonSettings = {
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-
-    mkNixosSystem = host:
-      nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./modules
-          ./hosts/${host.name}
-          home-manager.nixosModules.home-manager
-          {home-manager = host.homeConfig;}
-          commonSettings
-        ];
-      };
-  in {
-    nixosConfigurations = {
-      ${hosts.desktop.name} = mkNixosSystem hosts.desktop;
-      ${hosts.laptop.name} = mkNixosSystem hosts.laptop;
-    };
-
-    homeConfigurations = {
-      ${hosts.home-manager.name} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-
-        modules = [
-          ./hosts/home-manager
-          commonSettings
-        ];
-      };
-    };
-  };
 }

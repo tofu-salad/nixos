@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.desktopEnvironment.kde;
-in {
+in
+{
   config = mkIf cfg.enable {
     services.xserver.enable = true;
     services.xserver.desktopManager.plasma5.enable = true;
