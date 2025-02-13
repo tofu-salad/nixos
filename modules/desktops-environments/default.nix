@@ -53,6 +53,11 @@ in
       };
 
       loginManager = {
+        enable = mkOption {
+          default = false;
+          type = types.bool;
+          description = "enable login manager";
+        };
         manager = mkOption {
           type = loginManagerType;
           default = "greetd";
@@ -97,29 +102,32 @@ in
       {
       }
     )
+
     # login managers configurations
-    (mkIf (cfg.loginManager.manager == "gdm") {
-      services.xserver.displayManager.gdm.enable = true;
-      services.xserver.enable = true;
-    })
-    (mkIf (cfg.loginManager.manager == "sddm") {
-      services.xserver.displayManager.sddm.enable = true;
-      services.xserver.enable = true;
-    })
-    (mkIf (cfg.loginManager.manager == "greetd") {
-      services.greetd = {
-        enable = true;
-        vt = cfg.loginManager.greetd.vt;
-        settings = mkMerge [
-          {
-            default_session = {
-              command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd ${cfg.loginManager.greetd.defaultSession}";
-              user = "greeter";
-            };
-          }
-          cfg.loginManager.greetd.extraSettings
-        ];
-      };
-    })
+    (mkIf cfg.loginManager.enable (mkMerge [
+      (mkIf (cfg.loginManager.manager == "gdm") {
+        services.xserver.displayManager.gdm.enable = true;
+        services.xserver.enable = true;
+      })
+      (mkIf (cfg.loginManager.manager == "sddm") {
+        services.xserver.displayManager.sddm.enable = true;
+        services.xserver.enable = true;
+      })
+      (mkIf (cfg.loginManager.manager == "greetd") {
+        services.greetd = {
+          enable = true;
+          vt = cfg.loginManager.greetd.vt;
+          settings = mkMerge [
+            {
+              default_session = {
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd ${cfg.loginManager.greetd.defaultSession}";
+                user = "greeter";
+              };
+            }
+            cfg.loginManager.greetd.extraSettings
+          ];
+        };
+      })
+    ]))
   ];
 }
