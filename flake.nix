@@ -65,7 +65,7 @@
 
       homeConfigurations.${persona} =
         home-manager.lib.homeManagerConfiguration {
-          inherit  pkgs;
+          inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home-manager
