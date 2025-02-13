@@ -8,7 +8,8 @@
   };
   environment.systemPackages = with pkgs; [
     lutris
-    inputs.nix-gaming.packages.${pkgs.system}.wine-ge
+    wineWowPackages.staging
+    winetricks
   ];
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
 }
