@@ -7,8 +7,6 @@
         isNormalUser = true;
         description = "Diego Ezequiel";
         extraGroups = [ "networkmanager" "wheel" "plugdev" ];
-        packages = with pkgs; [ ];
-        shell = pkgs.zsh;
       };
     };
   };
@@ -33,7 +31,7 @@
     };
   };
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
@@ -93,7 +91,13 @@
     lm_sensors
     scrot
     neofetch
-
     xfce.thunar
   ];
+
+  environment.sessionVariables = rec {
+    ANDROID_SDK_ROOT =
+      "${pkgs.androidenv.androidPkgs_9_0.platform-tools}/libexec/android-sdk";
+    ANDROID_HOME =
+      "${pkgs.androidenv.androidPkgs_9_0.platform-tools}/libexec/android-sdk";
+  };
 }

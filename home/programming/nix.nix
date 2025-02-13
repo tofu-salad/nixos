@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ lua lua-language-server stylua ];
+  home.packages = with pkgs; [ rnix-lsp nixfmt ];
 }
