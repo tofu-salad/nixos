@@ -16,7 +16,6 @@
 
     curl
     eza
-    # turso-cli
     tmux
 
     # gcc
