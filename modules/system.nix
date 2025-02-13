@@ -37,49 +37,14 @@
       noto-fonts-emoji
     ];
   };
+  programs.dconf.enable = true;
 
-services.flatpak.enable = true;
-  services = {
-    xserver = {
-      layout = "us";
-      xkbVariant = "";
-    };
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
-    };
-    dbus = { enable = true; };
-    greetd = {
-      enable = true;
-      settings = rec {
-        initial_session = {
-          command = "Hyprland";
-          user = "soda";
-        };
-        default_session = initial_session;
-      };
-    };
-    gvfs = { enable = true; };
-    tumbler = { enable = true; };
-    # udev = { packages = [ pkgs.android-udev-rules ]; };
-  };
 
   environment.systemPackages = with pkgs; [
-  gnome-network-displays
+    gnome-network-displays
     vim
     wget
     curl
-    cinnamon.nemo
-    networkmanager-l2tp
-    networkmanager-openconnect
-    networkmanager-sstp
     git
-    sysstat
-    lm_sensors
-    networkmanager-vpnc
-    networkmanagerapplet
-    iw
-    scrot
   ];
 }

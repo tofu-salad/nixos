@@ -4,9 +4,7 @@
   imports = [
     ../../modules/system.nix
     ../../modules/hyprland.nix
-#    ../../modules/sway.nix
-#    ../../modules/virtualization.nix
-#    ../../modules/android.nix
+     ../../modules/services.nix
     ./hardware-configuration.nix
   ];
 
@@ -22,24 +20,15 @@
 
   networking = {
     hostName = "desktop";
-    wireless.enable = false;
+    wireless.enable = true;
     networkmanager = { 
         enable = true; 
-        plugins = with pkgs; [ networkmanager-openvpn networkmanager-openconnect ];
+         unmanaged = [
+            "*" "except:type:wwan" "except:type:gsm"
+    ];
     };
     firewall = {
       enable = false;
-      allowedTCPPorts = [ 80 443 19000 8081 ];
-      allowedUDPPortRanges = [
-        {
-          from = 4000;
-          to = 4007;
-        }
-        {
-          from = 8000;
-          to = 8010;
-        }
-      ];
     };
   };
 

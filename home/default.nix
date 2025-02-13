@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-./programming 
-./programs ];
+  imports = [ ./programs ./languages ];
 
   home = {
     username = "soda";
