@@ -16,7 +16,8 @@
       ];
   };
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
     nix-gaming.url = "github:fufexan/nix-gaming";
     home-manager = {
@@ -25,14 +26,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
       };
-
       persona = "soda";
       sodaNixOs = "desktop";
       sodaNonNixOs = "manager";
@@ -43,13 +43,22 @@
           {
             inherit system;
             inherit pkgs;
-            specialArgs = { inherit inputs; };
+            specialArgs = {
+              inherit inputs;
+            };
             modules = [
-              ./hosts/desktop
+              ./nixos
               home-manager.nixosModules.home-manager
               {
+                home-manager.extraSpecialArgs = {
+                  pkgs-unstable = import nixpkgs-unstable {
+                    inherit system;
+                    config = { allowUnfree = true; };
+                  };
+                };
+                home-manager.useUserPackages = true;
                 home-manager.useGlobalPkgs = true;
-                home-manager.users.${persona} = ./home/${sodaNixOs};
+                home-manager.users.${persona} = ./nixos/home;
               }
             ];
           };

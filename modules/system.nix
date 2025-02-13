@@ -31,15 +31,14 @@
       LC_TIME = "es_AR.UTF-8";
     };
   };
-  fonts = {
-    packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      ibm-plex
-      (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
-    ];
-  };
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    ibm-plex
+    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+  ];
+
   programs.dconf.enable = true;
   programs.zsh.enable = true;
 
