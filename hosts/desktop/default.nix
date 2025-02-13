@@ -3,7 +3,7 @@
 {
   imports = [
     # ../modules/gaming.nix
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
     ../../modules/system.nix
     ../../modules/fhs.nix
     ../../modules/desktops-environments
