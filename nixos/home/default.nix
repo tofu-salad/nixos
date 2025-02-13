@@ -6,6 +6,11 @@
   home = {
     username = "soda";
     homeDirectory = "/home/soda";
+    pointerCursor = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+      size = 32;
+    };
   };
   dconf = {
     enable = true;
