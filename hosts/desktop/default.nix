@@ -61,7 +61,7 @@
     enable32Bit = true;
   };
 
-   time = {
+  time = {
     hardwareClockInLocalTime = false;
     timeZone = "America/Argentina/Cordoba";
   };
@@ -89,7 +89,7 @@
       font-awesome
       ibm-plex
       inter
-     ];
+    ];
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
