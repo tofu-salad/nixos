@@ -27,6 +27,4 @@
       extraOutputsToInstall = ["dev"];
     }))
   ];
-
-  # ......omit many configurations
 }
