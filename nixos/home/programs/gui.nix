@@ -7,5 +7,6 @@
     swappy
     font-manager
     qbittorrent
+    discord
   ]);
 }

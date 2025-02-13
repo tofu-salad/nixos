@@ -58,6 +58,7 @@
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  fonts.fontconfig.subpixel.lcdfilter = "light";
 
   environment.systemPackages = with pkgs; [
     gsettings-desktop-schemas
@@ -67,6 +68,7 @@
     curl
     git
     gcc
+    libnotify
     libva-utils
     gnome.adwaita-icon-theme
   ];

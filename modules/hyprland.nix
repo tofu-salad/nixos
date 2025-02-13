@@ -35,5 +35,7 @@
   environment.systemPackages = with pkgs; [
     swaynotificationcenter
     polkit_gnome
+    hypridle
+    hyprlock
   ];
 }

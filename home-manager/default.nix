@@ -8,6 +8,7 @@
     homeDirectory = "/home/soda";
   };
   fonts.fontconfig.enable = true;
+  fonts.fontconfig.subpixel.lcdfilter = "light";
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ 
     "IBMPlexMono"

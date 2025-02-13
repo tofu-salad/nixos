@@ -9,6 +9,7 @@
 
     wofi
     kitty
+    wezterm
     swaybg
 
     neovim
