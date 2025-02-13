@@ -25,11 +25,8 @@ in
     neovim
     openssl
     ripgrep
-    tidal-hifi
     tmux
     tree
     unzip
-    webcord
-    wl-clipboard
   ];
 }

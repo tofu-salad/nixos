@@ -2,10 +2,10 @@
 
 {
   imports = [
+    # ../modules/gaming.nix
     ./hardware-configuration.nix
     ../modules/system.nix
     ../modules/fhs.nix
-    # ../modules/gaming.nix
     ../modules/desktops-environments
     ../modules/services
   ];
