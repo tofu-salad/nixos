@@ -106,8 +106,8 @@ in
     # login managers configurations
     (mkIf cfg.loginManager.enable (mkMerge [
       (mkIf (cfg.loginManager.manager == "gdm") {
-        services.xserver.displayManager.gdm.enable = true;
-        services.xserver.enable = true;
+      services.xserver.displayManager.gdm.enable = true;
+      services.xserver.displayManager.gdm.wayland = true;
       })
       (mkIf (cfg.loginManager.manager == "sddm") {
         services.xserver.displayManager.sddm.enable = true;

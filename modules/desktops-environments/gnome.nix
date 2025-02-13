@@ -10,8 +10,9 @@ let
 in
 {
   config = mkIf cfg.enable {
-    services.xserver.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
+    services.xserver = {
+      desktopManager.gnome.enable = true;
+    };
 
     environment.gnome.excludePackages = with pkgs; [
       gnome-tour
@@ -26,12 +27,13 @@ in
       geary
       snapshot
     ];
-    environment.systemPackages =
-      (with pkgs; [ gnome-tweaks ])
-      ++ (with pkgs.gnomeExtensions; [
+    environment.systemPackages = (
+      with pkgs.gnomeExtensions;
+      [
         dash-to-dock
         openweather-refined
         appindicator
-      ]);
+      ]
+    );
   };
 }
