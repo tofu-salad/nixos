@@ -21,7 +21,6 @@ in
     (rsmiGpuBtop.override { rocmSupport = true; })
 
     wofi
-    alacritty
     swaybg
 
     neovim
