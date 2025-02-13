@@ -10,7 +10,7 @@
     users = {
       tofu = {
         isNormalUser = true;
-        description = "tofu's salad nixos config";
+        description = "tofu salad nixos config";
         extraGroups = [
           "networkmanager"
           "wheel"
@@ -40,21 +40,20 @@
     };
   };
 
-  fontconfig.subpixel.lcdfilter = "light";
   fonts = {
+    fontconfig.subpixel.lcdfilter = "light";
     fontDir.enable = true;
-    fonts.packages = with pkgs; [
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
       font-awesome
+      ibm-plex
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
-      ibm-plex
-      (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
     ];
   };
 
   # programs.zsh.enable = false;
-  #
   # environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
