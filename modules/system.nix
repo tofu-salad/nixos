@@ -5,6 +5,9 @@
     enable = true;
     enable32Bit = true;
   };
+  environment.variables = {
+    ROC_ENABLE_PRE_VEGA = "1";
+  };
 
   users = {
     users = {
