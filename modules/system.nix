@@ -42,7 +42,7 @@
   programs.zsh.enable = true;
 
   environment.pathsToLink = [ "/share/zsh" ];
-
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
     gnome-network-displays
     vim

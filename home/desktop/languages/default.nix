@@ -1,10 +1,15 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ 
-    rnix-lsp nixfmt 
+  home.packages = with pkgs; [
+    rnix-lsp
+    nixfmt
     nodejs_20
-    rustup
     go
-    ];
+
+    rustc
+    cargo
+    rust-analyzer
+    rustfmt
+  ];
 }
