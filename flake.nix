@@ -2,6 +2,8 @@
   description = "tofu's salad nix flake";
 
   inputs = {
+
+    nixpkgs-70eb14712.url = "github:nixos/nixpkgs/70eb147124031c25a080e7a9f6a770eeb926c813"; # adw-gtk3 fix because my GTK is older than 4.16
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -14,6 +16,7 @@
       self,
       nixpkgs,
       home-manager,
+      nixpkgs-70eb14712,
       ...
     }@inputs:
     let
@@ -25,6 +28,10 @@
         config = {
           allowUnfree = true;
         };
+      };
+      pkgs-70eb14712 = import nixpkgs-70eb14712 {
+        inherit system;
+        config.allowUnfree = true;
       };
       persona = "tofu";
       tofuNixOS = "nixos";
@@ -42,7 +49,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = {
-                inherit pkgs;
+                inherit pkgs pkgs-70eb14712;
               };
               home-manager.useUserPackages = true;
               home-manager.useGlobalPkgs = true;

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs-70eb14712, pkgs, ... }:
 
 {
   imports = [
@@ -18,14 +18,11 @@
   gtk = {
     enable = true;
     theme = {
-      name = "adw-gtk3";
-      package = pkgs.adw-gtk3;
+      name = "adw-gtk3-dark";
+      package = pkgs-70eb14712.adw-gtk3;
     };
 
     gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = "1";
-    };
-    gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = "1";
     };
   };
