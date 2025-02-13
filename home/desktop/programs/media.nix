@@ -3,11 +3,10 @@
 {
   home.packages = with pkgs; [
     webcord
-    mpv
+    vlc
+    obs-studio
     pamixer
     pavucontrol
-    pulseaudio
     stremio
-    swayimg
   ];
 }

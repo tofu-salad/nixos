@@ -6,6 +6,9 @@
   environment.systemPackages = with pkgs; [
     waybar
     swaybg
+    swayimg
+    swaynotificationcenter
+    nwg-look
     cinnamon.nemo
     lxqt.lxqt-policykit
   ];
