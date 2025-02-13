@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./programs
     ./languages
@@ -47,7 +45,6 @@
       enable = true;
       nix-direnv.enable = true;
     };
-
   };
   home.stateVersion = "24.11";
 

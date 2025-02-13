@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
     ./services
@@ -17,7 +16,7 @@
   };
 
   nix.settings.auto-optimise-store = true;
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   boot = {
     kernelParams = [

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home = {
     username = "tofu";
     pointerCursor = {
@@ -30,7 +28,6 @@
       enable = true;
       nix-direnv.enable = true;
     };
-
   };
   home.stateVersion = "24.11";
 
