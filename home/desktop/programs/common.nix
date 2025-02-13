@@ -27,6 +27,7 @@
 
     slurp
     grim
+    direnv
 
   ];
 }

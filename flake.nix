@@ -3,10 +3,11 @@
   nixConfig = {
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
-      "https://hyprland.cachix.org"
       "https://cache.nixos.org/"
+    ];
+    extra-substituters = [
+      "https://hyprland.cachix.org"
       "https://nix-gaming.cachix.org"
-
     ];
     extra-trusted-public-keys =
       [
