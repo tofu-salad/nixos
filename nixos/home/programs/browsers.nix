@@ -1,13 +1,13 @@
 { pkgs, ... }:
 {
 
-  home.packages = with pkgs; [ google-chrome ];
+  home.packages = with pkgs; [ google-chrome brave ];
   programs = {
     firefox = {
-      enable = true;
+      enable = false;
     };
     chromium = {
-      enable = true;
+      enable = false;
       extensions = [
         { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
