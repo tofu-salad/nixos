@@ -37,7 +37,7 @@ in
         settings = {
           screencast = {
             chooser_type = "dmenu";
-            chooser_cmd = "${pkgs.wofi}/bin/wofi --show dmenu";
+            chooser_cmd = "${pkgs.rofi-wayland}/bin/rofi --show dmenu";
           };
         };
       };
@@ -60,7 +60,6 @@ in
       swayimg
       waybar
       wl-clipboard
-      wofi
       rofi-wayland
     ])
     ++ screenshotPackages
