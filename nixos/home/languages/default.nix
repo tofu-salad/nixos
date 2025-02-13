@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    rnix-lsp
+#    rnix-lsp
     nixfmt
     nodejs_20
     nodePackages.pnpm

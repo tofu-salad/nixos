@@ -15,8 +15,10 @@
       #   # };
       #   defaultSession = "hyprland";
       # };
-      layout = "us";
-      xkbVariant = "";
+      xkb = {
+        variant = "";
+        layout = "us";
+      };
     };
     pipewire = {
       enable = true;

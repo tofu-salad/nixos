@@ -17,9 +17,6 @@
 
     ];
     shellAliases = {
-      la = "eza -abgHlS --color=always --group-directories-first";
-      ls = "ls --color=auto";
-      vim = "nvim";
       dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
       update = "home-manager switch";
     };

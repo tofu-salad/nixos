@@ -20,17 +20,17 @@
         enable = true;
         configurationLimit = 3;
       };
-      efi = { canTouchEfiVariables = true; };
+      efi.canTouchEfiVariables = true;
     };
   };
 
   networking = {
-    hostName = "desktop";
+    hostName = "nixos";
     networkmanager = {
       enable = true;
     };
     firewall = {
-      enable = false;
+      enable = true;
       allowedTCPPorts = [ 80 443 8010 1118 ];
       allowedUDPPortRanges = [
         { from = 4000; to = 4007; }

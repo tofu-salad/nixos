@@ -13,10 +13,5 @@
       enable = true;
       package = pkgs.firefox-devedition;
     };
-
   };
-  home.packages = [
-    brave
-    google-chrome
-  ];
 }
