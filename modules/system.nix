@@ -45,7 +45,7 @@
   fonts.packages = with pkgs; [
     font-awesome
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     ibm-plex
     (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
