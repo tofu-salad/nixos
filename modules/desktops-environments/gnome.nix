@@ -31,6 +31,7 @@ in
       ++ (with pkgs.gnomeExtensions; [
         dash-to-dock
         openweather-refined
+	appindicator
       ]);
   };
 }
