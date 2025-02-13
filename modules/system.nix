@@ -4,6 +4,7 @@
   users = {
     users = {
       soda = {
+        shell = pkgs.zsh;
         isNormalUser = true;
         description = "soda's nixos config";
         extraGroups = [ "networkmanager" "wheel" "plugdev" ];
@@ -38,7 +39,9 @@
     ];
   };
   programs.dconf.enable = true;
+  programs.zsh.enable = true;
 
+  environment.pathsToLink = [ "/share/zsh" ];
 
   environment.systemPackages = with pkgs; [
     gnome-network-displays

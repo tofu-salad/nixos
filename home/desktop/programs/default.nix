@@ -6,5 +6,6 @@
     ./media.nix
     ./browsers.nix
     ./common.nix
+    ./zsh.nix
   ];
 }
