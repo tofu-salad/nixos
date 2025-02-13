@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -19,11 +18,12 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.kernelParams = [ "quiet" "splash" "acpi=force"];
+  boot.kernelParams = [
+    "acpi=force"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/dafb50c4-10a2-457f-9844-a7af10becfdb";

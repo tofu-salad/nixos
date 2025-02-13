@@ -39,22 +39,23 @@
       LC_TIME = "es_AR.UTF-8";
     };
   };
-  fonts.fontDir.enable = true;
-  fonts.packages = with pkgs; [
-    font-awesome
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    ibm-plex
-    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
-  ];
 
-  programs.zsh.enable = false;
+  fonts = {
+    fontDir.enable = true;
+    fontconfig.subpixel.lcdfilter = "light";
+    fonts.packages = with pkgs; [
+      font-awesome
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      ibm-plex
+      (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+    ];
+  };
 
-  environment.pathsToLink = [ "/share/zsh" ];
+  # programs.zsh.enable = false;
+  # environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  fonts.fontconfig.subpixel.lcdfilter = "light";
 
   environment.systemPackages = with pkgs; [
     gsettings-desktop-schemas
