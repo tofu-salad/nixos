@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-kde ];
+    };
+  };
   users = {
     users = {
       soda = {
@@ -39,7 +45,6 @@
     (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
   ];
 
-  programs.dconf.enable = true;
   programs.zsh.enable = true;
 
   environment.pathsToLink = [ "/share/zsh" ];

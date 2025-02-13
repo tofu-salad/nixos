@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    dconf
     wl-clipboard
     tree
 
