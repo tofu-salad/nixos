@@ -5,14 +5,15 @@
 { config, pkgs, lib, ... }:
 let 
 	dbus-sway-environment = pkgs.writeTextFile {
-		name = "dbus-sway-environment";
-		destination = "/bin/dbus-sway-environment";
-		executable = true;
-		text = ''
-			dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-			systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-			systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-		'';
+	name = "dbus-sway-environment";
+	destination = "/bin/dbus-sway-environment";
+	executable = true;
+
+	text = ''
+	  dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+	  systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+	  systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+	'';
 	};
 	configure-gtk = pkgs.writeTextFile {
 		name = "configure-gtk";
@@ -22,9 +23,9 @@ let
 			schema = pkgs.gsettings-desktop-schemas;
 			datadir = "${schema}/share/gsettings-schemas/${schema.name}";
 		in ''
-		export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-		gnome_schema=org.gnome.desktop.interface
-		gsettings set $gnome_schema gtk-theme 'dracula'
+			export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+			gnome_schema=org.gnome.desktop.interface
+			gsettings set $gnome_schema gtk-theme 'Dracula'
 		'';
 	};
 	my-python-packages = ps: with ps; [
@@ -34,19 +35,40 @@ in
 
 {
 	# Include the results of the hardware scan.
-	imports = [ ./hardware-configuration.nix ];
+	imports = [ 
+		./hardware-configuration.nix 
+		<home-manager/nixos>
+	];
+
+	# Home-Manager
+	home-manager.users.dezequiel = { pkgs, ... }: {
+		  programs.git = {
+			enable = true;
+			userName = "zeroCalSoda";
+			userEmail = "diego.ezequiel.scardulla@gmail.com";
+			extraConfig = {
+				color = { 
+					ui = "auto";
+				};
+				init = {
+					defaultBranch = "main";
+				};
+				pull = {
+					rebase = false;
+				};
+			};
+		};
+		home.stateVersion = "23.05";
+	};
 
 	# Bootloader.
 	boot.loader = {
+		systemd-boot = {
+			enable = true;
+			configurationLimit = 3;
+		};
 		efi = {
 			canTouchEfiVariables = true;
-			efiSysMountPoint = "/boot";
-		};
-		grub = {
-			enable = true;
-            device = "nodev";
-            useOSProber = true;
-			efiSupport = true;
 		};
 	};
 
@@ -77,6 +99,7 @@ in
 			description = "Diego Ezequiel";
 			extraGroups = [ "networkmanager" "wheel" ];
 			packages = with pkgs; [];
+			shell = pkgs.zsh;
 	};
 
 	nixpkgs.config.allowUnfree = true;
@@ -104,27 +127,42 @@ in
 				default_session = initial_session;
 			};
 		};
+		gvfs.enable = true;
+		tumbler.enable = true;
 	};
-
 
 	xdg.portal = {
 		enable = true;
 		wlr.enable = true;
-		extraPortals = [pkgs.xdg-desktop-portal-gtk];
+		# gtk portal needed to make gtk apps happy
+		extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 	};
-	programs.sway = {
-		enable = true;
-		wrapperFeatures.gtk = true;
+
+	programs = {
+		sway = {
+			enable = true;
+			wrapperFeatures.gtk = true;
+		};
+		zsh = {
+			enable = true;
+		};
+		thunar = {
+			plugins = with pkgs.xfce; [
+				thunar-archive-plugin
+				thunar-volman
+				thunar-media-tags-plugin
+			];
+		};
 	};
 	
 
 	environment.systemPackages = with pkgs; [
+		xfce.thunar
 		alacritty
 		kitty
 		configure-gtk
 		wayland
 		xdg-utils
-		dracula-theme
 		gnome3.adwaita-icon-theme
 		grim
 		glib
@@ -134,7 +172,6 @@ in
 		dunst
 		tofi
 		neovim
-		gnome.nautilus
 
 		# Web Browsers
 		chromium
@@ -145,7 +182,8 @@ in
 		swayimg
 
 		# Tools
-        exa
+		exa
+		neofetch
 		git
 		ripgrep
 		curl
