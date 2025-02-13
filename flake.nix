@@ -29,11 +29,13 @@
         config.allowUnfree = true;
       };
 
-      vars = {
-        laptop = "laptop";
-        persona = "tofu";
-        desktop = "desktop";
-        home-manager = "home-manager";
+      hosts = {
+        desktop = {
+          name = "desktop";
+          user = "tofu";
+        };
+        laptop.name = "laptop";
+        home-manager.name = "home-manager";
       };
 
       commonSettings = {
@@ -47,10 +49,14 @@
         useUserPackages = true;
         useGlobalPkgs = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
         users.${vars.persona} = ./hosts/${vars.desktop}/home;
 =======
         users.${vars.persona} = ./hosts/desktop/home;
 >>>>>>> 118dd0d (changes)
+=======
+        users.${hosts.desktop.user} = ./hosts/desktop/home;
+>>>>>>> d3dbe6c (small refactor)
         extraSpecialArgs = {
           inherit inputs;
         };
@@ -58,7 +64,7 @@
     in
     {
       nixosConfigurations = {
-        ${vars.laptop} = nixpkgs.lib.nixosSystem {
+        ${hosts.laptop.name} = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = {
             inherit inputs;
@@ -68,7 +74,7 @@
             commonSettings
           ];
         };
-        ${vars.desktop} = nixpkgs.lib.nixosSystem {
+        ${hosts.desktop.name} = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
 
           specialArgs = {
@@ -95,7 +101,7 @@
       };
 
       homeConfigurations = {
-        ${vars.home-manager} = home-manager.lib.homeManagerConfiguration {
+        ${hosts.home-manager.name} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
           extraSpecialArgs = {

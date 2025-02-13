@@ -12,20 +12,6 @@
     ROC_ENABLE_PRE_VEGA = "1";
   };
 
-  users = {
-    users = {
-      tofu = {
-        isNormalUser = true;
-        description = "tofu salad nixos config";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "plugdev"
-        ];
-      };
-    };
-  };
-
   time = {
     hardwareClockInLocalTime = false;
     timeZone = "America/Argentina/Cordoba";
