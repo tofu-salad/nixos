@@ -68,7 +68,7 @@
     tumbler = { enable = true; };
     udev = { packages = [ pkgs.android-udev-rules ]; };
   };
-
+  nixpkgs.config.allowUnfree = true;
   networking = {
     firewall = {
       enable = true;
