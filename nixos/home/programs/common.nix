@@ -1,11 +1,11 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     wl-clipboard
     tree
 
-    waybar
+
     wofi
     kitty
     swaybg
@@ -26,8 +26,8 @@
     slurp
     grim
     direnv
-  ]) ++ (with pkgs-unstable;[
     eza
+    waybar
     turso-cli
-  ]);
+  ];
 }
