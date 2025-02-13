@@ -18,6 +18,10 @@
   };
   services.gnome.gnome-keyring.enable = true;
 
+  environment.sessionVariables = {
+    POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  };
+
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
