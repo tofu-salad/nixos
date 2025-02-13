@@ -3,8 +3,6 @@
   services.flatpak.enable = true;
 
   # Autologin Workaround
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
   services = {
     xserver = {
       enable = true;
@@ -22,6 +20,7 @@
     };
     greetd = {
       enable = true;
+      vt = 7;
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
