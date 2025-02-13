@@ -19,6 +19,7 @@
     jq
     tmux
     unzip
+    gh
 
 
     openssl
