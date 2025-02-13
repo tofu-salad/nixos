@@ -6,6 +6,5 @@
     ./media.nix
     ./browsers.nix
     ./common.nix
-    ./gaming.nix
   ];
 }
