@@ -28,11 +28,14 @@
       size = 10000;
     };
     initExtra = ''
-      export VISUAL=vim
-      export EDITOR="$VISUAL"
-      export GIT_EDITOR=vim
-      export PATH=$PATH:/usr/local/go/bin
-      export PATH=$PATH:$HOME/go/bin/
+    autoload -Uz compinit && compinit
+    zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+    zstyle ':completion:*' menu select
+    export VISUAL=vim
+    export EDITOR="$VISUAL"
+    export GIT_EDITOR=vim
+    export PATH=$PATH:/usr/local/go/bin
+    export PATH=$PATH:$HOME/go/bin/
     '';
   };
 }

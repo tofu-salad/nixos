@@ -7,5 +7,6 @@
     ./browsers.nix
     ./common.nix
     ./zsh.nix
+    ./gui.nix
   ];
 }

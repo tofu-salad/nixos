@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 
 {
   programs.steam = {
@@ -8,9 +8,6 @@
   };
   environment.systemPackages = with pkgs; [
     lutris
-
-    wineWowPackages.staging
-    winetricks
-    wineWowPackages.waylandFull
+    inputs.nix-gaming.packages.${pkgs.system}.wine-ge
   ];
 }

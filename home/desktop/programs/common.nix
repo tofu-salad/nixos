@@ -2,20 +2,30 @@
 
 {
   home.packages = with pkgs; [
+    wl-clipboard
     dbus
-    kitty
+
+    waybar
     wofi
+    kitty
+    swaybg
+
     neovim
-    xdg-utils
+
     bat
     eza
     fd
     fzf
     jq
-    openssl
-    ripgrep
     tmux
     unzip
-    wl-clipboard
+
+
+    openssl
+    ripgrep
+
+    slurp
+    grim
+
   ];
 }
