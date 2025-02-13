@@ -16,11 +16,10 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
+    { self
+    , nixpkgs
+    , home-manager
+    , ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -30,23 +29,23 @@
       };
 
       vars = {
+        laptop = "laptop";
         persona = "tofu";
         desktop = "desktop";
         home-manager = "home-manager";
       };
 
       commonSettings = {
-        nix.settings.trusted-users = [ "tofu" ];
         nix.settings.experimental-features = [
           "nix-command"
           "flakes"
         ];
       };
 
-      homeManagerBaseConfig = {
+      homeManagerDesktopBaseConfig = {
         useUserPackages = true;
         useGlobalPkgs = true;
-        users.${vars.persona} = ./nixos/home;
+        users.${vars.persona} = ./hosts/${desktop}/home;
         extraSpecialArgs = {
           inherit inputs;
         };
@@ -54,6 +53,16 @@
     in
     {
       nixosConfigurations = {
+        ${vars.laptop} = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./laptop
+            commonSettings
+          ];
+        };
         ${vars.desktop} = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
 
@@ -61,11 +70,11 @@
             inherit inputs;
           };
           modules = [
-            ./nixos
+            ./hosts/${vars.desktop}
             home-manager.nixosModules.home-manager
             {
-              home-manager = homeManagerBaseConfig // {
-                users.${vars.persona} = ./nixos/home;
+              home-manager = homeManagerDesktopBaseConfig // {
+                users.${vars.persona} = ./hosts/${vars.desktop};
               };
             }
             commonSettings
