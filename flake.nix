@@ -39,7 +39,7 @@
       homeManagerBaseConfig = {
         useUserPackages = true;
         useGlobalPkgs = true;
-        users.${vars.persona} = "./nixos/home";
+        users.${vars.persona} = ./nixos/home;
         extraSpecialArgs = {
           inherit inputs;
         };
@@ -54,11 +54,11 @@
             inherit inputs;
           };
           modules = [
-            "./nixos"
+            ./nixos
             home-manager.nixosModules.home-manager
             {
               home-manager = homeManagerBaseConfig // {
-                users.${vars.persona} = "./nixos/home";
+                users.${vars.persona} = ./nixos/home;
               };
             }
             commonSettings
@@ -75,7 +75,7 @@
           };
 
           modules = [
-            "./home-manager"
+            ./home-manager
             commonSettings
           ];
         };
