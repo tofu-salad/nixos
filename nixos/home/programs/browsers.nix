@@ -4,7 +4,7 @@
   home.packages = with pkgs; [ google-chrome brave ];
   programs = {
     firefox = {
-      enable = false;
+      enable = true;
     };
     chromium = {
       enable = false;
