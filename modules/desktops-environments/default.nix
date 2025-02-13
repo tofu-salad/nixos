@@ -21,39 +21,64 @@ in
     ./sway.nix
   ];
 
-  options.desktopEnvironment = {
-    gnome.enable = mkEnableOption "Gnome Desktop Environment";
-    kde.enable = mkEnableOption "KDE Desktop Environment";
-    hyprland.enable = mkEnableOption "Hyprland Desktop Environment";
-    sway.enable = mkEnableOption "Sway Desktop Environment";
-
-    loginManager = {
-      manager = mkOption {
-        type = loginManagerType;
-        default = "greetd";
-        description = "login manager to use (greetd, sddm, gdm)";
+  options = {
+    desktopEnvironment = {
+      gnome = {
+        enable = mkOption {
+          default = false;
+          type = types.bool;
+          description = "gnome desktop environment";
+        };
       };
-      greetd = {
-        enable = mkEnableOption "greetd login manager with tuigreet";
-        vt = mkOption {
-          type = types.int;
-          default = 7;
-          description = "virtual terminal for greetd";
+      kde = {
+        enable = mkOption {
+          default = false;
+          type = types.bool;
+          description = "kde desktop environment";
         };
-        defaultSession = mkOption {
-          type = types.str;
-          default = "sway";
-          description = "default session for greetd to launch";
+      };
+      hyprland = {
+        enable = mkOption {
+          default = false;
+          type = types.bool;
+          description = "hyprland desktop environment";
         };
-        extraSettings = mkOption {
-          type = types.attrs;
-          default = { };
-          description = "additional greetd settings";
+      };
+      sway = {
+        enable = mkOption {
+          default = false;
+          type = types.bool;
+          description = "sway desktop environment";
+        };
+      };
+
+      loginManager = {
+        manager = mkOption {
+          type = loginManagerType;
+          default = "greetd";
+          description = "login manager to use (greetd, sddm, gdm)";
+        };
+        greetd = {
+          enable = mkEnableOption "greetd login manager with tuigreet";
+          vt = mkOption {
+            type = types.int;
+            default = 7;
+            description = "virtual terminal for greetd";
+          };
+          defaultSession = mkOption {
+            type = types.str;
+            default = "sway";
+            description = "default session for greetd to launch";
+          };
+          extraSettings = mkOption {
+            type = types.attrs;
+            default = { };
+            description = "additional greetd settings";
+          };
         };
       };
     };
   };
-
   config = mkMerge [
     # desktop environments configurations
     (mkIf cfg.gnome.enable

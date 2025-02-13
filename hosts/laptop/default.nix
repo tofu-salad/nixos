@@ -10,22 +10,19 @@
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   imports = [
     ./hardware-configuration.nix
-    ./services
   ];
 
   fhs.enable = true;
   desktopEnvironment = {
-    loginManager = {
-      manager = "greetd";
-    };
-    sway.enable = true;
+    gnome.enable = true;
+    loginManager.manager = "gdm";
   };
 
   users = {
     users = {
       tofu = {
         isNormalUser = true;
-        description = "tofu salad nixos config";
+        description = "tofu salad laptop config";
         extraGroups = [
           "networkmanager"
           "wheel"
@@ -36,7 +33,7 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "laptop";
     networkmanager = {
       enable = true;
     };
@@ -66,17 +63,13 @@
     ];
   };
 
-  environment.variables = {
-    ROC_ENABLE_PRE_VEGA = "1";
-  };
-
   time = {
     hardwareClockInLocalTime = false;
     timeZone = "America/Argentina/Cordoba";
   };
 
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = "es_AR.UTF-8";
     extraLocaleSettings = {
       LC_ADDRESS = "es_AR.UTF-8";
       LC_IDENTIFICATION = "es_AR.UTF-8";

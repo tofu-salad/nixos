@@ -79,7 +79,8 @@
             inherit inputs;
           };
           modules = [
-            ./laptop
+            ./modules
+            ./hosts/laptop
             commonSettings
           ];
         };

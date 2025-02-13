@@ -11,7 +11,7 @@ with lib;
     fhs.enable = mkEnableOption "create FHS environment, can be used with fhs in terminal";
   };
   config = mkIf config.fhs.enable {
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
