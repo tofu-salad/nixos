@@ -31,13 +31,24 @@
     };
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 8010 1118 ];
+      allowedTCPPorts = [
+        80
+        443
+        8010
+        1118
+      ];
       allowedUDPPortRanges = [
-        { from = 4000; to = 4007; }
-        { from = 8000; to = 8010; }
+        {
+          from = 4000;
+          to = 4007;
+        }
+        {
+          from = 8000;
+          to = 8010;
+        }
       ];
     };
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

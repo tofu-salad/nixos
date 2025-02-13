@@ -4,16 +4,18 @@
   imports = [ ./programs ];
 
   home = {
-    username = "soda";
-    homeDirectory = "/home/soda";
+    username = "tofu";
+    homeDirectory = "/home/tofu";
   };
   fonts.fontconfig.enable = true;
   fonts.fontconfig.subpixel.lcdfilter = "light";
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ 
-    "IBMPlexMono"
-    "GeistMono"
-    ]; })
+    (nerdfonts.override {
+      fonts = [
+        "IBMPlexMono"
+        "GeistMono"
+      ];
+    })
   ];
   programs = {
     direnv = {
@@ -22,7 +24,7 @@
     };
 
   };
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
 }
