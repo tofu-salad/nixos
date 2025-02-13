@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs = {
     firefox = {
       enable = true;
@@ -7,11 +8,11 @@
       enable = true;
       package = pkgs.google-chrome;
       extensions = [
-        {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock origin lite
-        {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
-        {id = "dhdgffkkebhmkfjojejmpbldmpobfkfo";} # tampermonkey
-        {id = "kbmfpngjjgdllneeigpgjifpgocmfgmb";} # reddit enhancement suite
-        {id = "ajopnjidmegmdimjlfnijceegpefgped";} # betterttv
+        { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
+        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+        { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # tampermonkey
+        { id = "kbmfpngjjgdllneeigpgjifpgocmfgmb"; } # reddit enhancement suite
+        { id = "ajopnjidmegmdimjlfnijceegpefgped"; } # betterttv
       ];
       commandLineArgs = [
         "--enable-features=MiddleClickAutoscroll"

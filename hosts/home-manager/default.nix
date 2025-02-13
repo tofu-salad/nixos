@@ -2,8 +2,9 @@
   config,
   pkgs,
   ...
-}: {
-  imports = [./programs];
+}:
+{
+  imports = [ ./programs ];
 
   home = {
     username = "tofu";

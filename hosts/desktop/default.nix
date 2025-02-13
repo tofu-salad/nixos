@@ -3,8 +3,9 @@
   pkgs,
   inputs,
   ...
-}: {
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+}:
+{
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   imports = [
     ./hardware-configuration.nix
     ./services

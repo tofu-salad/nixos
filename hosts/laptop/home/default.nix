@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home = {
     username = "tofu";
     pointerCursor = {
