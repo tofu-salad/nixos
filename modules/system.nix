@@ -47,6 +47,7 @@
       (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
       font-awesome
       ibm-plex
+      inter
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
