@@ -5,11 +5,12 @@
     with pkgs;
     [
       gnome-text-editor
+      gnome-calculator
+      gnome-font-viewer
+
       swayimg
       swappy
-      font-manager
       qbittorrent
-      discord
     ]
   );
 }

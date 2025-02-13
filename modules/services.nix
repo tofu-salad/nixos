@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  # services.flatpak.enable = true;
+  services.flatpak.enable = true;
 
   # Autologin Workaround
   systemd.services."getty@tty1".enable = false;

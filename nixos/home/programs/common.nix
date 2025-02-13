@@ -6,6 +6,7 @@
     dconf
     wl-clipboard
     tree
+    btop
 
     wofi
     alacritty

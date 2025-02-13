@@ -4,7 +4,7 @@
   programs.git = {
     enable = true;
     userName = "tofu-salad";
-    userEmail = "soda.zero.sip@proton.me";
+    userEmail = "tofu salad";
     extraConfig = {
       color = {
         ui = "auto";

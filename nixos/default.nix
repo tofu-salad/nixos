@@ -12,6 +12,7 @@
     # ../modules/kde.nix
     ../modules/fhs.nix
     ../modules/virtualization.nix
+    ../modules/package-overrides.nix
   ];
   boot = {
     loader = {
@@ -30,7 +31,7 @@
       enable = true;
     };
     firewall = {
-      enable = true;
+      enable = false;
       allowedTCPPorts = [
         80
         443
