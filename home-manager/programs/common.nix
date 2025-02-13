@@ -25,5 +25,6 @@
 
     nodejs_20
     gcc
+    neofetch
   ];
 }
