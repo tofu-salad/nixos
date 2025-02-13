@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  ghostty,
   ...
 }:
 
@@ -57,20 +56,12 @@
   };
 
   zramSwap.enable = true;
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-    ];
   };
 
-  environment.variables = {
-    ROC_ENABLE_PRE_VEGA = "1";
-  };
-
-  time = {
+   time = {
     hardwareClockInLocalTime = false;
     timeZone = "America/Argentina/Cordoba";
   };
@@ -98,32 +89,24 @@
       font-awesome
       ibm-plex
       inter
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-    ];
+     ];
   };
-
-  # programs.zsh.enable = false;
-  # environment.pathsToLink = [ "/share/zsh" ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      adwaita-icon-theme
-      curl
-      gcc
-      git
-      gsettings-desktop-schemas
-      libnotify
-      libva-utils
-      vim
-      dbus
-      wget
-    ]
-    ++ [ ghostty.packages.x86_64-linux.default ];
+  environment.systemPackages = with pkgs; [
+    alacritty
+    adwaita-icon-theme
+    curl
+    gcc
+    git
+    gsettings-desktop-schemas
+    libnotify
+    libva-utils
+    vim
+    dbus
+    wget
+  ];
 
   system.stateVersion = "24.11";
 }
