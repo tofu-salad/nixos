@@ -5,10 +5,15 @@ with pkgs; let
     ${gnused}/bin/sed 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop ''));
 in
 {
-  nixpkgs.config.chromium.commandLineArgs = "--force-dark-mode --enable-features=WebUIDarkMode";
   programs = {
     chromium = {
       enable = true;
+      extensions = [
+        "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+        "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancmenet Suite
+        "fadndhdgpmmaapbmfcknlfgcflmmmieb" # FrankerFaceZ
+      ];
     };
     firefox = {
       enable = true;

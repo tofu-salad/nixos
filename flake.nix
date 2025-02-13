@@ -59,7 +59,9 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/${sodaNonNixOs} ];
+          modules = [
+            ./home/${sodaNonNixOs}
+          ];
         };
       packages.${system}.${persona} = self.homeConfigurations.${persona}.activationPackage;
     };
