@@ -2,8 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    tree-sitter
     tmux
-    go
+    # go
     rustup
     nodejs_20
     gh
