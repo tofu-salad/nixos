@@ -21,6 +21,11 @@
       };
     };
 
+    # automount/unmount drives
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
+
     greetd = {
       enable = true;
       vt = 7;
