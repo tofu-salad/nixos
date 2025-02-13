@@ -109,7 +109,7 @@
           };
 
           modules = [
-            ./home-manager
+            ./hosts/home-manager
             commonSettings
           ];
         };
