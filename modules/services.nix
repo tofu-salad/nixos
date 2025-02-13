@@ -24,8 +24,8 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-          user = "tofu";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
+          user = "greeter";
         };
       };
     };
