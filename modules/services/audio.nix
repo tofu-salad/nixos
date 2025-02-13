@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
+
 {
   services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
     extraConfig.pipewire."99-input-denoising" = {
       "context.modules" = [
         {
