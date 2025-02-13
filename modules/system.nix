@@ -5,12 +5,11 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
       intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
     ];
   };
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
     services.jellyfin.enable = true;
 
   users = {
