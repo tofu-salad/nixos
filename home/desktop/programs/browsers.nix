@@ -5,13 +5,10 @@ with pkgs; let
     ${gnused}/bin/sed 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop ''));
 in
 {
+  nixpkgs.config.chromium.commandLineArgs = "--force-dark-mode --enable-features=WebUIDarkMode";
   programs = {
     chromium = {
       enable = true;
-      commandLineArgs = "
-        --force-dark-mode
-        --enable-features=WebUIDarkMode
-        ";
     };
     firefox = {
       enable = true;
