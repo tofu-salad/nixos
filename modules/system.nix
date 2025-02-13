@@ -93,11 +93,4 @@
     neofetch
     xfce.thunar
   ];
-
-  environment.sessionVariables = rec {
-    ANDROID_SDK_ROOT =
-      "${pkgs.androidenv.androidPkgs_9_0.platform-tools}/libexec/android-sdk";
-    ANDROID_HOME =
-      "${pkgs.androidenv.androidPkgs_9_0.platform-tools}/libexec/android-sdk";
-  };
 }
