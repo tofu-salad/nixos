@@ -12,7 +12,6 @@
     # ../modules/kde.nix
     ../modules/fhs.nix
     ../modules/virtualization.nix
-    ../modules/package-overrides.nix
   ];
   boot = {
     loader = {
