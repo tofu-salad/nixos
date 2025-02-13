@@ -1,5 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
-  home.packages = with pkgs; [ firefox chromium ];
+  programs = {
+    chromium = {
+      enable = true;
+      commandLineArgs =
+        [ "--force-dark-mode" "--enable-features=WebUIDarkMode" ];
+    };
+
+    firefox = { enable = true; };
+  };
 }
