@@ -26,5 +26,11 @@ in
       geary
       snapshot
     ];
+    environment.systemPackages =
+      (with pkgs; [ gnome-tweaks ])
+      ++ (with pkgs.gnomeExtensions; [
+        dash-to-dock
+	openweather-refined
+      ]);
   };
 }
