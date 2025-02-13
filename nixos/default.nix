@@ -32,7 +32,7 @@
       enable = true;
     };
     firewall = {
-      enable = false;
+      enable = true;
       allowedTCPPorts = [ 8010 ];
     };
   };
