@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   # services.flatpak.enable = true;
 
@@ -8,13 +8,13 @@
   systemd.services."autovt@tty1".enable = false;
   services = {
     xserver = {
-      displayManager = {
-        # autoLogin = {
-        #   enable = true;
-        #   user = "soda";
-        # };
-        defaultSession = "hyprland";
-      };
+      # displayManager = {
+      #   # autoLogin = {
+      #   #   enable = true;
+      #   #   user = "soda";
+      #   # };
+      #   defaultSession = "hyprland";
+      # };
       layout = "us";
       xkbVariant = "";
     };
@@ -23,20 +23,20 @@
       alsa.enable = true;
       pulse.enable = true;
     };
-    # greetd = {
-    #   enable = true;
-    #   settings = rec {
-    #     initial_session = {
-    #       command = "Hyprland";
-    #       user = "soda";
-    #     };
-    #     default_session = initial_session;
-    #   };
-    # };
-    jellyfin = {
+    greetd = {
       enable = true;
-      openFirewall = true;
+      settings = rec {
+        initial_session = {
+          command = "Hyprland";
+          user = "soda";
+        };
+        default_session = initial_session;
+      };
     };
+    # jellyfin = {
+    #   enable = true;
+    #   openFirewall = true;
+    # };
     dbus = { enable = true; };
     avahi = { enable = true; };
   };

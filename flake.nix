@@ -3,8 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -14,14 +16,9 @@
         inherit system;
         config = { allowUnfree = true; };
       };
-      # pkgs-unstable = import nixpkgs-unstable {
-      #   inherit system;
-      #   config = { allowUnfree = true; };
-      # };
-
       persona = "soda";
       sodaNixOs = "desktop";
-      sodaNonNixOs = "manager";
+      standAlone = "manager";
     in
     {
       nixosConfigurations = {
@@ -45,26 +42,20 @@
               {
                 nix.settings = {
                   experimental-features = [ "nix-command" "flakes" ];
-                  substituters = [
-                    "https://cache.nixos.org/"
-                    "https://hyprland.cachix.org"
-                  ];
-                  trusted-public-keys = [
-                    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-                  ];
                 };
               }
             ];
           };
       };
 
-      homeConfigurations.${persona} =
-        home-manager.lib.homeManagerConfiguration {
+      homeConfigurations = {
+        ${persona} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home-manager
           ];
         };
+      };
     };
 }

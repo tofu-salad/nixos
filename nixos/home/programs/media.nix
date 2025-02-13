@@ -12,7 +12,7 @@ in
     pamixer
     pavucontrol
     # stremio
-    jellyfin-web
+    # jellyfin-web
   ]) ++ ([
     stremio
     (patchStremio stremio "stremio" "'/usr/bin/vlc'" "${vlc}/bin/vlc")
