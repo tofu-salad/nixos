@@ -13,10 +13,12 @@ with lib;
         type = types.bool;
         description = "enabling gaming (lutris, steam ,etc)";
       };
-      steam = mkOption {
-        enable = false;
-        type = types.bool;
-        description = "enable steam";
+      steam = {
+        enable = mkOption {
+          default = false;
+          type = types.bool;
+          description = "enable steam";
+        };
       };
     };
   };
