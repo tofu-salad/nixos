@@ -36,6 +36,10 @@
       noto-fonts-cjk
       noto-fonts-emoji
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      liberation_ttf
+      mplus-outline-fonts.githubRelease
+      dina-font
+      proggyfonts
     ];
   };
 
