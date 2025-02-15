@@ -72,26 +72,27 @@
   };
   hardware.graphics.enable = true;
   environment.systemPackages = with pkgs; [
-    git
+    bat
+    btop
     curl
+    direnv
+    eza
     fd
     fzf
     gcc
     gh
-    ripgrep
-    alacritty
-    bat
-    direnv
-    eza
+    git
     jq
     mako
     neovim
+    ripgrep
+    tmux
     tree
     unzip
     vim
     wget
     xclip
-    tmux
+    xterm
   ];
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.clipboard = true;
