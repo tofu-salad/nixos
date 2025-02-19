@@ -106,6 +106,7 @@
     gsettings-desktop-schemas
     libnotify
     libva-utils
+    stow
     vim
     wget
   ];
