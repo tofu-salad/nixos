@@ -128,12 +128,12 @@
   environment.systemPackages = with pkgs; [
     adw-gtk3
     adwaita-icon-theme
-    alacritty
     btop
     curl
     dbus
     eza
     fd
+    foot
     fzf
     gcc
     gh

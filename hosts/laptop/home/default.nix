@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./chromium.nix ];
+  imports = [
+    ./chromium.nix
+    ./git.nix
+  ];
   home = {
     username = "tofu";
     pointerCursor = {
