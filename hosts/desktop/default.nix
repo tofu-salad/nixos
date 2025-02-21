@@ -88,14 +88,10 @@
     packages = with pkgs; [
       (nerdfonts.override {
         fonts = [
-          "IBMPlexMono"
-          "Iosevka"
           "IosevkaTerm"
         ];
       })
-      iosevka
       font-awesome
-      ibm-plex
       inter
     ];
   };
@@ -103,7 +99,6 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs; [
-    alacritty
     adwaita-icon-theme
     curl
     gcc
@@ -111,6 +106,7 @@
     gsettings-desktop-schemas
     libnotify
     libva-utils
+    stow
     vim
     wget
   ];

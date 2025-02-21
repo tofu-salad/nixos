@@ -56,6 +56,11 @@
             };
           };
         };
+        vm = {
+          name = "vm";
+          user = "tofu";
+          homeConfig = null;
+        };
         home-manager.name = "home-manager";
       };
 
@@ -77,7 +82,7 @@
             ./modules
             ./hosts/${host.name}
             home-manager.nixosModules.home-manager
-            { home-manager = host.homeConfig; }
+            (if host.homeConfig != null then { home-manager = host.homeConfig; } else { })
             commonSettings
           ];
         };
@@ -86,6 +91,7 @@
       nixosConfigurations = {
         ${hosts.desktop.name} = mkNixosSystem hosts.desktop;
         ${hosts.laptop.name} = mkNixosSystem hosts.laptop;
+        ${hosts.vm.name} = mkNixosSystem hosts.vm;
       };
 
       homeConfigurations = {
