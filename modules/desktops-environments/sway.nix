@@ -11,6 +11,7 @@ let
     grim
     slurp
     swappy
+    hyprpicker
   ];
 
   gnomePackages = with pkgs; [
@@ -20,9 +21,8 @@ let
     gnome-characters
     gnome-font-viewer
     gnome-text-editor
-    hyprpicker
     loupe # gnome image viewer
-    nautilus # gnome Files
+    nautilus
   ];
 in
 {
@@ -46,6 +46,8 @@ in
         extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       };
     };
+
+    programs.dconf.enable = true;
     services.gnome.tinysparql.enable = true;
     services.gnome.localsearch.enable = true;
     services.gnome.gnome-keyring.enable = true;
@@ -55,14 +57,17 @@ in
 
     environment.systemPackages =
       (with pkgs; [
+        adwaita-icon-theme
         dunst
+        gsettings-desktop-schemas
+        libnotify
         pamixer
         pavucontrol
+        rofi-wayland
         swaybg
         swayimg
         waybar
         wl-clipboard
-        rofi-wayland
       ])
       ++ screenshotPackages
       ++ gnomePackages;

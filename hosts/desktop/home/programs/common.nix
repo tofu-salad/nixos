@@ -15,7 +15,6 @@ in
   home.packages = with pkgs; [
     (rsmiGpuBtop.override { rocmSupport = true; })
     bat
-    dconf
     eza
     fd
     fzf

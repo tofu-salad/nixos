@@ -99,13 +99,9 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
     curl
     gcc
     git
-    gsettings-desktop-schemas
-    libnotify
-    libva-utils
     stow
     vim
     wget
