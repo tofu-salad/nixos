@@ -128,13 +128,12 @@
   environment.systemPackages = with pkgs; [
     adw-gtk3
     adwaita-icon-theme
-    alacritty
     btop
     curl
     dbus
     eza
     fd
-    firefox
+    foot
     fzf
     gcc
     gh
@@ -148,6 +147,7 @@
     libva-utils
     neovim
     ripgrep
+    stow
     stremio
     tmux
     unzip
