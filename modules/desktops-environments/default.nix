@@ -114,6 +114,15 @@ in
         services.xserver.enable = true;
       })
       (mkIf (cfg.loginManager.manager == "greetd") {
+        security = {
+          pam = {
+            services = {
+              greetd = {
+                enableGnomeKeyring = true;
+              };
+            };
+          };
+        };
         services.greetd = {
           enable = true;
           vt = cfg.loginManager.greetd.vt;

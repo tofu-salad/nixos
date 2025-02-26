@@ -43,10 +43,18 @@ in
             };
           };
         };
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        configPackages = [ pkgs.gnome-keyring ];
+        config = {
+          sway = {
+            "org.freedesktop.impl.portal.Secret" = [
+              "gnome-keyring"
+            ];
+          };
+        };
       };
     };
 
+    programs.file-roller.enable = true;
     programs.dconf.enable = true;
     services.gnome.tinysparql.enable = true;
     services.gnome.localsearch.enable = true;

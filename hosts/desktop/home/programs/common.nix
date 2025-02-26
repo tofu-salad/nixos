@@ -25,6 +25,5 @@ in
     ripgrep
     tmux
     tree
-    unzip
   ];
 }

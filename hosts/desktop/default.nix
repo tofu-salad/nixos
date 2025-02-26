@@ -93,16 +93,23 @@
       })
       font-awesome
       inter
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
     ];
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   environment.systemPackages = with pkgs; [
     curl
     gcc
     git
+    p7zip
     stow
+    unzip
     vim
     wget
   ];
