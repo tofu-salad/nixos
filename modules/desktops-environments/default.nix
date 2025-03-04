@@ -64,7 +64,11 @@ in
           description = "login manager to use (greetd, sddm, gdm)";
         };
         greetd = {
-          enable = mkEnableOption "greetd login manager with tuigreet";
+          enable = mkOption {
+            default = false;
+            type = types.bool;
+            description = "greetd login manager with tuigreet";
+          };
           vt = mkOption {
             type = types.int;
             default = 7;
@@ -84,26 +88,8 @@ in
       };
     };
   };
-  config = mkMerge [
-    # desktop environments configurations
-    (mkIf cfg.gnome.enable
-      {
-      }
-    )
-    (mkIf cfg.kde.enable
-      {
-      }
-    )
-    (mkIf cfg.hyprland.enable
-      {
-      }
-    )
-    (mkIf cfg.sway.enable
-      {
-      }
-    )
 
-    # login managers configurations
+  config = mkMerge [
     (mkIf cfg.loginManager.enable (mkMerge [
       (mkIf (cfg.loginManager.manager == "gdm") {
         services.xserver.displayManager.gdm.enable = true;
