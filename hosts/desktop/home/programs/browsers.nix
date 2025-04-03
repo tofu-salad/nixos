@@ -6,7 +6,7 @@
     };
     chromium = {
       enable = true;
-      package = (pkgs.chromium.override { enableWideVine = true; });
+      package = pkgs.google-chrome;
       extensions = [
         { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
