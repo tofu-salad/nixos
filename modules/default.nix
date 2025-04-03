@@ -1,6 +1,6 @@
 {
   imports = [
-    ./desktops-environments
+    ./desktops-environments.nix
     ./fhs.nix
     ./gaming.nix
   ];

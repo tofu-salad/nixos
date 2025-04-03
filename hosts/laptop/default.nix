@@ -1,13 +1,14 @@
 {
   config,
   pkgs,
+  unstable,
   inputs,
   ...
 }:
 {
   imports = [
     ./hardware-configuration.nix
-    ./services
+    ./services.nix
   ];
 
   nix.gc = {
@@ -128,6 +129,7 @@
   environment.systemPackages = with pkgs; [
     adw-gtk3
     adwaita-icon-theme
+    brave
     btop
     curl
     dbus
@@ -145,7 +147,9 @@
     libnotify
     libreoffice-qt
     libva-utils
-    neovim
+    unstable.neovim
+    unstable.ghostty
+    qbittorrent
     ripgrep
     stow
     stremio
