@@ -24,11 +24,8 @@ in
     ripgrep
     tmux
     tree
-<<<<<<< HEAD
     unstable.ghostty
     unstable.neovim
     unzip
-=======
->>>>>>> main
   ];
 }
