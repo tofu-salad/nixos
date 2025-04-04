@@ -15,7 +15,6 @@ in
   home.packages = with pkgs; [
     (rsmiGpuBtop.override { rocmSupport = true; })
     bat
-    dconf
     eza
     fd
     fzf
@@ -25,8 +24,11 @@ in
     ripgrep
     tmux
     tree
+<<<<<<< HEAD
     unstable.ghostty
     unstable.neovim
     unzip
+=======
+>>>>>>> main
   ];
 }

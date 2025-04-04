@@ -93,20 +93,23 @@
       })
       font-awesome
       inter
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
     ];
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
     curl
     gcc
     git
-    gsettings-desktop-schemas
-    libnotify
-    libva-utils
+    p7zip
     stow
+    unzip
     vim
     wget
   ];
