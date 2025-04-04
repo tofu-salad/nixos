@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./chromium.nix
+    # ./chromium.nix
     ./git.nix
   ];
   home = {
@@ -34,6 +34,8 @@
       nix-direnv.enable = true;
     };
   };
+  programs.firefox.enable = true;
+
   home.stateVersion = "24.11";
 
   programs.home-manager.enable = true;

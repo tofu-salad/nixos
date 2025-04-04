@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ unstable, pkgs, ... }:
 let
   rsmiGpuBtop = pkgs.btop.overrideAttrs (
     finalAttrs: previousAttrs: {
@@ -20,10 +20,15 @@ in
     fzf
     gh
     jq
-    neovim
     openssl
     ripgrep
     tmux
     tree
+<<<<<<< HEAD
+    unstable.ghostty
+    unstable.neovim
+    unzip
+=======
+>>>>>>> main
   ];
 }
