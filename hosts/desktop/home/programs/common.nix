@@ -26,6 +26,5 @@ in
     tree
     unstable.ghostty
     unstable.neovim
-    unzip
   ];
 }

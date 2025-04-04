@@ -12,6 +12,23 @@ let
     "sddm"
     "greetd"
   ];
+  screenshotApps = with pkgs; [
+    grim
+    hyprpicker
+    slurp
+    swappy
+  ];
+  gnomeApps = with pkgs; [
+    baobab # gnome disk usage analyzer
+    evince # gnome document viewer
+    loupe # gnome image viewer
+    nautilus # gnome Files
+    gnome-calculator
+    gnome-characters
+    gnome-font-viewer
+    gnome-text-editor
+
+  ];
 in
 {
   options = {
@@ -143,30 +160,20 @@ in
       services.gnome.localsearch.enable = true;
       services.gnome.gnome-keyring.enable = true;
 
-      environment.systemPackages = with pkgs; [
-        baobab # gnome disk usage analyzer
-        evince # gnome document viewer
-        loupe # gnome image viewer
-        nautilus # gnome Files
-        gnome-calculator
-        gnome-characters
-        gnome-font-viewer
-        gnome-text-editor
-
-        grim
-        hyprpicker
-        slurp
-        swappy
-
-        dunst
-        pamixer
-        pavucontrol
-        rofi-wayland
-        swaybg
-        swayimg
-        waybar
-        wl-clipboard
-      ];
+      environment.systemPackages =
+        with pkgs;
+        [
+          dunst
+          pamixer
+          pavucontrol
+          rofi-wayland
+          swaybg
+          swayimg
+          waybar
+          wl-clipboard
+        ]
+        ++ gnomeApps
+        ++ screenshotApps;
     })
     (mkIf cfg.sway.enable {
       programs.sway = {
@@ -195,30 +202,20 @@ in
         POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       };
 
-      environment.systemPackages = with pkgs; [
-        baobab # gnome disk usage analyzer
-        evince # gnome document viewer
-        loupe # gnome image viewer
-        nautilus # gnome Files
-        gnome-calculator
-        gnome-characters
-        gnome-font-viewer
-        gnome-text-editor
-
-        grim
-        hyprpicker
-        slurp
-        swappy
-
-        dunst
-        pamixer
-        pavucontrol
-        rofi-wayland
-        swaybg
-        swayimg
-        waybar
-        wl-clipboard
-      ];
+      environment.systemPackages =
+        with pkgs;
+        [
+          dunst
+          pamixer
+          pavucontrol
+          rofi-wayland
+          swaybg
+          swayimg
+          waybar
+          wl-clipboard
+        ]
+        ++ gnomeApps
+        ++ screenshotApps;
     })
 
     # login managers configurations

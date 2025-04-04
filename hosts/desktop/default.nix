@@ -8,7 +8,7 @@
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   imports = [
     ./hardware-configuration.nix
-    ./services
+    ./services.nix
   ];
 
   fhs.enable = true;

@@ -1,5 +1,46 @@
 { pkgs, ... }:
 {
+  services.flatpak.enable = false;
+  services = {
+    fstrim.enable = true;
+    xserver = {
+      updateDbusEnvironment = true;
+      xkb = {
+        variant = "";
+        layout = "us";
+      };
+    };
+
+    # automount/unmount drives
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
+
+    upower.enable = true;
+    dbus = {
+      enable = true;
+    };
+
+    avahi = {
+      enable = true;
+    };
+  };
+
+  virtualisation = {
+    docker = {
+      enable = false;
+    };
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 1w";
+  };
+
+  nix.settings.auto-optimise-store = true;
+
+  # audio {{{ 
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -43,4 +84,29 @@
       ];
     };
   };
+  #}}}
+
+  # firewall {{{
+  networking.firewall = {
+    enable = false;
+    allowedTCPPorts = [
+      80
+      443
+      8010
+      1118
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 4000;
+        to = 4007;
+      }
+      {
+        from = 8000;
+        to = 8010;
+      }
+    ];
+  };
+  #}}}
 }
+
+# vim:fileencoding=utf-8:foldmethod=marker
