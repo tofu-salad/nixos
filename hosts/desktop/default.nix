@@ -112,6 +112,7 @@
     unzip
     vim
     wget
+    playerctl
   ];
 
   system.stateVersion = "24.11";
