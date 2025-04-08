@@ -86,6 +86,7 @@
     mako
     neovim
     ripgrep
+    stow
     tmux
     tree
     unzip
