@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  unstable,
   ...
 }:
 
@@ -84,7 +85,7 @@
     git
     jq
     mako
-    neovim
+    unstable.neovim
     ripgrep
     stow
     tmux
