@@ -129,6 +129,7 @@
   environment.systemPackages = with pkgs; [
     adw-gtk3
     adwaita-icon-theme
+    alacritty
     brave
     btop
     curl
@@ -147,13 +148,12 @@
     libnotify
     libreoffice-qt
     libva-utils
-    unstable.neovim
-    unstable.ghostty
     qbittorrent
     ripgrep
     stow
     stremio
     tmux
+    unstable.neovim
     unzip
     vim
     vlc

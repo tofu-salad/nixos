@@ -21,13 +21,14 @@ let
   gnomeApps = with pkgs; [
     baobab # gnome disk usage analyzer
     evince # gnome document viewer
+    file-roller
     loupe # gnome image viewer
     nautilus # gnome Files
+
     gnome-calculator
     gnome-characters
     gnome-font-viewer
     gnome-text-editor
-
   ];
 in
 {

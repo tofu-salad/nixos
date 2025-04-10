@@ -14,6 +14,7 @@ in
 {
   home.packages = with pkgs; [
     (rsmiGpuBtop.override { rocmSupport = true; })
+    alacritty
     bat
     eza
     fd
@@ -24,7 +25,6 @@ in
     ripgrep
     tmux
     tree
-    unstable.ghostty
     unstable.neovim
   ];
 }
