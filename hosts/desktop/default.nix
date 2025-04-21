@@ -1,15 +1,28 @@
 {
-  config,
   pkgs,
-  inputs,
   ...
 }:
 {
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   imports = [
+    ../common
     ./hardware-configuration.nix
     ./services.nix
   ];
+
+  # bootloeader
+  boot = {
+    loader = {
+      timeout = 3;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        configurationLimit = 3;
+        useOSProber = true;
+        device = "nodev";
+      };
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   fhs.enable = true;
   desktopEnvironment = {
@@ -30,29 +43,16 @@
           "networkmanager"
           "wheel"
           "plugdev"
+          "libvirtd"
         ];
       };
     };
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "desktop";
     networkmanager = {
       enable = true;
-    };
-  };
-
-  boot = {
-    loader = {
-      timeout = 3;
-      grub = {
-        enable = true;
-        efiSupport = true;
-        configurationLimit = 3;
-        useOSProber = true;
-        device = "nodev";
-      };
-      efi.canTouchEfiVariables = true;
     };
   };
 
@@ -108,11 +108,11 @@
     gcc
     git
     p7zip
+    playerctl
     stow
     unzip
     vim
     wget
-    playerctl
   ];
 
   system.stateVersion = "24.11";

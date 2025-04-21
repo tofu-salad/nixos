@@ -26,16 +26,15 @@
     };
   };
 
+  programs.virt-manager.enable = true;
   virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+    };
     docker = {
       enable = false;
     };
-  };
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 1w";
   };
 
   nix.settings.auto-optimise-store = true;

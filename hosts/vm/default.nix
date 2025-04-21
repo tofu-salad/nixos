@@ -1,7 +1,7 @@
 {
   config,
+  outputs,
   pkgs,
-  unstable,
   ...
 }:
 

@@ -1,4 +1,4 @@
-{ unstable, pkgs, ... }:
+{ outputs, pkgs, ... }:
 let
   rsmiGpuBtop = pkgs.btop.overrideAttrs (
     finalAttrs: previousAttrs: {

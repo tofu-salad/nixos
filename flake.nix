@@ -25,94 +25,53 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
-      hosts = {
-        desktop = {
-          name = "desktop";
-          user = "tofu";
-          homeConfig = {
-            useUserPackages = true;
-            useGlobalPkgs = true;
-            users.tofu = ./hosts/desktop/home;
-            extraSpecialArgs = {
-              inherit inputs unstable;
-            };
-          };
-        };
-
-        laptop = {
-          name = "laptop";
-          user = "tofu";
-          homeConfig = {
-            backupFileExtension = "backup";
-            useUserPackages = true;
-            useGlobalPkgs = true;
-            users.tofu = ./hosts/laptop/home;
-            extraSpecialArgs = {
-              inherit inputs;
-            };
-          };
-        };
-        vm = {
-          name = "vm";
-          user = "tofu";
-          homeConfig = null;
-        };
-        home-manager.name = "home-manager";
-      };
-
-      commonSettings = {
-        nix.settings.experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
-      };
-
-      mkNixosSystem =
-        host:
-        nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
+      inherit (self) outputs;
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      overlays = import ./overlays { inherit inputs; };
+      nixosConfigurations = {
+        desktop = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs unstable;
+            inherit inputs outputs;
           };
           modules = [
             ./modules
-            ./hosts/${host.name}
-            home-manager.nixosModules.home-manager
-            (if host.homeConfig != null then { home-manager = host.homeConfig; } else { })
-            commonSettings
+            ./hosts/desktop
           ];
         };
-    in
-    {
-      nixosConfigurations = {
-        ${hosts.desktop.name} = mkNixosSystem hosts.desktop;
-        ${hosts.laptop.name} = mkNixosSystem hosts.laptop;
-        ${hosts.vm.name} = mkNixosSystem hosts.vm;
-      };
 
-      homeConfigurations = {
-        ${hosts.home-manager.name} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          extraSpecialArgs = {
-            inherit inputs;
+        laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
           };
-
           modules = [
-            ./hosts/home-manager
-            commonSettings
+            ./modules
+            ./hosts/laptop
           ];
         };
       };
+
+      # homeConfigurations = {
+      #   ${hosts.home-manager.name} = home-manager.lib.homeManagerConfiguration {
+      #     inherit pkgs;
+      #
+      #     extraSpecialArgs = {
+      #       inherit inputs;
+      #     };
+      #
+      #     modules = [
+      #       ./hosts/home-manager
+      #       commonSettings
+      #     ];
+      #   };
+      # };
     };
 }

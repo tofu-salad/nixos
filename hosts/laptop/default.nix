@@ -1,24 +1,14 @@
 {
-  config,
   pkgs,
-  unstable,
-  inputs,
+  outputs,
   ...
 }:
 {
   imports = [
+    ../common
     ./hardware-configuration.nix
     ./services.nix
   ];
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 1w";
-  };
-
-  nix.settings.auto-optimise-store = true;
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   boot = {
     kernelParams = [
