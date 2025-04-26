@@ -25,7 +25,7 @@
   ];
 
   xdg.desktopEntries = {
-    google-chrome-stable = {
+    google-chrome = {
       name = "Google Chrome";
       genericName = "Web Browser";
       comment = "Access the Internet";
