@@ -119,7 +119,6 @@
   environment.systemPackages = with pkgs; [
     adw-gtk3
     adwaita-icon-theme
-    alacritty
     brave
     btop
     curl
