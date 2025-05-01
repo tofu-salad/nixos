@@ -8,7 +8,7 @@
   };
 
   home.packages = with pkgs; [
-    gimp
+    unstable.gimp3
     qbittorrent
     stremio
     tidal-hifi
