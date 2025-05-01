@@ -12,9 +12,11 @@
   # bootloeader
   boot = {
     loader = {
-      timeout = 3;
+      systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 3;
+      timeout = 0;
       grub = {
-        enable = true;
+        enable = false;
         efiSupport = true;
         configurationLimit = 3;
         useOSProber = true;
