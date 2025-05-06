@@ -110,7 +110,6 @@
     gcc
     git
     p7zip
-    playerctl
     stow
     unzip
     vim
