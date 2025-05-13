@@ -1,6 +1,5 @@
 {
   pkgs,
-  outputs,
   ...
 }:
 {
@@ -9,16 +8,25 @@
     ./hardware-configuration.nix
     ./services.nix
   ];
-
   boot = {
+    plymouth.enable = true;
+    consoleLogLevel = 3;
+    initrd.verbose = false;
     kernelParams = [
       "quiet"
       "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
     ];
     loader = {
-      timeout = 1;
-      grub = {
+      timeout = 0;
+      systemd-boot = {
         enable = true;
+        configurationLimit = 3;
+      };
+      grub = {
+        enable = false;
         efiSupport = true;
         configurationLimit = 3;
         useOSProber = true;
@@ -78,8 +86,10 @@
 
   gaming.enable = true;
   fhs.enable = true;
+
   desktopEnvironment = {
     gnome.enable = true;
+    gnome.online-accounts = true;
     loginManager = {
       enable = true;
       manager = "gdm";
@@ -109,6 +119,10 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
+
+      # windows fonts
+      corefonts
+      vistafonts
     ];
   };
 
@@ -117,37 +131,25 @@
   };
 
   environment.systemPackages = with pkgs; [
-    adw-gtk3
-    adwaita-icon-theme
-    brave
     btop
     curl
     dbus
     eza
     fd
-    foot
     fzf
     gcc
     gh
     git
-    gnome-network-displays
-    google-chrome
-    gsettings-desktop-schemas
     jq
     libnotify
-    libreoffice-qt
     libva-utils
-    qbittorrent
     ripgrep
     stow
-    stremio
     tmux
     unstable.neovim
     unzip
     vim
-    vlc
     wget
-    wl-clipboard
   ];
 
   system.stateVersion = "24.11";

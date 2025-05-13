@@ -40,6 +40,11 @@ in
           type = types.bool;
           description = "gnome desktop environment";
         };
+        online-accounts = mkOption {
+          default = false;
+          type = types.bool;
+          description = "enables online account sync daemon";
+        };
       };
       kde = {
         enable = mkOption {
@@ -122,7 +127,9 @@ in
           appindicator
         ]
       );
-
+    })
+    (mkIf (cfg.gnome.enable && cfg.gnome.online-accounts) {
+      services.gnome.gnome-online-accounts.enable = true;
     })
     (mkIf cfg.kde.enable {
       services.xserver.enable = true;

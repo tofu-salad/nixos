@@ -1,8 +1,12 @@
 { pkgs, ... }:
 {
+  programs.firefox.enable = false;
+  home.packages = with pkgs; [
+    google-chrome
+  ];
   programs.chromium = {
     enable = true;
-    package = (pkgs.chromium.override { enableWideVine = true; });
+    package = pkgs.brave;
     extensions = [
       { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
@@ -11,19 +15,20 @@
       { id = "ajopnjidmegmdimjlfnijceegpefgped"; } # betterttv
     ];
     commandLineArgs = [
-      "--enable-features=MiddleClickAutoscroll"
+      "--password-store=gnome-libsecret"
+      # "--enable-features=MiddleClickAutoscroll"
     ];
 
   };
 
   xdg.desktopEntries = {
-    chromium-browser = {
-      name = "Chromium";
+    brave-browser = {
+      name = "Brave Web Browser";
       genericName = "Web Browser";
       comment = "Access the Internet";
-      exec = "env LANGUAGE=en_US chromium %U";
+      exec = "env LANGUAGE=en_US brave %U";
       startupNotify = true;
-      icon = "chromium";
+      icon = "brave-browser";
       type = "Application";
       terminal = false;
       categories = [

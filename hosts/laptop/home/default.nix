@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
-    # ./chromium.nix
     ./git.nix
+    ./browsers.nix
   ];
   home = {
     username = "tofu";
@@ -25,6 +25,19 @@
 
   dconf = {
     enable = true;
+    settings = {
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        name = "foot terminal";
+        command = "foot";
+        binding = "<Super>Return";
+      };
+    };
   };
 
   fonts.fontconfig.enable = true;
@@ -34,7 +47,18 @@
       nix-direnv.enable = true;
     };
   };
-  programs.firefox.enable = true;
+
+  home.packages = with pkgs; [
+    adw-gtk3
+    adwaita-icon-theme
+    foot
+    gsettings-desktop-schemas
+    libreoffice-qt
+    qbittorrent
+    stremio
+    vlc
+    wl-clipboard
+  ];
 
   home.stateVersion = "24.11";
 
