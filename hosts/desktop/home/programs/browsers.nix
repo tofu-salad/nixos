@@ -6,7 +6,7 @@
     };
     chromium = {
       enable = true;
-      package = (pkgs.chromium.override { enableWideVine = true; });
+      package = pkgs.brave;
       extensions = [
         { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
@@ -15,7 +15,7 @@
         { id = "ajopnjidmegmdimjlfnijceegpefgped"; } # betterttv
       ];
       commandLineArgs = [
-        "--enable-features=MiddleClickAutoscroll"
+        "--password-store=gnome-libsecret"
       ];
     };
   };
