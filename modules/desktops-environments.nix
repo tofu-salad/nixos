@@ -20,7 +20,7 @@ let
   ];
   gnomeApps = with pkgs; [
     baobab # gnome disk usage analyzer
-    evince # gnome document viewer
+    papers # gnome document viewer
     file-roller
     loupe # gnome image viewer
     nautilus # gnome Files
@@ -152,16 +152,15 @@ in
         enable = true;
       };
 
+      environment.sessionVariables = {
+        POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      };
+
       xdg = {
         portal = {
           enable = true;
           extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
         };
-      };
-
-      environment.sessionVariables = {
-        POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
       };
 
       services.gnome.tinysparql.enable = true;
@@ -172,10 +171,11 @@ in
         with pkgs;
         [
           dunst
+          foot
+          hyprpaper
           pamixer
           pavucontrol
           rofi-wayland
-          swaybg
           swayimg
           waybar
           wl-clipboard

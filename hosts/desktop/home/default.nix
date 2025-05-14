@@ -15,6 +15,11 @@
     };
   };
 
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "breeze";
+  };
   gtk = {
     enable = true;
     font = {
