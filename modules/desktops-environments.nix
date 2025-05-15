@@ -152,8 +152,19 @@ in
         enable = true;
       };
 
-      environment.sessionVariables = {
-        POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      systemd.user.services.lxqt-policykit-agent-1 = {
+        enable = true;
+        description = "lxqt-policykit-agent-1";
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
       };
 
       xdg = {
