@@ -91,6 +91,11 @@ in
             default = "sway";
             description = "default session for greetd to launch";
           };
+          user = mkOption {
+            type = types.str;
+            default = "tofu";
+            description = "greeter user";
+          };
           extraSettings = mkOption {
             type = types.attrs;
             default = { };
@@ -149,6 +154,7 @@ in
     })
     (mkIf cfg.hyprland.enable {
       programs.hyprland = {
+        withUWSM = true;
         enable = true;
       };
 
@@ -254,8 +260,8 @@ in
           settings = mkMerge [
             {
               default_session = {
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd ${cfg.loginManager.greetd.defaultSession}";
-                user = "greeter";
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember";
+                user = cfg.loginManager.greetd.user;
               };
             }
             cfg.loginManager.greetd.extraSettings
