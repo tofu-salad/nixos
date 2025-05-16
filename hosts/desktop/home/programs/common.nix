@@ -25,5 +25,6 @@ in
     tmux
     tree
     unstable.neovim
+    wezterm
   ];
 }
