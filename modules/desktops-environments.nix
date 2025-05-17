@@ -18,11 +18,12 @@ let
     slurp
     swappy
   ];
-  # add specific file explorer on desktop environemnt (nautilus/file-roller, dolphin, nemo-with-extensions)
+  # add specific file explorer on desktop environemnt (nautilus, dolphin, nemo-with-extensions)
   gnomeApps = with pkgs; [
     baobab # gnome disk usage analyzer
     papers # gnome document viewer
     loupe # gnome image viewer
+    file-roller
 
     gnome-calculator
     gnome-characters
