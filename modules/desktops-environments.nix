@@ -18,12 +18,11 @@ let
     slurp
     swappy
   ];
+  # add specific file explorer on desktop environemnt (nautilus/file-roller, dolphin, nemo-with-extensions)
   gnomeApps = with pkgs; [
     baobab # gnome disk usage analyzer
     papers # gnome document viewer
-    file-roller
     loupe # gnome image viewer
-    nautilus # gnome Files
 
     gnome-calculator
     gnome-characters
@@ -158,15 +157,15 @@ in
         enable = true;
       };
 
-      systemd.user.services.lxqt-policykit-agent-1 = {
+      systemd.user.services.mate-policykit-agent-1 = {
         enable = true;
-        description = "lxqt-policykit-agent-1";
+        description = "mate-policykit-agent-1";
         wants = [ "graphical-session.target" ];
         after = [ "graphical-session.target" ];
         wantedBy = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
+          ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -180,8 +179,6 @@ in
         };
       };
 
-      services.gnome.tinysparql.enable = true;
-      services.gnome.localsearch.enable = true;
       services.gnome.gnome-keyring.enable = true;
 
       environment.systemPackages =
@@ -190,8 +187,9 @@ in
           dunst
           foot
           hyprpaper
+          nemo-with-extensions
           pamixer
-          pavucontrol
+          pwvucontrol
           rofi-wayland
           swayimg
           waybar
