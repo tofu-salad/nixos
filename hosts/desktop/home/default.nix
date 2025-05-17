@@ -44,6 +44,28 @@
     };
   };
 
+  xdg.desktopEntries = {
+    nemo = {
+      name = "Files";
+      comment = "Access and organize files";
+      exec = "nemo %U";
+      startupNotify = false;
+      icon = "nemo";
+      type = "Application";
+      terminal = false;
+      categories = [
+        "GNOME"
+        "GTK"
+        "Utility"
+        "Core"
+      ];
+      mimeType = [
+        "inode/directory"
+        "application/x-gnome-saved-search"
+      ];
+    };
+  };
+
   fonts.fontconfig.enable = true;
   programs = {
     direnv = {
