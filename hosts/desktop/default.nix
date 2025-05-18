@@ -28,11 +28,6 @@
 
   fhs.enable = true;
   desktopEnvironment = {
-    loginManager = {
-      enable = true;
-      manager = "greetd";
-      greetd.user = "tofu";
-    };
     sway.enable = true;
   };
 
