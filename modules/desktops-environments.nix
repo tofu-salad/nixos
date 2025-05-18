@@ -30,6 +30,7 @@ let
     gnome-font-viewer
     gnome-text-editor
   ];
+
 in
 {
   options = {
@@ -200,10 +201,34 @@ in
         ++ screenshotApps;
     })
     (mkIf cfg.sway.enable {
+      programs.uwsm.enable = true;
+      programs.uwsm.waylandCompositors = {
+        sway = {
+          prettyName = "Sway (with UWSM)";
+          comment = "Sway compositor managed by UWSM";
+          binPath = "/run/current-system/sw/bin/sway";
+        };
+      };
       programs.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
       };
+
+      systemd.user.services.mate-policykit-agent-1 = {
+        enable = true;
+        description = "mate-policykit-agent-1";
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
+
       xdg = {
         portal = {
           enable = true;
@@ -219,19 +244,16 @@ in
           extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
         };
       };
-      services.gnome.tinysparql.enable = true;
-      services.gnome.localsearch.enable = true;
       services.gnome.gnome-keyring.enable = true;
-      environment.sessionVariables = {
-        POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      };
 
       environment.systemPackages =
         with pkgs;
         [
           dunst
+          foot
+          nemo-with-extensions
           pamixer
-          pavucontrol
+          pwvucontrol
           rofi-wayland
           swaybg
           swayimg

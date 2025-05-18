@@ -31,10 +31,9 @@
     loginManager = {
       enable = true;
       manager = "greetd";
-      greetd.defaultSession = "Hyprland";
       greetd.user = "tofu";
     };
-    hyprland.enable = true;
+    sway.enable = true;
   };
 
   users = {
