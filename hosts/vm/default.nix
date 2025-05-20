@@ -6,7 +6,7 @@
 let
   customSt =
     with pkgs;
-    st.overrideAttrs (oldAttrs: rec {
+    st.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or [ ]) ++ [
         (fetchpatch {
           url = "https://raw.githubusercontent.com/tofu-salad/.dotfiles/refs/heads/main/.config/st/tofu_st.diff";
@@ -60,13 +60,12 @@ in
     ];
   };
 
-  # Bootloader.
   boot.loader.timeout = 0;
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "vm"; # Define your hostname.
+  networking.hostName = "vm";
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Argentina/Cordoba";
@@ -121,6 +120,6 @@ in
 
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.clipboard = true;
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.11";
 
 }
