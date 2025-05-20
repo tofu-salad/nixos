@@ -106,7 +106,7 @@
     fontconfig.subpixel.lcdfilter = "light";
     fontDir.enable = true;
     packages = with pkgs; [
-      nerd-fonts.iosevka
+      nerd-fonts.iosevka-term
       inter
       noto-fonts
       noto-fonts-cjk-sans
