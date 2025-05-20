@@ -3,6 +3,18 @@
   pkgs,
   ...
 }:
+let
+  customSt =
+    with pkgs;
+    st.overrideAttrs (oldAttrs: rec {
+      patches = (oldAttrs.patches or [ ]) ++ [
+        (fetchpatch {
+          url = "https://raw.githubusercontent.com/tofu-salad/.dotfiles/refs/heads/main/.config/st/tofu_st.diff";
+          sha256 = "sha256-4F7irZzN2a8801h1f9OQolJjzf9YvaceKq5hARbHe1A=";
+        })
+      ];
+    });
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -96,7 +108,7 @@
     jq
     mako
     ripgrep
-    st
+    customSt
     stow
     tmux
     tree
