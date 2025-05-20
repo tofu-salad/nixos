@@ -106,15 +106,7 @@
     fontconfig.subpixel.lcdfilter = "light";
     fontDir.enable = true;
     packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "IBMPlexMono"
-          "IosevkaTerm"
-        ];
-      })
-      font-awesome
-      iosevka
-      ibm-plex
+      nerd-fonts.iosevka
       inter
       noto-fonts
       noto-fonts-cjk-sans

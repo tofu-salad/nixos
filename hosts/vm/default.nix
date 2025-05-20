@@ -52,11 +52,7 @@ in
   };
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "IosevkaTerm"
-        ];
-      })
+      nerd-fonts.ibm-plex
     ];
   };
 

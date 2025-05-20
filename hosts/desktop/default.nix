@@ -83,11 +83,7 @@
     fontconfig.subpixel.lcdfilter = "light";
     fontDir.enable = true;
     packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "IosevkaTerm"
-        ];
-      })
+      nerd-fonts.iosevka
       font-awesome
       inter
       noto-fonts
