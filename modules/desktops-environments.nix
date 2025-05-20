@@ -113,26 +113,28 @@ in
       };
 
       environment.gnome.excludePackages = with pkgs; [
-        gnome-tour
-        gnome-maps
-        gnome-connections
-        gnome-software
-        gnome-music
-        gnome-contacts
-        gnome-console
-        totem
         epiphany
+        evince
         geary
+        gnome-connections
+        gnome-console
+        gnome-contacts
+        gnome-maps
+        gnome-music
+        gnome-software
+        gnome-tour
         snapshot
+        totem
       ];
-      environment.systemPackages = (
-        with pkgs.gnomeExtensions;
-        [
+      environment.systemPackages =
+        (with pkgs.gnomeExtensions; [
           dash-to-dock
           openweather-refined
           appindicator
-        ]
-      );
+        ])
+        ++ [
+          pkgs.papers
+        ];
     })
     (mkIf (cfg.gnome.enable && cfg.gnome.online-accounts) {
       services.gnome.gnome-online-accounts.enable = true;
