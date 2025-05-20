@@ -1,29 +1,38 @@
 {
-  config,
   outputs,
   pkgs,
   ...
 }:
-
 {
   imports = [
     ./hardware-configuration.nix
   ];
 
-  environment.pathsToLink = [ "/libexec" ];
-  fhs.enable = true;
-  services.displayManager.defaultSession = "none+i3";
-  services.xserver = {
-    enable = true;
-    desktopManager = {
-      xterm.enable = false;
-    };
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.unstable-packages
+    ];
+  };
+  nix = {
+    settings = {
+      experimental-features = "nix-command flakes";
+      trusted-users = [
+        "root"
+        "tofu"
       ];
     };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
+    optimise.automatic = true;
+  };
+
+  environment.pathsToLink = [ "/libexec" ];
+  fhs.enable = true;
+  services.displayManager.ly.enable = true;
+  services.xserver = {
+    enable = true;
     xkb = {
       layout = "us";
       variant = "";
@@ -40,6 +49,7 @@
   };
 
   # Bootloader.
+  boot.loader.timeout = 0;
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
@@ -85,17 +95,18 @@
     git
     jq
     mako
-    unstable.neovim
     ripgrep
+    st
     stow
     tmux
     tree
+    unstable.neovim
     unzip
     vim
     wget
     xclip
-    xterm
   ];
+
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.clipboard = true;
   system.stateVersion = "24.11"; # Did you read the comment?

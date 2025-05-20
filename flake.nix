@@ -57,6 +57,15 @@
             ./hosts/laptop
           ];
         };
+        vm = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [
+            ./modules
+            ./hosts/vm
+          ];
+        };
       };
 
       # homeConfigurations = {
