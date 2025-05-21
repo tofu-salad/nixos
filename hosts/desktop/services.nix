@@ -38,8 +38,6 @@
     };
   };
 
-  nix.settings.auto-optimise-store = true;
-
   # audio {{{ 
   security.rtkit.enable = true;
   services.pipewire = {
