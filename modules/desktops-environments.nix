@@ -113,6 +113,7 @@ in
       };
 
       environment.gnome.excludePackages = with pkgs; [
+        decibels
         epiphany
         evince
         geary
