@@ -14,6 +14,11 @@
     };
   };
 
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "adwaita-dark";
+  };
   gtk = {
     enable = true;
     font = {
@@ -49,11 +54,8 @@
   };
 
   home.packages = with pkgs; [
-    adw-gtk3
-    adwaita-icon-theme
     foot
-    gsettings-desktop-schemas
-    libreoffice-qt
+    libreoffice
     qbittorrent
     stremio
     vlc
