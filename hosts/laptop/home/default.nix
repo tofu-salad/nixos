@@ -14,11 +14,6 @@
     };
   };
 
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct";
-    style.name = "adwaita-dark";
-  };
   gtk = {
     enable = true;
     font = {
@@ -59,7 +54,6 @@
     qbittorrent
     stremio
     vlc
-    wl-clipboard
   ];
 
   home.stateVersion = "24.11";

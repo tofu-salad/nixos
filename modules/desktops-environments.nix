@@ -133,6 +133,7 @@ in
         ])
         ++ [
           pkgs.papers
+          pkgs.wl-clipboard
         ];
     })
     (mkIf (cfg.gnome.enable && cfg.gnome.online-accounts) {
