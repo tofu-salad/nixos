@@ -28,6 +28,11 @@
 
   fhs.enable = true;
   desktopEnvironment = {
+    loginManager = {
+      enable = true;
+      manager = "gdm";
+    };
+    gnome.enable = true;
     sway.enable = true;
   };
 

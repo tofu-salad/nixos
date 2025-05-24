@@ -30,7 +30,13 @@ let
     gnome-font-viewer
     gnome-text-editor
   ];
-
+  polkitWrapper = pkgs.writeShellScript "polkit-wrapper" ''
+    if [ "$XDG_SESSION_DESKTOP" = "sway" ] || [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
+      exec ${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1
+    else
+      exit 0
+    fi
+  '';
 in
 {
   options = {
@@ -113,23 +119,24 @@ in
       };
 
       environment.gnome.excludePackages = with pkgs; [
-        gnome-tour
-        gnome-maps
-        gnome-connections
-        gnome-software
-        gnome-music
-        gnome-contacts
-        gnome-console
-        totem
+        decibels
         epiphany
+        evince
         geary
+        gnome-connections
+        gnome-console
+        gnome-contacts
+        gnome-maps
+        gnome-music
+        gnome-software
+        gnome-tour
         snapshot
+        totem
       ];
       environment.systemPackages = (
         with pkgs.gnomeExtensions;
         [
           dash-to-dock
-          openweather-refined
           appindicator
         ]
       );
@@ -222,7 +229,7 @@ in
         wantedBy = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+          ExecStart = "${polkitWrapper}";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -267,8 +274,8 @@ in
     # login managers configurations
     (mkIf cfg.loginManager.enable (mkMerge [
       (mkIf (cfg.loginManager.manager == "gdm") {
-        services.xserver.displayManager.gdm.enable = true;
         services.xserver.displayManager.gdm.wayland = true;
+        services.xserver.displayManager.gdm.enable = true;
       })
       (mkIf (cfg.loginManager.manager == "sddm") {
         services.xserver.displayManager.sddm.enable = true;

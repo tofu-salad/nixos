@@ -1,5 +1,14 @@
-{ outputs, pkgs, ... }:
+{ pkgs, ... }:
 let
+  ffmpeg-full-fixed =
+    (pkgs.ffmpeg-full.override {
+      withLcevcdec = false;
+    }).overrideAttrs
+      (
+        finalAttrs: previousAttrs: {
+          doCheck = false;
+        }
+      );
   rsmiGpuBtop = pkgs.btop.overrideAttrs (
     finalAttrs: previousAttrs: {
       src = pkgs.fetchFromGitHub {
@@ -23,6 +32,7 @@ in
     openssl
     ripgrep
     tmux
+    ffmpeg-full-fixed
     tree
     unstable.neovim
     wezterm
