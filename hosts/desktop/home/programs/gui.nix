@@ -12,6 +12,6 @@
     qbittorrent
     stremio
     tidal-hifi
-    discord-canary
+    discord
   ];
 }
