@@ -16,7 +16,6 @@
     gvfs.enable = true;
     udisks2.enable = true;
 
-    upower.enable = false;
     dbus = {
       enable = true;
     };
