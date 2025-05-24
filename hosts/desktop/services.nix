@@ -90,6 +90,7 @@
       80
       443
       8010
+      1935
       1118
     ];
     allowedUDPPortRanges = [
