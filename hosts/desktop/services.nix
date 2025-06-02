@@ -2,6 +2,7 @@
 {
   services.flatpak.enable = false;
   services = {
+    tailscale.enable = true;
     fstrim.enable = true;
     xserver = {
       updateDbusEnvironment = true;
