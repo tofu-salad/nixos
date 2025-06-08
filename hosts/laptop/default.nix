@@ -81,6 +81,7 @@
       "networkmanager"
       "wheel"
       "plugdev"
+      "input"
     ];
   };
 
@@ -144,5 +145,6 @@
     wget
   ];
 
+  boot.kernelModules = [ "uinput" ];
   system.stateVersion = "24.11";
 }
