@@ -9,6 +9,22 @@
     ./services.nix
   ];
 
+  virt = {
+    enable = true;
+    docker.enable = false;
+    virt-manager = {
+      enable = true;
+      gpuPass = {
+        enable = true;
+        gpu = "1002:67df,1002:aaf0";
+        lookingGlass = {
+          enable = true;
+          user = "tofu";
+        };
+      };
+    };
+  };
+
   # bootloeader
   boot = {
     loader = {

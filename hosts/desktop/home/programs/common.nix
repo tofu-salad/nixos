@@ -15,6 +15,6 @@
     tmux
     tree
     unstable.neovim
-    wezterm
+    alacritty
   ];
 }

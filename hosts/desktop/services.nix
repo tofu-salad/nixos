@@ -26,17 +26,6 @@
     };
   };
 
-  programs.virt-manager.enable = false;
-  virtualisation = {
-    libvirtd = {
-      enable = false;
-      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
-    };
-    spiceUSBRedirection.enable = true;
-    docker = {
-      enable = false;
-    };
-  };
 
   # audio {{{ 
   security.rtkit.enable = true;
