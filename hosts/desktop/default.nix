@@ -10,7 +10,7 @@
   ];
 
   virt = {
-    enable = true;
+    enable = false;
     docker.enable = false;
     virt-manager = {
       enable = true;
