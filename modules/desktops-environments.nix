@@ -42,6 +42,13 @@ in
 {
   options = {
     desktopEnvironment = {
+      cinnamon = {
+        enable = mkOption {
+          default = false;
+          type = types.bool;
+          description = "cinnamon desktop environment";
+        };
+      };
       gnome = {
         enable = mkOption {
           default = false;
@@ -84,7 +91,6 @@ in
         };
         manager = mkOption {
           type = loginManagerType;
-          default = "lightdm";
           description = "login manager to use (greetd, sddm, gdm)";
         };
         greetd = {
@@ -115,9 +121,8 @@ in
   };
   config = mkMerge [
     (mkIf cfg.gnome.enable {
-      services.xserver = {
-        desktopManager.gnome.enable = true;
-      };
+      services.xserver.enable = true;
+      services.xserver.desktopManager.gnome.enable = true;
 
       environment.gnome.excludePackages = with pkgs; [
         decibels
@@ -161,6 +166,13 @@ in
         konsole
         plasma-browser-integration
         print-manager
+      ];
+    })
+    (mkIf cfg.cinnamon.enable {
+      services.xserver.desktopManager.cinnamon.enable = true;
+      environment.systemPackages = with pkgs; [
+        papirus-icon-theme
+        adwaita-icon-theme-legacy
       ];
     })
     (mkIf cfg.hyprland.enable {
@@ -281,7 +293,6 @@ in
         services.xserver.displayManager.lightdm.enable = true;
       })
       (mkIf (cfg.loginManager.manager == "gdm") {
-        services.xserver.displayManager.gdm.wayland = true;
         services.xserver.displayManager.gdm.enable = true;
       })
       (mkIf (cfg.loginManager.manager == "sddm") {

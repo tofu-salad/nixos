@@ -108,10 +108,7 @@
     fontDir.enable = true;
     packages = with pkgs; [
       nerd-fonts.iosevka-term
-      inter
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
+      adwaita-fonts
 
       # windows fonts
       corefonts

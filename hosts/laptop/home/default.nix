@@ -17,8 +17,8 @@
   gtk = {
     enable = true;
     font = {
-      name = "Inter Variable";
-      package = pkgs.inter;
+      name = "Adwaita Sans";
+      package = pkgs.adwaita-fonts;
       size = 12;
     };
   };
@@ -33,8 +33,8 @@
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        name = "foot terminal";
-        command = "foot";
+        name = "alacritty terminal";
+        command = "alacritty";
         binding = "<Super>Return";
       };
     };
@@ -49,7 +49,7 @@
   };
 
   home.packages = with pkgs; [
-    foot
+    alacritty
     libreoffice
     qbittorrent
     stremio
