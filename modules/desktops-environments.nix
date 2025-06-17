@@ -8,6 +8,7 @@ with lib;
 let
   cfg = config.desktopEnvironment;
   loginManagerType = types.enum [
+    "lightdm"
     "gdm"
     "sddm"
     "greetd"
@@ -83,7 +84,7 @@ in
         };
         manager = mkOption {
           type = loginManagerType;
-          default = "greetd";
+          default = "lightdm";
           description = "login manager to use (greetd, sddm, gdm)";
         };
         greetd = {
@@ -275,6 +276,10 @@ in
 
     # login managers configurations
     (mkIf cfg.loginManager.enable (mkMerge [
+      (mkIf (cfg.loginManager.manager == "lightdm") {
+        services.xserver.enable = true;
+        services.xserver.displayManager.lightdm.enable = true;
+      })
       (mkIf (cfg.loginManager.manager == "gdm") {
         services.xserver.displayManager.gdm.wayland = true;
         services.xserver.displayManager.gdm.enable = true;
