@@ -18,8 +18,14 @@
     enable = true;
     font = {
       name = "Adwaita Sans";
-      package = pkgs.adwaita-fonts;
       size = 12;
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+    theme = {
+      name = "adw-gtk3";
     };
   };
 
@@ -49,6 +55,7 @@
   };
 
   home.packages = with pkgs; [
+    adw-gtk3
     alacritty
     libreoffice
     qbittorrent

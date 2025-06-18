@@ -109,7 +109,7 @@
     packages = with pkgs; [
       nerd-fonts.iosevka-term
       adwaita-fonts
-
+      roboto
       # windows fonts
       corefonts
       vistafonts
