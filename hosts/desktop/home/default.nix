@@ -23,13 +23,15 @@
   gtk = {
     enable = true;
     font = {
-      name = "Inter Variable";
-      package = pkgs.inter;
+      name = "Adwaita Sans";
       size = 12;
     };
     theme = {
       name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
     };
   };
   dconf = {
@@ -43,6 +45,9 @@
       };
     };
   };
+  home.packages = with pkgs; [
+    adw-gtk3
+  ];
 
   xdg.desktopEntries = {
     nemo = {

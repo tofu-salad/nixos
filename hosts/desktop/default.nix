@@ -106,11 +106,8 @@
     fontDir.enable = true;
     packages = with pkgs; [
       nerd-fonts.iosevka-term
+      adwaita-fonts
       font-awesome
-      inter
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
     ];
   };
 
