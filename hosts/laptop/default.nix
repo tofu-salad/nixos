@@ -89,11 +89,14 @@
   fhs.enable = true;
 
   desktopEnvironment = {
-    gnome.enable = true;
-    gnome.online-accounts = true;
+    gnome = {
+      enable = false;
+      online-accounts = true;
+    };
+    kde.enable = true;
     loginManager = {
       enable = true;
-      manager = "gdm";
+      manager = "sddm";
     };
   };
 

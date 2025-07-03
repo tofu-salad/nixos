@@ -4,18 +4,19 @@
   security.rtkit.enable = true;
 
   services = {
-    pipewire = {
+    avahi = {
       enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
-      jack.enable = false;
     };
-
+    pipewire = {
+      alsa.enable = true;
+      enable = true;
+      jack.enable = false;
+      pulse.enable = true;
+    };
+    resolved.enable = true;
     tailscale = {
       enable = true;
       useRoutingFeatures = "client";
     };
-
-    resolved.enable = true;
   };
 }

@@ -153,19 +153,17 @@ in
       services.gnome.gnome-online-accounts.enable = true;
     })
     (mkIf cfg.kde.enable {
-      services.xserver.enable = true;
-      services.xserver.desktopManager.plasma5.enable = true;
-
-      environment.plasma5.excludePackages = with pkgs.libsForQt5; [
-        elisa
-        dolphin
-        gwenview
-        okular
-        oxygen
-        khelpcenter
-        konsole
+      services.desktopManager.plasma6.enable = true;
+      environment.plasma6.excludePackages = with pkgs.kdePackages; [
         plasma-browser-integration
-        print-manager
+        konsole
+        elisa
+        khelpcenter
+        plasma-browser-integration
+        kate
+      ];
+      environment.systemPackages = with pkgs; [
+        gnome-text-editor
       ];
     })
     (mkIf cfg.cinnamon.enable {
@@ -296,8 +294,8 @@ in
         services.xserver.displayManager.gdm.enable = true;
       })
       (mkIf (cfg.loginManager.manager == "sddm") {
-        services.xserver.displayManager.sddm.enable = true;
-        services.xserver.enable = true;
+        services.displayManager.sddm.enable = true;
+        services.displayManager.sddm.wayland.enable = true;
       })
       (mkIf (cfg.loginManager.manager == "greetd") {
         services.greetd = {
