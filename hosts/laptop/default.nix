@@ -136,9 +136,11 @@
     jq
     libnotify
     libva-utils
+    p7zip
     ripgrep
     stow
     tmux
+    unrar
     unstable.neovim
     unzip
     vim

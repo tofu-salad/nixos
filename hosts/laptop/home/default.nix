@@ -15,7 +15,7 @@
   };
 
   gtk = {
-    enable = true;
+    enable = false;
     font = {
       name = "Adwaita Sans";
       size = 12;
@@ -30,7 +30,7 @@
   };
 
   dconf = {
-    enable = true;
+    enable = false;
     settings = {
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
@@ -46,7 +46,7 @@
     };
   };
 
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = false;
   programs = {
     direnv = {
       enable = true;

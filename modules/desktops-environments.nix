@@ -164,6 +164,7 @@ in
       ];
       environment.systemPackages = with pkgs; [
         gnome-text-editor
+        wl-clipboard
       ];
     })
     (mkIf cfg.cinnamon.enable {
@@ -294,6 +295,7 @@ in
         services.xserver.displayManager.gdm.enable = true;
       })
       (mkIf (cfg.loginManager.manager == "sddm") {
+        services.xserver.enable = true;
         services.displayManager.sddm.enable = true;
         services.displayManager.sddm.wayland.enable = true;
       })

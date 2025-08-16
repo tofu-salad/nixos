@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.firefox.enable = false;
+  programs.firefox.enable = true;
   home.packages = with pkgs; [
     google-chrome
   ];
