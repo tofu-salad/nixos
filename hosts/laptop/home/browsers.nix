@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  programs.firefox.enable = true;
   home.packages = with pkgs; [
     google-chrome
   ];
@@ -8,7 +7,6 @@
     enable = true;
     package = pkgs.brave;
     extensions = [
-      { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
       { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # tampermonkey
       { id = "kbmfpngjjgdllneeigpgjifpgocmfgmb"; } # reddit enhancement suite
