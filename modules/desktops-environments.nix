@@ -102,7 +102,6 @@ in
           };
           defaultSession = mkOption {
             type = types.str;
-            default = "sway";
             description = "default session for greetd to launch";
           };
           user = mkOption {
@@ -306,7 +305,7 @@ in
           settings = mkMerge [
             {
               default_session = {
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember";
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user-session";
                 user = cfg.loginManager.greetd.user;
               };
             }
