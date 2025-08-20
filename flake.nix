@@ -48,6 +48,15 @@
           ];
         };
 
+        homelab = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [
+            ./modules
+            ./hosts/homelab
+          ];
+        };
         laptop = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
