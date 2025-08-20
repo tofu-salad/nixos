@@ -56,9 +56,16 @@
   services.jellyfin.enable = true;
   environment.systemPackages = with pkgs; [
     audiobookshelf
+    gh
+    git
+    google-chrome
     jellyfin
     jellyfin-ffmpeg
     jellyfin-web
+    neovim
+    wl-clipboard
+    mako
+    waybar
   ];
 
   systemd.user.services.audiobookshelf = {
@@ -91,6 +98,8 @@
     ];
   };
 
+  users.groups.media = { };
+  users.users.jellyfin.extraGroups = [ "media" ];
   users.users.tofu = {
     linger = true;
     isNormalUser = true;
@@ -98,6 +107,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "media"
     ];
   };
 
@@ -136,17 +146,39 @@
       allowUnfree = true;
     };
   };
+  system.activationScripts.mediaAcl = {
+    text = ''
+      echo "Setting ACLs on /mnt/share ..."
+      ${pkgs.acl}/bin/setfacl -R -m g:media:rwX /mnt/share
+      ${pkgs.acl}/bin/setfacl -R -m d:g:media:rwX /mnt/share
+    '';
+  };
+
   nix = {
     settings = {
       experimental-features = "nix-command flakes";
     };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
+    optimise.automatic = true;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
-  gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
+
+  services.dbus.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  optimise.automatic = true;
-  nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+  services.gnome.gnome-keyring.enable = true;
 
   system.stateVersion = "25.05";
 }

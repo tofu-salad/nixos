@@ -53,7 +53,6 @@
             inherit inputs outputs;
           };
           modules = [
-            ./modules
             ./hosts/homelab
           ];
         };
