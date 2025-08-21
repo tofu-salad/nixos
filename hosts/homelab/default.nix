@@ -12,12 +12,12 @@
 
   # services
   services.openssh = {
-  	enable = true;
-	settings = {
-	PasswordAuthentication = false;
-	PermitRootLogin = "no";
-	KbdInteractiveAuthentication = false;
-	};
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+      KbdInteractiveAuthentication = false;
+    };
   };
   services.fail2ban.enable = true;
   services.gvfs.enable = true;
@@ -169,7 +169,10 @@
   nix = {
     settings = {
       experimental-features = "nix-command flakes";
-      trusted-users = [ "root" "tofu"];
+      trusted-users = [
+        "root"
+        "tofu"
+      ];
     };
     gc = {
       automatic = true;

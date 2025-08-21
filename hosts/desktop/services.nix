@@ -12,7 +12,6 @@
       };
     };
 
-
     dbus = {
       enable = true;
     };
@@ -21,14 +20,13 @@
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
-    
+
     avahi = {
       enable = true;
     };
   };
 
-
-  # audio {{{ 
+  # audio {{{
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
