@@ -11,6 +11,16 @@
   ];
 
   # services
+  services.openssh = {
+  	enable = true;
+	settings = {
+	PasswordAuthentication = false;
+	PermitRootLogin = "no";
+	KbdInteractiveAuthentication = false;
+	};
+  };
+  services.fail2ban.enable = true;
+  services.gvfs.enable = true;
   services.samba = {
     enable = true;
     openFirewall = true;
@@ -62,10 +72,11 @@
     jellyfin
     jellyfin-ffmpeg
     jellyfin-web
-    neovim
-    wl-clipboard
     mako
+    neovim
+    pwvucontrol
     waybar
+    wl-clipboard
   ];
 
   systemd.user.services.audiobookshelf = {
@@ -90,6 +101,7 @@
       443 # HTTPS
       139 # Samba
       445 # Samba
+      8096 # Jellyfin
     ];
 
     allowedUDPPorts = [
@@ -157,6 +169,7 @@
   nix = {
     settings = {
       experimental-features = "nix-command flakes";
+      trusted-users = [ "root" "tofu"];
     };
     gc = {
       automatic = true;

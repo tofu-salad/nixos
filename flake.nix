@@ -75,6 +75,19 @@
           ];
         };
       };
+      devShells = forAllSystems (system:
+      	let
+		pkgs = import nixpkgs { inherit system; };
+	in {
+		tools = pkgs.mkShell {
+			packages = with pkgs; [
+				nixd
+				nixfmt-rfc-style
+				nixfmt-tree
+			];
+		};
+		default = outputs.devShells.${system}.tools;
+		});
 
       # homeConfigurations = {
       #   ${hosts.home-manager.name} = home-manager.lib.homeManagerConfiguration {
