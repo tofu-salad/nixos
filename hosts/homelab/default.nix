@@ -67,7 +67,10 @@
   networking.firewall.allowPing = true;
   services.caddy.enable = true;
   services.tailscale.enable = true;
-  services.emby.enable = true;
+  services.emby = {
+    enable = true;
+    package = inputs.emby-flake.packages.x86_64-linux.default;
+  };
   # services.jellyfin.enable = true;
   environment.systemPackages = with pkgs; [
     audiobookshelf
