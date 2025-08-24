@@ -67,15 +67,16 @@
   networking.firewall.allowPing = true;
   services.caddy.enable = true;
   services.tailscale.enable = true;
-  services.jellyfin.enable = true;
+  services.emby.enable = true;
+  # services.jellyfin.enable = true;
   environment.systemPackages = with pkgs; [
     audiobookshelf
     gh
     git
     google-chrome
-    jellyfin
-    jellyfin-ffmpeg
-    jellyfin-web
+    # jellyfin
+    # jellyfin-ffmpeg
+    # jellyfin-web
     mako
     neovim
     pwvucontrol
@@ -115,7 +116,8 @@
   };
 
   users.groups.media = { };
-  users.users.jellyfin.extraGroups = [ "media" ];
+  # users.users.jellyfin.extraGroups = [ "media" ];
+  users.users.emby.extraGroups = [ "media" ];
   users.users.tofu = {
     linger = true;
     isNormalUser = true;

@@ -14,6 +14,7 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emby-flake.url = "github:tofu-salad/emby-server-flake";
   };
 
   outputs =
@@ -22,6 +23,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      emby-flake,
       ...
     }@inputs:
     let
@@ -54,6 +56,7 @@
           };
           modules = [
             ./hosts/homelab
+            emby-flake.nixosModules.default
           ];
         };
         laptop = nixpkgs.lib.nixosSystem {
