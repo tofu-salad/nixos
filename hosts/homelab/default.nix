@@ -71,15 +71,11 @@
     enable = true;
     package = inputs.emby-flake.packages.x86_64-linux.default;
   };
-  # services.jellyfin.enable = true;
   environment.systemPackages = with pkgs; [
     audiobookshelf
     gh
     git
     google-chrome
-    # jellyfin
-    # jellyfin-ffmpeg
-    # jellyfin-web
     mako
     neovim
     pwvucontrol
@@ -109,7 +105,7 @@
       443 # HTTPS
       139 # Samba
       445 # Samba
-      8096 # Jellyfin
+      8096 # Emby
     ];
 
     allowedUDPPorts = [
@@ -119,7 +115,6 @@
   };
 
   users.groups.media = { };
-  # users.users.jellyfin.extraGroups = [ "media" ];
   users.users.emby.extraGroups = [ "media" ];
   users.users.tofu = {
     linger = true;
@@ -192,13 +187,6 @@
   };
 
   services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
