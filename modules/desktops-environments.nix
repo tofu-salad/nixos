@@ -149,6 +149,7 @@ in
           appindicator
         ])
         ++ [
+          pkgs.gnome-tweaks
           pkgs.papers
           pkgs.wl-clipboard
         ];
