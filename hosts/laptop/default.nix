@@ -25,13 +25,6 @@
         enable = true;
         configurationLimit = 3;
       };
-      grub = {
-        enable = false;
-        efiSupport = true;
-        configurationLimit = 3;
-        useOSProber = true;
-        device = "nodev";
-      };
       efi.canTouchEfiVariables = true;
     };
   };
@@ -76,7 +69,7 @@
 
   users.users.tofu = {
     isNormalUser = true;
-    description = "tofu salad laptop config";
+    description = "laptop config";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -90,13 +83,11 @@
 
   desktopEnvironment = {
     gnome = {
-      enable = false;
-      online-accounts = true;
+      enable = true;
     };
-    kde.enable = true;
     loginManager = {
       enable = true;
-      manager = "sddm";
+      manager = "gdm";
     };
   };
 
@@ -107,12 +98,9 @@
   };
 
   fonts = {
-    fontconfig.subpixel.lcdfilter = "light";
-    fontDir.enable = true;
     packages = with pkgs; [
       nerd-fonts.iosevka-term
       adwaita-fonts
-      roboto
       # windows fonts
       corefonts
       vistafonts
@@ -121,6 +109,7 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    GSK_RENDERER = "ngl";
   };
 
   environment.systemPackages = with pkgs; [

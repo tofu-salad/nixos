@@ -14,12 +14,9 @@
     };
   };
 
+  fonts.fontconfig.enable = true;
   gtk = {
-    enable = false;
-    font = {
-      name = "Adwaita Sans";
-      size = 12;
-    };
+    enable = true;
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -30,8 +27,14 @@
   };
 
   dconf = {
-    enable = false;
+    enable = true;
     settings = {
+      "org/gnome/shell" = {
+        enabled-extensions = [
+          pkgs.gnomeExtensions.appindicator.extensionUuid
+          pkgs.gnomeExtensions.dash-to-dock.extensionUuid
+        ];
+      };
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
@@ -46,7 +49,6 @@
     };
   };
 
-  fonts.fontconfig.enable = false;
   programs = {
     direnv = {
       enable = true;

@@ -123,6 +123,9 @@ in
       services.xserver.enable = true;
       services.xserver.desktopManager.gnome.enable = true;
 
+      services.gnome.core-developer-tools.enable = false;
+      services.gnome.games.enable = false;
+
       environment.gnome.excludePackages = with pkgs; [
         decibels
         epiphany
@@ -135,9 +138,11 @@ in
         gnome-music
         gnome-software
         gnome-tour
+        gnome-user-docs
         snapshot
         totem
       ];
+
       environment.systemPackages =
         (with pkgs.gnomeExtensions; [
           dash-to-dock
@@ -147,6 +152,7 @@ in
           pkgs.papers
           pkgs.wl-clipboard
         ];
+      services.udev.packages = [ pkgs.gnome-settings-daemon ];
     })
     (mkIf (cfg.gnome.enable && cfg.gnome.online-accounts) {
       services.gnome.gnome-online-accounts.enable = true;

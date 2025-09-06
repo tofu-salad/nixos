@@ -102,7 +102,6 @@
 
   fonts = {
     fontconfig.subpixel.lcdfilter = "light";
-    fontDir.enable = true;
     packages = with pkgs; [
       nerd-fonts.iosevka-term
       adwaita-fonts

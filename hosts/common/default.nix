@@ -9,6 +9,9 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
+  fonts = {
+    fontDir.enable = true;
+  };
 
   home-manager = {
     useUserPackages = true;

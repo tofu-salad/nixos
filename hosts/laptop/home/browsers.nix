@@ -1,12 +1,19 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    google-chrome
+    (google-chrome.override {
+      commandLineArgs = [
+        "--password-store=gnome-libsecret"
+        "--disable-features=GlobalShortcutsPortal"
+        "--enable-features=MiddleClickAutoscroll"
+      ];
+    })
   ];
   programs.chromium = {
     enable = true;
-    package = pkgs.brave;
+    package = (pkgs.chromium.override { enableWideVine = true; });
     extensions = [
+      { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
       { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # tampermonkey
       { id = "kbmfpngjjgdllneeigpgjifpgocmfgmb"; } # reddit enhancement suite
@@ -14,19 +21,20 @@
     ];
     commandLineArgs = [
       "--password-store=gnome-libsecret"
-      # "--enable-features=MiddleClickAutoscroll"
+      "--disable-features=GlobalShortcutsPortal"
+      "--enable-features=MiddleClickAutoscroll"
     ];
 
   };
 
   xdg.desktopEntries = {
-    brave-browser = {
-      name = "Brave Web Browser";
+    chromium-browser = {
+      name = "Chromium";
       genericName = "Web Browser";
       comment = "Access the Internet";
-      exec = "env LANGUAGE=en_US brave %U";
+      exec = "env LANGUAGE=en_US chromium %U";
       startupNotify = true;
-      icon = "brave-browser";
+      icon = "chromium";
       type = "Application";
       terminal = false;
       categories = [
