@@ -31,13 +31,6 @@
       systemd-boot.enable = true;
       systemd-boot.configurationLimit = 3;
       timeout = 0;
-      grub = {
-        enable = false;
-        efiSupport = true;
-        configurationLimit = 3;
-        useOSProber = true;
-        device = "nodev";
-      };
       efi.canTouchEfiVariables = true;
     };
   };
