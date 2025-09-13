@@ -312,7 +312,7 @@ in
           settings = mkMerge [
             {
               default_session = {
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -r --remember-session";
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
                 user = cfg.loginManager.greetd.user;
               };
             }
