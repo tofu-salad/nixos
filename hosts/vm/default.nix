@@ -45,6 +45,13 @@ in
   services.displayManager.ly.enable = true;
   services.xserver = {
     enable = true;
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+      ];
+    };
     xkb = {
       layout = "us";
       variant = "";
@@ -52,7 +59,7 @@ in
   };
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.ibm-plex
+      nerd-fonts.iosevka-term
     ];
   };
 
