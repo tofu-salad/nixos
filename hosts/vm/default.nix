@@ -3,18 +3,6 @@
   pkgs,
   ...
 }:
-let
-  customSt =
-    with pkgs;
-    st.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or [ ]) ++ [
-        (fetchpatch {
-          url = "https://raw.githubusercontent.com/tofu-salad/.dotfiles/refs/heads/main/.config/st/tofu_st.diff";
-          sha256 = "sha256-4F7irZzN2a8801h1f9OQolJjzf9YvaceKq5hARbHe1A=";
-        })
-      ];
-    });
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -97,11 +85,10 @@ in
   };
   hardware.graphics.enable = true;
   environment.systemPackages = with pkgs; [
-    bat
+    alacritty
     btop
     curl
     direnv
-    eza
     fd
     fzf
     gcc
@@ -110,7 +97,6 @@ in
     jq
     mako
     ripgrep
-    customSt
     stow
     tmux
     tree
