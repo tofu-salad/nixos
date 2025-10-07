@@ -37,7 +37,6 @@
       enable = true;
       extraPackages = with pkgs; [
         dmenu
-        i3status
       ];
     };
     xkb = {
@@ -110,5 +109,4 @@
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.clipboard = true;
   system.stateVersion = "24.11";
-
 }
