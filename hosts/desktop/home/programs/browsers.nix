@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs = {
     firefox = {
@@ -5,6 +6,7 @@
     };
     chromium = {
       enable = true;
+      package = pkgs.google-chrome;
       extensions = [
         { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden

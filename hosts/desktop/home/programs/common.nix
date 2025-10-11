@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     bat
     btop-rocm
-    eza
     fd
     ffmpeg
     fzf
