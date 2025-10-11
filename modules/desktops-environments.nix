@@ -272,13 +272,15 @@ in
         };
       };
       services.gnome.gnome-keyring.enable = true;
+      services.gnome.localsearch.enable = true;
 
       environment.systemPackages =
         with pkgs;
         [
-          nautilus
+          alacritty
           dunst
           foot
+          nautilus
           pamixer
           pwvucontrol
           rofi-wayland
