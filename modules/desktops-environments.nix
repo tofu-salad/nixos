@@ -276,9 +276,9 @@ in
       environment.systemPackages =
         with pkgs;
         [
+          nautikus
           dunst
           foot
-          nemo-with-extensions
           pamixer
           pwvucontrol
           rofi-wayland
