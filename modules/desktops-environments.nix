@@ -312,7 +312,7 @@ in
           settings = mkMerge [
             {
               default_session = {
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd 'uwsm start sway-uwsm.desktop'";
                 user = cfg.loginManager.greetd.user;
               };
             }
