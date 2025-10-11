@@ -10,11 +10,13 @@
     ./hardware-configuration.nix
   ];
 
-  # services
-  services.logind.lidSwitch = "ignore";
-  services.logind.lidSwitchExternalPower = "ignore";
-  services.logind.lidSwitchDocked = "ignore";
+  services.logind = {
+    lidSwitch = "ignore";
+    lidSwitchExternalPower = "ignore";
+    lidSwitchDocked = "ignore";
+  };
 
+  services.fail2ban.enable = true;
   services.openssh = {
     enable = true;
     settings = {
@@ -23,8 +25,6 @@
       KbdInteractiveAuthentication = false;
     };
   };
-  services.fail2ban.enable = true;
-  services.gvfs.enable = true;
   services.samba = {
     enable = true;
     openFirewall = true;
@@ -50,12 +50,10 @@
       };
     };
   };
-
   services.samba-wsdd = {
     enable = true;
     openFirewall = true;
   };
-
   services.avahi = {
     publish.enable = true;
     publish.userServices = true;
@@ -63,55 +61,34 @@
     enable = true;
     openFirewall = true;
   };
-
-  networking.firewall.allowPing = true;
-  services.caddy.enable = true;
-  services.tailscale.enable = true;
-  services.emby = {
-    enable = true;
-    package = inputs.emby-flake.packages.x86_64-linux.default;
-  };
-  environment.systemPackages = with pkgs; [
-    audiobookshelf
-    gh
-    git
-    google-chrome
-    mako
-    neovim
-    pwvucontrol
-    waybar
-    wl-clipboard
-  ];
-
-  systemd.user.services.audiobookshelf = {
-    enable = true;
-    description = "audiobookshelf service";
-    after = [ "network-online.target" ];
-    requires = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.audiobookshelf}/bin/audiobookshelf";
-      Restart = "on-failure";
+  # apps
+  services = {
+    audiobookshelf = {
+      enable = true;
+      openFirewall = true;
+      port = 13378;
+      host = "0.0.0.0";
+    };
+    emby = {
+      enable = true;
+      package = inputs.emby-flake.packages.x86_64-linux.default;
     };
   };
 
+  services.gvfs.enable = true;
+  services.caddy.enable = true;
+  services.tailscale.enable = true;
   networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
+    allowPing = true;
     allowedTCPPorts = [
       22 # OpenSSH
       80 # HTTP
       443 # HTTPS
-      139 # Samba
-      445 # Samba
       8096 # Emby
     ];
-
-    allowedUDPPorts = [
-      137
-      138 # Samba NetBIOS Datagram Service
-    ];
+    allowedUDPPorts = [ ];
   };
 
   users.groups.media = { };
@@ -131,7 +108,6 @@
     hostName = "homelab";
     networkmanager.enable = true;
   };
-  zramSwap.enable = true;
   time = {
     hardwareClockInLocalTime = false;
     timeZone = "America/Argentina/Cordoba";
@@ -151,17 +127,20 @@
     };
   };
 
+  zramSwap.enable = true;
   boot.loader = {
     systemd-boot.enable = true;
     systemd-boot.configurationLimit = 3;
     timeout = 0;
   };
+
   nixpkgs = {
     overlays = [ outputs.overlays.unstable-packages ];
     config = {
       allowUnfree = true;
     };
   };
+
   system.activationScripts.mediaAcl = {
     text = ''
       echo "Setting ACLs on /mnt/share ..."
@@ -192,6 +171,19 @@
     wrapperFeatures.gtk = true;
   };
   services.gnome.gnome-keyring.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    gh
+    git
+    google-chrome
+    mako
+    neovim
+    pwvucontrol
+    tmux
+    typer
+    waybar
+    wl-clipboard
+  ];
 
   system.stateVersion = "25.05";
 }
