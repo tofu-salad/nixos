@@ -276,7 +276,7 @@ in
       environment.systemPackages =
         with pkgs;
         [
-          nautikus
+          nautilus
           dunst
           foot
           pamixer
