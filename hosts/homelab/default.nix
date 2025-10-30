@@ -73,7 +73,15 @@
   };
 
   services.gvfs.enable = true;
-  services.caddy.enable = true;
+  services.caddy = {
+		enable = true;
+		environmentFile = "/etc/nixos/secrets/caddy.env";
+		extraConfig = ''
+    {$URL} {
+        reverse_proxy {$IP}:{$PORT}
+    }
+  '';
+	};
   services.tailscale.enable = true;
   networking.nftables.enable = true;
   networking.firewall = {
