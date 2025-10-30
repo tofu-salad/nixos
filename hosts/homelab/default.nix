@@ -123,6 +123,23 @@
       LC_TIME = "es_AR.UTF-8";
     };
   };
+  systemd.services.duckdns-update = {
+    description = "duckdns ip updater";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "/etc/nixos/secrets/duckdns.sh";
+    };
+  };
+
+  systemd.timers.duckdns-update = {
+    description = "run duckdns update every 5 minutes";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "5min";
+      OnUnitActiveSec = "5min";
+      Persistent = true;
+    };
+  };
 
   zramSwap.enable = true;
   boot.loader = {
