@@ -124,6 +124,10 @@
     };
   };
   systemd.services.duckdns-update = {
+    path = [
+      pkgs.bash
+      pkgs.curl
+    ];
     description = "duckdns ip updater";
     serviceConfig = {
       Type = "oneshot";
