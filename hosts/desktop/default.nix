@@ -38,10 +38,6 @@
   fhs.enable = true;
   screenCastOBS.enable = true;
   desktopEnvironment = {
-    loginManager = {
-      enable = true;
-      manager = "greetd";
-    };
     sway.enable = true;
   };
 
