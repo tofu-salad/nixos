@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1756077204,
-        "narHash": "sha256-HPq6oCTriMhgtujE19/79lVG+ruddao4UjB9UgsEQP0=",
+        "lastModified": 1761803255,
+        "narHash": "sha256-JOkl7jXJMyV52fG+XRcJMUsPM3AHgdNn6TMMYRFij5M=",
         "owner": "tofu-salad",
         "repo": "emby-server-flake",
-        "rev": "94da69b906d6a28a8142ad43f7775f75a4bb25d6",
+        "rev": "a8c30e4160ee9c06ff1e875cd08dfd952868a5fb",
         "type": "github"
       },
       "original": {
