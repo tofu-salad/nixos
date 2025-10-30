@@ -69,10 +69,7 @@
       port = 13378;
       host = "0.0.0.0";
     };
-    emby = {
-      enable = true;
-      package = inputs.emby-flake.packages.x86_64-linux.default;
-    };
+    emby.enable = true;
   };
 
   services.gvfs.enable = true;
