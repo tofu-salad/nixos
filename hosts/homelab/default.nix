@@ -78,7 +78,15 @@
     environmentFile = "/etc/nixos/secrets/caddy.env";
     extraConfig = ''
       {$URL} {
-          reverse_proxy {$IP}:{$PORT}
+        reverse_proxy {$IP}:{$PORT}
+        log {
+          output file /var/log/caddy/access.log {
+            roll_size 10MB
+            roll_keep 10
+            roll_keep_for 30d
+          }
+          format json
+        }
       }
     '';
   };
