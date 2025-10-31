@@ -14,6 +14,7 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty.url = "github:ghostty-org/ghostty";
     emby-flake.url = "github:tofu-salad/emby-server-flake";
   };
 
@@ -22,8 +23,9 @@
       self,
       nixpkgs,
       nixpkgs-unstable,
-      home-manager,
       emby-flake,
+      ghostty,
+      home-manager,
       ...
     }@inputs:
     let

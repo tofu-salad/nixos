@@ -277,7 +277,6 @@ in
       environment.systemPackages =
         with pkgs;
         [
-          alacritty
           dunst
           foot
           nautilus
