@@ -57,8 +57,8 @@
   };
 
   home.packages = with pkgs; [
-    adw-gtk3
     alacritty
+    adw-gtk3
     libreoffice
     qbittorrent
     stremio
