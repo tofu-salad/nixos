@@ -42,8 +42,8 @@
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        name = "alacritty terminal";
-        command = "alacritty";
+        name = "ghostty terminal";
+        command = "ghostty";
         binding = "<Super>Return";
       };
     };
@@ -57,7 +57,7 @@
   };
 
   home.packages = with pkgs; [
-    alacritty
+    ghostty
     adw-gtk3
     libreoffice
     qbittorrent
