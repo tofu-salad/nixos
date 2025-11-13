@@ -81,16 +81,7 @@
   gaming.enable = true;
   fhs.enable = true;
 
-  desktopEnvironment = {
-    gnome = {
-      enable = true;
-    };
-    loginManager = {
-      enable = true;
-      manager = "gdm";
-    };
-  };
-
+  desktopEnvironment.gnome.enable = true;
   zramSwap.enable = true;
   hardware.graphics = {
     enable = true;

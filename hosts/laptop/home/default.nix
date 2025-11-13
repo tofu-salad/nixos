@@ -56,6 +56,9 @@
     };
   };
 
+  home.sessionVariables = {
+    GSK_RENDERER = "ngl";
+  };
   home.packages = with pkgs; [
     ghostty
     adw-gtk3
