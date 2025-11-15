@@ -162,23 +162,10 @@
   };
 
   services.dbus.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
-  services.gnome.gnome-keyring.enable = true;
-
   environment.systemPackages = with pkgs; [
     gh
     git
-    google-chrome
-    mako
-    neovim
-    pwvucontrol
-    tmux
-    typer
-    waybar
-    wl-clipboard
+    vim
   ];
 
   system.stateVersion = "25.05";
