@@ -73,23 +73,6 @@
   };
 
   services.gvfs.enable = true;
-  services.caddy = {
-    enable = true;
-    environmentFile = "/etc/nixos/secrets/caddy.env";
-    extraConfig = ''
-      {$URL} {
-        reverse_proxy {$IP}:{$PORT}
-        log {
-          output file /var/log/caddy/access.log {
-            roll_size 10MB
-            roll_keep 10
-            roll_keep_for 30d
-          }
-          format json
-        }
-      }
-    '';
-  };
   services.tailscale.enable = true;
   networking.nftables.enable = true;
   networking.firewall = {
@@ -137,27 +120,6 @@
       LC_PAPER = "es_AR.UTF-8";
       LC_TELEPHONE = "es_AR.UTF-8";
       LC_TIME = "es_AR.UTF-8";
-    };
-  };
-  systemd.services.duckdns-update = {
-    path = [
-      pkgs.bash
-      pkgs.curl
-    ];
-    description = "duckdns ip updater";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "/etc/nixos/secrets/duckdns.sh";
-    };
-  };
-
-  systemd.timers.duckdns-update = {
-    description = "run duckdns update every 5 minutes";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnBootSec = "5min";
-      OnUnitActiveSec = "5min";
-      Persistent = true;
     };
   };
 
