@@ -14,7 +14,6 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty.url = "github:ghostty-org/ghostty";
     emby-flake.url = "github:tofu-salad/emby-server-flake";
   };
 
@@ -24,7 +23,6 @@
       nixpkgs,
       nixpkgs-unstable,
       emby-flake,
-      ghostty,
       home-manager,
       ...
     }@inputs:
@@ -96,20 +94,5 @@
           default = outputs.devShells.${system}.tools;
         }
       );
-
-      # homeConfigurations = {
-      #   ${hosts.home-manager.name} = home-manager.lib.homeManagerConfiguration {
-      #     inherit pkgs;
-      #
-      #     extraSpecialArgs = {
-      #       inherit inputs;
-      #     };
-      #
-      #     modules = [
-      #       ./hosts/home-manager
-      #       commonSettings
-      #     ];
-      #   };
-      # };
     };
 }

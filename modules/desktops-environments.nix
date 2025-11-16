@@ -19,12 +19,12 @@ let
     slurp
     swappy
   ];
-  # add specific file explorer on desktop environemnt (nautilus, dolphin, nemo-with-extensions)
   gnomeApps = with pkgs; [
+    nautilus # file explorer
     baobab # gnome disk usage analyzer
-    papers # gnome document viewer
-    loupe # gnome image viewer
     file-roller
+    loupe # gnome image viewer
+    papers # gnome document viewer
 
     gnome-calculator
     gnome-characters
@@ -80,6 +80,13 @@ in
           default = false;
           type = types.bool;
           description = "sway desktop environment";
+        };
+      };
+      niri = {
+        enable = mkOption {
+          default = false;
+          type = types.bool;
+          description = "niri desktop environment";
         };
       };
 
@@ -227,6 +234,27 @@ in
         ++ gnomeApps
         ++ screenshotApps;
     })
+    (mkIf cfg.niri.enable {
+      security.polkit.enable = true;
+      services.gnome.gnome-keyring.enable = true;
+      programs.waybar.enable = true;
+      services.gnome.localsearch.enable = true;
+
+      programs.niri.enable = true;
+      environment.systemPackages =
+        with pkgs;
+        [
+          alacritty
+          fuzzel
+          mako
+          pwvucontrol
+          swaybg
+          swayimg
+          wl-clipboard
+        ]
+        ++ gnomeApps
+        ++ screenshotApps;
+    })
     (mkIf cfg.sway.enable {
       programs.uwsm.enable = true;
       programs.uwsm.waylandCompositors = {
@@ -236,6 +264,7 @@ in
           binPath = "/run/current-system/sw/bin/sway";
         };
       };
+      programs.waybar.enable = true;
       programs.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
@@ -277,15 +306,12 @@ in
       environment.systemPackages =
         with pkgs;
         [
-          dunst
-          foot
-          nautilus
-          pamixer
+          alacritty
+          fuzzel
+          mako
           pwvucontrol
-          rofi-wayland
           swaybg
           swayimg
-          waybar
           wl-clipboard
         ]
         ++ gnomeApps

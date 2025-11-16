@@ -113,7 +113,6 @@
     vim
     wget
     cifs-utils
-    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   fileSystems."/mnt/share" = {
