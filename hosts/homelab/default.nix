@@ -165,7 +165,7 @@
   environment.systemPackages = with pkgs; [
     gh
     git
-    vim
+    neovim
   ];
 
   system.stateVersion = "25.05";
