@@ -267,6 +267,7 @@ in
       programs.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
+        extraPackages = [ ];
       };
 
       systemd.user.services.mate-policykit-agent-1 = {
@@ -292,11 +293,13 @@ in
             settings = {
               screencast = {
                 chooser_type = "dmenu";
-                chooser_cmd = "${pkgs.rofi-wayland}/bin/rofi -dmenu";
+                chooser_cmd = "${pkgs.uwsm}/bin/uwsm app -- ${pkgs.fuzzel}/bin/fuzzel --dmenu --no-exit-on-keyboard-focus-loss";
               };
             };
           };
-          extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+          extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
+          ];
         };
       };
       services.gnome.gnome-keyring.enable = true;

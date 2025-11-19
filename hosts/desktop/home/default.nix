@@ -1,10 +1,74 @@
 { pkgs, ... }:
 {
   imports = [
-    ./programs
     ./languages
   ];
 
+  programs.git = {
+    enable = true;
+    userName = "tofu-salad";
+    userEmail = "67925799+tofu-salad@users.noreply.github.com";
+    extraConfig = {
+      color = {
+        ui = "auto";
+      };
+      init = {
+        defaultBranch = "main";
+      };
+    };
+  };
+
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+      uosc
+    ];
+  };
+
+  home.packages = with pkgs; [
+    btop-rocm
+    discord
+    fd
+    ffmpeg
+    fzf
+    gh
+    jq
+    openssl
+    qbittorrent
+    ripgrep
+    stremio
+    tidal-hifi
+    tmux
+    tree
+    unstable.gimp3
+
+    # nvim+dependencies
+    lua51Packages.lua
+    luajitPackages.luarocks
+    tree-sitter
+    unstable.neovim
+  ];
+
+  programs = {
+    firefox = {
+      enable = true;
+    };
+    chromium = {
+      enable = true;
+      package = pkgs.google-chrome;
+      extensions = [
+        { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
+        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+        { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # tampermonkey
+        { id = "kbmfpngjjgdllneeigpgjifpgocmfgmb"; } # reddit enhancement suite
+        { id = "ajopnjidmegmdimjlfnijceegpefgped"; } # betterttv
+      ];
+      commandLineArgs = [
+        "--enable-features=MiddleClickAutoscroll"
+        "--password-store=gnome-libsecret"
+      ];
+    };
+  };
   home = {
     username = "tofu";
     pointerCursor = {
@@ -15,25 +79,18 @@
     };
   };
 
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct";
-    style.name = "adwaita-dark";
-  };
   gtk = {
     enable = true;
     font = {
       name = "Adwaita Sans";
       size = 12;
     };
-    theme = {
-      name = "adw-gtk3-dark";
-    };
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
   };
+
   dconf = {
     enable = true;
     settings = {
@@ -45,9 +102,6 @@
       };
     };
   };
-  home.packages = with pkgs; [
-    adw-gtk3
-  ];
 
   fonts.fontconfig.enable = true;
   programs = {
