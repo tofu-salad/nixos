@@ -264,7 +264,6 @@ in
           binPath = "/run/current-system/sw/bin/sway";
         };
       };
-      programs.waybar.enable = true;
       programs.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
@@ -306,6 +305,7 @@ in
       environment.systemPackages =
         with pkgs;
         [
+          waybar
           alacritty
           fuzzel
           mako
