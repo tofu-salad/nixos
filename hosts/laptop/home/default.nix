@@ -1,30 +1,8 @@
 { pkgs, ... }:
-{
-  imports = [
-    ./git.nix
-    ./browsers.nix
-  ];
-  home = {
-    username = "tofu";
-    pointerCursor = {
-      gtk.enable = true;
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-      size = 24;
-    };
-  };
 
+{
+  home.username = "tofu";
   fonts.fontconfig.enable = true;
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
-    theme = {
-      name = "adw-gtk3";
-    };
-  };
 
   dconf = {
     enable = true;
@@ -42,8 +20,8 @@
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        name = "ghostty terminal";
-        command = "ghostty";
+        name = "alacritty terminal";
+        command = "alacritty";
         binding = "<Super>Return";
       };
     };
@@ -59,16 +37,27 @@
   home.sessionVariables = {
     GSK_RENDERER = "ngl";
   };
+
   home.packages = with pkgs; [
-    ghostty
-    adw-gtk3
+    firefox
+    alacritty
+    google-chrome
     libreoffice
     qbittorrent
     stremio
     vlc
   ];
 
-  home.stateVersion = "24.11";
+  programs.git = {
+    enable = true;
+    userName = "tofu-salad";
+    userEmail = "67925799+tofu-salad@users.noreply.github.com";
+    extraConfig = {
+      color.ui = "auto";
+      init.defaultBranch = "main";
+    };
+  };
 
+  home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 }

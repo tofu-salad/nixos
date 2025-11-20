@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
   security.rtkit.enable = true;
 
@@ -11,8 +9,8 @@
       enable = true;
     };
     pipewire = {
-      alsa.enable = true;
       enable = true;
+      alsa.enable = true;
       jack.enable = false;
       pulse.enable = true;
     };

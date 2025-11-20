@@ -31,9 +31,7 @@
 
   networking = {
     hostName = "laptop";
-    networkmanager = {
-      enable = true;
-    };
+    networkmanager.enable = true;
   };
 
   time = {
@@ -79,8 +77,6 @@
   };
 
   gaming.enable = true;
-  fhs.enable = true;
-
   desktopEnvironment.gnome.enable = true;
   zramSwap.enable = true;
   hardware.graphics = {
@@ -90,7 +86,6 @@
 
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.iosevka-term
       adwaita-fonts
       # windows fonts
       corefonts
@@ -106,8 +101,6 @@
   environment.systemPackages = with pkgs; [
     btop
     curl
-    dbus
-    eza
     fd
     fzf
     gcc
@@ -123,7 +116,6 @@
     unrar
     unstable.neovim
     unzip
-    vim
     wget
   ];
 
