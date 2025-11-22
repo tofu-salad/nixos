@@ -75,16 +75,12 @@
       gtk.enable = true;
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
-      size = 24;
     };
   };
 
   gtk = {
     enable = true;
-    font = {
-      name = "Adwaita Sans";
-      size = 12;
-    };
+    font.name = "Adwaita Sans";
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -95,7 +91,7 @@
     enable = true;
     settings = {
       "org/cinnamon/desktop/applications/terminal" = {
-        exec = "foot";
+        exec = "alacritty";
       };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
