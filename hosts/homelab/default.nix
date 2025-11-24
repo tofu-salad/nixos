@@ -72,7 +72,6 @@
     emby.enable = true;
   };
 
-  services.gvfs.enable = true;
   services.tailscale.enable = true;
   networking.nftables.enable = true;
   networking.firewall = {
@@ -161,7 +160,6 @@
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 
-  services.dbus.enable = true;
   environment.systemPackages = with pkgs; [
     gh
     git
