@@ -7,12 +7,6 @@
 with lib;
 let
   cfg = config.desktopEnvironment;
-  loginManagerType = types.enum [
-    "lightdm"
-    "gdm"
-    "sddm"
-    "greetd"
-  ];
   screenshotApps = with pkgs; [
     grim
     hyprpicker
@@ -42,13 +36,6 @@ in
 {
   options = {
     desktopEnvironment = {
-      cinnamon = {
-        enable = mkOption {
-          default = false;
-          type = types.bool;
-          description = "cinnamon desktop environment";
-        };
-      };
       gnome = {
         enable = mkOption {
           default = false;
@@ -89,42 +76,9 @@ in
           description = "niri desktop environment";
         };
       };
-
-      loginManager = {
-        enable = mkOption {
-          default = false;
-          type = types.bool;
-          description = "enable login manager";
-        };
-        manager = mkOption {
-          type = loginManagerType;
-          description = "login manager to use (greetd, sddm, gdm)";
-        };
-        greetd = {
-          enable = mkEnableOption "greetd login manager with tuigreet";
-          vt = mkOption {
-            type = types.int;
-            default = 7;
-            description = "virtual terminal for greetd";
-          };
-          defaultSession = mkOption {
-            type = types.str;
-            description = "default session for greetd to launch";
-          };
-          user = mkOption {
-            type = types.str;
-            default = "tofu";
-            description = "greeter user";
-          };
-          extraSettings = mkOption {
-            type = types.attrs;
-            default = { };
-            description = "additional greetd settings";
-          };
-        };
-      };
     };
   };
+
   config = mkMerge [
     (mkIf cfg.gnome.enable {
       services.xserver.enable = true;
@@ -182,13 +136,7 @@ in
         wl-clipboard
       ];
     })
-    (mkIf cfg.cinnamon.enable {
-      services.xserver.desktopManager.cinnamon.enable = true;
-      environment.systemPackages = with pkgs; [
-        papirus-icon-theme
-        adwaita-icon-theme-legacy
-      ];
-    })
+
     (mkIf cfg.hyprland.enable {
       programs.hyprland = {
         withUWSM = true;
@@ -258,6 +206,18 @@ in
         ++ screenshotApps;
     })
     (mkIf cfg.sway.enable {
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
+            user = "greeter";
+          };
+        };
+      };
+      services.gnome.gnome-keyring.enable = true;
+      security.pam.services.greetd.enableGnomeKeyring = true;
+
       programs.uwsm.enable = true;
       programs.uwsm.waylandCompositors = {
         sway = {
@@ -304,7 +264,6 @@ in
           ];
         };
       };
-      services.gnome.gnome-keyring.enable = true;
       services.gnome.localsearch.enable = true;
 
       environment.systemPackages =
@@ -322,36 +281,5 @@ in
         ++ gnomeApps
         ++ screenshotApps;
     })
-
-    # login managers configurations
-    (mkIf cfg.loginManager.enable (mkMerge [
-      (mkIf (cfg.loginManager.manager == "lightdm") {
-        services.xserver.enable = true;
-        services.xserver.displayManager.lightdm.enable = true;
-      })
-      (mkIf (cfg.loginManager.manager == "gdm") {
-        services.xserver.displayManager.gdm.enable = true;
-      })
-      (mkIf (cfg.loginManager.manager == "sddm") {
-        services.xserver.enable = true;
-        services.displayManager.sddm.enable = true;
-        services.displayManager.sddm.wayland.enable = true;
-      })
-      (mkIf (cfg.loginManager.manager == "greetd") {
-        services.greetd = {
-          enable = true;
-          vt = cfg.loginManager.greetd.vt;
-          settings = mkMerge [
-            {
-              default_session = {
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd 'uwsm start sway-uwsm.desktop'";
-                user = cfg.loginManager.greetd.user;
-              };
-            }
-            cfg.loginManager.greetd.extraSettings
-          ];
-        };
-      })
-    ]))
   ];
 }

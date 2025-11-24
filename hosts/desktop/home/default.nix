@@ -26,12 +26,14 @@
   };
 
   home.packages = with pkgs; [
+    firefox
     btop-rocm
     discord
     fd
     ffmpeg
     fzf
     gh
+    google-chrome
     jq
     openssl
     qbittorrent
@@ -49,26 +51,6 @@
     unstable.neovim
   ];
 
-  programs = {
-    firefox = {
-      enable = true;
-    };
-    chromium = {
-      enable = true;
-      package = pkgs.google-chrome;
-      extensions = [
-        { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
-        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
-        { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # tampermonkey
-        { id = "kbmfpngjjgdllneeigpgjifpgocmfgmb"; } # reddit enhancement suite
-        { id = "ajopnjidmegmdimjlfnijceegpefgped"; } # betterttv
-      ];
-      commandLineArgs = [
-        "--enable-features=MiddleClickAutoscroll"
-        "--password-store=gnome-libsecret"
-      ];
-    };
-  };
   home = {
     username = "tofu";
     pointerCursor = {
