@@ -1,33 +1,37 @@
 {
   inputs,
   outputs,
-  config,
   ...
 }:
 
 {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
-  fonts = {
-    fontDir.enable = true;
+  time = {
+    hardwareClockInLocalTime = false;
+    timeZone = "America/Argentina/Cordoba";
   };
 
-  home-manager = {
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs outputs;
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "es_AR.UTF-8";
+      LC_IDENTIFICATION = "es_AR.UTF-8";
+      LC_MEASUREMENT = "es_AR.UTF-8";
+      LC_MONETARY = "es_AR.UTF-8";
+      LC_NAME = "es_AR.UTF-8";
+      LC_NUMERIC = "es_AR.UTF-8";
+      LC_PAPER = "es_AR.UTF-8";
+      LC_TELEPHONE = "es_AR.UTF-8";
+      LC_TIME = "es_AR.UTF-8";
     };
-    useGlobalPkgs = true;
-    users.tofu = import ../${config.networking.hostName}/home;
+  };
+  fonts = {
+    fontDir.enable = true;
   };
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages
     ];
-    config = {
-      allowUnfree = true;
-    };
+    config.allowUnfree = true;
   };
   nix = {
     settings = {

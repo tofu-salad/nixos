@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   services.flatpak.enable = false;
   services = {
@@ -12,21 +11,16 @@
       };
     };
 
-    dbus = {
-      enable = true;
-    };
-
     # automount/unmount drives
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
 
-    avahi = {
-      enable = true;
-    };
+    avahi.enable = true;
+    dbus.enable = true;
   };
 
-  # audio {{{
+  # audio
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -34,9 +28,7 @@
     pulse.enable = true;
     jack.enable = false;
   };
-  #}}}
 
-  # firewall {{{
   networking.firewall = {
     enable = false;
     allowedTCPPorts = [
@@ -57,7 +49,4 @@
       }
     ];
   };
-  #}}}
 }
-
-# vim:fileencoding=utf-8:foldmethod=marker

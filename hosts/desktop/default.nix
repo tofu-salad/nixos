@@ -25,16 +25,6 @@
     };
   };
 
-  # bootloeader
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 3;
-      timeout = 0;
-      efi.canTouchEfiVariables = true;
-    };
-  };
-
   fhs.enable = true;
   screenCastOBS.enable = true;
   desktopEnvironment = {
@@ -69,26 +59,6 @@
     enable32Bit = true;
   };
 
-  time = {
-    hardwareClockInLocalTime = false;
-    timeZone = "America/Argentina/Cordoba";
-  };
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "es_AR.UTF-8";
-      LC_IDENTIFICATION = "es_AR.UTF-8";
-      LC_MEASUREMENT = "es_AR.UTF-8";
-      LC_MONETARY = "es_AR.UTF-8";
-      LC_NAME = "es_AR.UTF-8";
-      LC_NUMERIC = "es_AR.UTF-8";
-      LC_PAPER = "es_AR.UTF-8";
-      LC_TELEPHONE = "es_AR.UTF-8";
-      LC_TIME = "es_AR.UTF-8";
-    };
-  };
-
   fonts = {
     fontconfig.subpixel.lcdfilter = "light";
     packages = with pkgs; [
@@ -101,16 +71,47 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  programs.direnv.enable = true;
   environment.systemPackages = with pkgs; [
+    discord
+    qbittorrent
+    unstable.gimp3
+
+    # browsers
+    firefox
+    google-chrome
+
+    # cli
+    btop-rocm
     curl
-    gcc
+    fd
+    fzf
+    gh
     git
-    p7zip
+    jq
+    ripgrep
     stow
+    tmux
+    tree
     unzip
-    vim
     wget
+    # libs
     cifs-utils
+    openssl
+    p7zip
+
+    # media
+    ffmpeg
+    mpv
+    stremio
+    tidal-hifi
+
+    # nvim+dependencies
+    gcc
+    lua51Packages.lua
+    luajitPackages.luarocks
+    tree-sitter
+    unstable.neovim
   ];
 
   fileSystems."/mnt/share" = {
@@ -121,6 +122,15 @@
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
       in
       [ "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100" ];
+  };
+
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 3;
+      timeout = 0;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   system.stateVersion = "24.11";
