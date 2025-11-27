@@ -8,34 +8,13 @@
     ./hardware-configuration.nix
   ];
 
+  services.xserver.enable = true;
+  services.xserver.windowManager.i3.enable = true;
+  services.xserver.windowManager.i3.extraPackages = [ ];
+  services.xserver.displayManager.lightdm.extraSeatDefaults = ''autologin-user=tofu'';
+
   environment.pathsToLink = [ "/libexec" ];
   fhs.enable = true;
-
-  services.greetd = {
-    enable = true;
-    restart = false;
-    settings = {
-      initial_session = {
-        command = "startx";
-        user = "tofu";
-      };
-      default_session = {
-        command = "${pkgs.greetd.greetd}/bin/greetd --cmd startx";
-      };
-    };
-  };
-  services.xserver = {
-    enable = true;
-    displayManager.startx.enable = true;
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = [ ];
-    };
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-  };
   fonts = {
     packages = with pkgs; [
       adwaita-fonts
@@ -55,6 +34,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "autologin"
     ];
   };
   hardware.graphics.enable = true;
@@ -82,6 +62,5 @@
   ];
 
   virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.clipboard = true;
   system.stateVersion = "24.11";
 }
