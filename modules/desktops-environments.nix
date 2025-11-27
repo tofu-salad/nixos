@@ -112,11 +112,37 @@ in
           appindicator
         ])
         ++ [
+          pkgs.alacritty
           pkgs.gnome-tweaks
           pkgs.papers
           pkgs.wl-clipboard
         ];
       services.udev.packages = [ pkgs.gnome-settings-daemon ];
+
+      programs.dconf.profiles.user.databases = [
+        {
+          lockAll = true; # prevents overriding
+          settings = {
+            "org/gnome/shell" = {
+              enabled-extensions = [
+                pkgs.gnomeExtensions.appindicator.extensionUuid
+                pkgs.gnomeExtensions.dash-to-dock.extensionUuid
+              ];
+            };
+            "org/gnome/settings-daemon/plugins/media-keys" = {
+              custom-keybindings = [
+                "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+              ];
+            };
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+              name = "alacritty terminal";
+              command = "alacritty";
+              binding = "<Super>Return";
+            };
+          };
+        }
+      ];
+
     })
     (mkIf (cfg.gnome.enable && cfg.gnome.online-accounts) {
       services.gnome.gnome-online-accounts.enable = true;

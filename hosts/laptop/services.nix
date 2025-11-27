@@ -1,13 +1,10 @@
 {
   security.rtkit.enable = true;
-
   services = {
     logind.lidSwitch = "ignore";
     logind.lidSwitchExternalPower = "ignore";
     logind.lidSwitchDocked = "ignore";
-    avahi = {
-      enable = true;
-    };
+    avahi.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
