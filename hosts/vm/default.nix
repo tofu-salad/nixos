@@ -1,43 +1,35 @@
 {
-  outputs,
   pkgs,
   ...
 }:
 {
   imports = [
+    ../common
     ./hardware-configuration.nix
   ];
 
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.unstable-packages
-    ];
-  };
-  nix = {
-    settings = {
-      experimental-features = "nix-command flakes";
-      trusted-users = [
-        "root"
-        "tofu"
-      ];
-    };
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 30d";
-    };
-    optimise.automatic = true;
-  };
-
   environment.pathsToLink = [ "/libexec" ];
   fhs.enable = true;
-  services.displayManager.ly.enable = true;
+
+  services.greetd = {
+    enable = true;
+    restart = false;
+    settings = {
+      initial_session = {
+        command = "startx";
+        user = "tofu";
+      };
+      default_session = {
+        command = "${pkgs.greetd.greetd}/bin/greetd --cmd startx";
+      };
+    };
+  };
   services.xserver = {
     enable = true;
+    displayManager.startx.enable = true;
     windowManager.i3 = {
       enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-      ];
+      extraPackages = [ ];
     };
     xkb = {
       layout = "us";
@@ -46,7 +38,7 @@
   };
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.iosevka-term
+      adwaita-fonts
     ];
   };
 
@@ -57,23 +49,6 @@
 
   networking.hostName = "vm";
   networking.networkmanager.enable = true;
-
-  time.timeZone = "America/Argentina/Cordoba";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "es_AR.UTF-8";
-    LC_IDENTIFICATION = "es_AR.UTF-8";
-    LC_MEASUREMENT = "es_AR.UTF-8";
-    LC_MONETARY = "es_AR.UTF-8";
-    LC_NAME = "es_AR.UTF-8";
-    LC_NUMERIC = "es_AR.UTF-8";
-    LC_PAPER = "es_AR.UTF-8";
-    LC_TELEPHONE = "es_AR.UTF-8";
-    LC_TIME = "es_AR.UTF-8";
-  };
-
   users.users.tofu = {
     isNormalUser = true;
     description = "tofu";
