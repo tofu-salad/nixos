@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 {
@@ -14,11 +15,6 @@
     networkmanager.enable = true;
   };
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   users.users.tofu = {
     isNormalUser = true;
     description = "laptop config";
@@ -29,6 +25,7 @@
       "input"
     ];
   };
+  i18n.defaultLocale = lib.mkForce "es_ES.UTF-8";
 
   gaming.enable = true;
   desktopEnvironment.gnome.enable = true;
