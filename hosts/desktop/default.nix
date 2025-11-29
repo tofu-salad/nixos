@@ -28,7 +28,7 @@
   fhs.enable = true;
   screenCastOBS.enable = true;
   desktopEnvironment = {
-    sway.enable = true;
+    niri.enable = true;
   };
 
   users = {

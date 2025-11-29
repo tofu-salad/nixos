@@ -211,22 +211,33 @@ in
         ++ screenshotApps;
     })
     (mkIf cfg.niri.enable {
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
+            user = "greeter";
+          };
+        };
+      };
+      security.pam.services.greetd.enableGnomeKeyring = true;
       security.polkit.enable = true;
       services.gnome.gnome-keyring.enable = true;
-      programs.waybar.enable = true;
       services.gnome.localsearch.enable = true;
-
       programs.niri.enable = true;
+
       environment.systemPackages =
         with pkgs;
         [
           alacritty
           fuzzel
-          mako
           pwvucontrol
           swaybg
           swayimg
           wl-clipboard
+
+          waybar
+          mako
         ]
         ++ gnomeApps
         ++ screenshotApps;
