@@ -42,6 +42,21 @@ in
           type = types.bool;
           description = "gnome desktop environment";
         };
+        extensions = {
+          enable = mkOption {
+            default = false;
+            type = types.bool;
+            description = "enable gnome shell extensions";
+          };
+          packages = mkOption {
+            default = with pkgs.gnomeExtensions; [
+              dash-to-dock
+              appindicator
+            ];
+            type = with types; listOf package;
+            description = "list of gnome shell extension packages to install. (dash-to-dock and appindicator as default)";
+          };
+        };
         online-accounts = mkOption {
           default = false;
           type = types.bool;
@@ -81,15 +96,16 @@ in
 
   config = mkMerge [
     (mkIf cfg.gnome.enable {
-      services.xserver.enable = true;
-      services.xserver.displayManager.gdm.enable = true;
-      services.xserver.desktopManager.gnome.enable = true;
+      services.displayManager.gdm.enable = true;
+      services.desktopManager.gnome.enable = true;
 
       services.gnome.core-apps.enable = true;
       services.gnome.core-developer-tools.enable = false;
       services.gnome.games.enable = false;
+      services.gnome.gnome-online-accounts.enable = cfg.gnome.online-accounts;
 
       environment.gnome.excludePackages = with pkgs; [
+        showtime
         decibels
         epiphany
         evince
@@ -107,45 +123,83 @@ in
       ];
 
       environment.systemPackages =
-        (with pkgs.gnomeExtensions; [
-          dash-to-dock
-          appindicator
-        ])
+        (if cfg.gnome.extensions.enable then cfg.gnome.extensions.packages else [ ])
         ++ [
           pkgs.alacritty
-          pkgs.gnome-tweaks
-          pkgs.papers
           pkgs.wl-clipboard
         ];
       services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
       programs.dconf.profiles.user.databases = [
         {
-          lockAll = true; # prevents overriding
-          settings = {
-            "org/gnome/shell" = {
-              enabled-extensions = [
-                pkgs.gnomeExtensions.appindicator.extensionUuid
-                pkgs.gnomeExtensions.dash-to-dock.extensionUuid
+          lockAll = true;
+          settings = mkMerge [
+            {
+              "org/gnome/desktop/wm/keybindings" = {
+                close = lib.gvariant.mkArray [ "<Super>q" ];
+
+                switch-to-workspace-1 = lib.gvariant.mkArray [ "<Super>1" ];
+                switch-to-workspace-2 = lib.gvariant.mkArray [ "<Super>2" ];
+                switch-to-workspace-3 = lib.gvariant.mkArray [ "<Super>3" ];
+                switch-to-workspace-4 = lib.gvariant.mkArray [ "<Super>4" ];
+                switch-to-workspace-5 = lib.gvariant.mkArray [ "<Super>5" ];
+                switch-to-workspace-6 = lib.gvariant.mkArray [ "<Super>6" ];
+                switch-to-workspace-7 = lib.gvariant.mkArray [ "<Super>7" ];
+                switch-to-workspace-8 = lib.gvariant.mkArray [ "<Super>8" ];
+                switch-to-workspace-9 = lib.gvariant.mkArray [ "<Super>9" ];
+
+                move-to-workspace-1 = lib.gvariant.mkArray [ "<Super><Shift>1" ];
+                move-to-workspace-2 = lib.gvariant.mkArray [ "<Super><Shift>2" ];
+                move-to-workspace-3 = lib.gvariant.mkArray [ "<Super><Shift>3" ];
+                move-to-workspace-4 = lib.gvariant.mkArray [ "<Super><Shift>4" ];
+                move-to-workspace-5 = lib.gvariant.mkArray [ "<Super><Shift>5" ];
+                move-to-workspace-6 = lib.gvariant.mkArray [ "<Super><Shift>6" ];
+                move-to-workspace-7 = lib.gvariant.mkArray [ "<Super><Shift>7" ];
+                move-to-workspace-8 = lib.gvariant.mkArray [ "<Super><Shift>8" ];
+                move-to-workspace-9 = lib.gvariant.mkArray [ "<Super><Shift>9" ];
+              };
+
+              # unset pinned applications keybind
+              "org/gnome/shell/keybindings" = {
+                switch-to-application-1 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                switch-to-application-2 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                switch-to-application-3 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                switch-to-application-4 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                switch-to-application-5 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                switch-to-application-6 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                switch-to-application-7 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                switch-to-application-8 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                switch-to-application-9 = lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+              };
+              "org/gnome/desktop/input-sources".xkb-options = lib.gvariant.mkArray [
+                "terminate:ctrl_alt_bksp"
+                "caps:escape"
               ];
-            };
-            "org/gnome/settings-daemon/plugins/media-keys" = {
-              custom-keybindings = [
-                "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-              ];
-            };
-            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-              name = "alacritty terminal";
-              command = "alacritty";
-              binding = "<Super>Return";
-            };
-          };
+
+              "org/gnome/desktop/interface" = {
+                color-scheme = "prefer-dark";
+              };
+
+              "org/gnome/settings-daemon/plugins/media-keys" = {
+                custom-keybindings = [
+                  "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+                ];
+              };
+
+              "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+                binding = "<Super>Return";
+                command = "${pkgs.alacritty}/bin/alacritty";
+                name = "alacritty";
+              };
+            }
+            (mkIf cfg.gnome.extensions.enable {
+              "org/gnome/shell" = {
+                enabled-extensions = map (ext: ext.extensionUuid) cfg.gnome.extensions.packages;
+              };
+            })
+          ];
         }
       ];
-
-    })
-    (mkIf (cfg.gnome.enable && cfg.gnome.online-accounts) {
-      services.gnome.gnome-online-accounts.enable = true;
     })
     (mkIf cfg.kde.enable {
       services.desktopManager.plasma6.enable = true;

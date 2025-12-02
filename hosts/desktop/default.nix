@@ -28,7 +28,8 @@
   fhs.enable = true;
   screenCastOBS.enable = true;
   desktopEnvironment = {
-    niri.enable = true;
+    gnome.enable = true;
+    gnome.extensions.enable = false;
   };
 
   users = {
@@ -103,7 +104,7 @@
     # media
     ffmpeg
     mpv
-    stremio
+    # stremio
     tidal-hifi
 
     # nvim+dependencies
