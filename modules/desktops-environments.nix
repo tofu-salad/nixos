@@ -103,6 +103,8 @@ in
       services.gnome.core-developer-tools.enable = false;
       services.gnome.games.enable = false;
       services.gnome.gnome-online-accounts.enable = cfg.gnome.online-accounts;
+      services.gnome.gcr-ssh-agent.enable = false;
+      programs.ssh.startAgent = true;
 
       environment.gnome.excludePackages = with pkgs; [
         showtime
