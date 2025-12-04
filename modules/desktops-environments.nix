@@ -178,10 +178,6 @@ in
                 "caps:escape"
               ];
 
-              "org/gnome/desktop/interface" = {
-                color-scheme = "prefer-dark";
-              };
-
               "org/gnome/settings-daemon/plugins/media-keys" = {
                 custom-keybindings = [
                   "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"

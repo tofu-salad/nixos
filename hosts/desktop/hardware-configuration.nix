@@ -4,11 +4,15 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }:
+
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -22,13 +26,22 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/936b45bb-8314-4cf8-bc8a-279f01725199";
+    device = "/dev/mapper/luks-114e0f11-ba3f-4cae-a568-66298b3e1d4d";
     fsType = "btrfs";
     options = [ "subvol=@" ];
   };
 
+  boot.initrd.luks.devices."luks-114e0f11-ba3f-4cae-a568-66298b3e1d4d".device =
+    "/dev/disk/by-uuid/114e0f11-ba3f-4cae-a568-66298b3e1d4d";
+
+  fileSystems."/home" = {
+    device = "/dev/mapper/luks-114e0f11-ba3f-4cae-a568-66298b3e1d4d";
+    fsType = "btrfs";
+    options = [ "subvol=@home" ];
+  };
+
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8CD4-9B7B";
+    device = "/dev/disk/by-uuid/A9C0-2ECD";
     fsType = "vfat";
     options = [
       "fmask=0077"
@@ -37,13 +50,6 @@
   };
 
   swapDevices = [ ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

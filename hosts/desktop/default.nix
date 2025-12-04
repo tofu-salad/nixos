@@ -9,24 +9,6 @@
     ./services.nix
   ];
 
-  virt = {
-    enable = false;
-    docker.enable = false;
-    virt-manager = {
-      enable = true;
-      gpuPass = {
-        enable = true;
-        gpu = "1002:67df,1002:aaf0";
-        lookingGlass = {
-          enable = true;
-          user = "tofu";
-        };
-      };
-    };
-  };
-
-  fhs.enable = true;
-  screenCastOBS.enable = true;
   desktopEnvironment = {
     gnome.enable = true;
     gnome.extensions.enable = false;
@@ -79,7 +61,7 @@
     unstable.gimp3
 
     # browsers
-    firefox
+    brave
     google-chrome
 
     # cli
@@ -134,5 +116,5 @@
     };
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.11";
 }
