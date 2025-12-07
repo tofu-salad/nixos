@@ -10,8 +10,7 @@
   ];
 
   desktopEnvironment = {
-    gnome.enable = true;
-    gnome.extensions.enable = false;
+    sway.enable = true;
   };
 
   users = {

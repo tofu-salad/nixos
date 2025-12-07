@@ -24,6 +24,10 @@ let
     gnome-characters
     gnome-font-viewer
     gnome-text-editor
+
+    adwaita-fonts
+    adwaita-icon-theme
+    adwaita-icon-theme-legacy
   ];
   polkitWrapper = pkgs.writeShellScript "polkit-wrapper" ''
     if [ "$XDG_SESSION_DESKTOP" = "sway" ] || [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
@@ -267,7 +271,7 @@ in
         enable = true;
         settings = {
           default_session = {
-            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
             user = "greeter";
           };
         };
@@ -299,7 +303,7 @@ in
         enable = true;
         settings = {
           default_session = {
-            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
             user = "greeter";
           };
         };
