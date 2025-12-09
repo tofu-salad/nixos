@@ -60,7 +60,6 @@
     unstable.gimp3
 
     # browsers
-    brave
     google-chrome
 
     # cli
@@ -86,7 +85,6 @@
     ffmpeg
     mpv
     # stremio
-    tidal-hifi
 
     # nvim+dependencies
     gcc
