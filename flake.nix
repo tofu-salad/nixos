@@ -17,6 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emby-flake.url = "github:tofu-salad/emby-server-flake";
+    nixohess = {
+      url = "gitlab:fazzi/nixohess";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

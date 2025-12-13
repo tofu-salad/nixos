@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   ...
 }:
@@ -76,7 +77,7 @@
     # media
     ffmpeg
     mpv
-    # stremio
+    inputs.nixohess.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell
 
     # nvim+dependencies
     gcc
