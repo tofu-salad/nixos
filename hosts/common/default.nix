@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  pkgs,
   ...
 }:
 
@@ -26,7 +27,15 @@
   };
   fonts = {
     fontDir.enable = true;
+    packages = with pkgs; [
+      adwaita-fonts
+      nerd-fonts.adwaita-mono
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+    ];
   };
+
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages

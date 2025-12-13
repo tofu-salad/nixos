@@ -41,14 +41,6 @@
     enable32Bit = true;
   };
 
-  fonts = {
-    fontconfig.subpixel.lcdfilter = "light";
-    packages = with pkgs; [
-      adwaita-fonts
-      font-awesome
-    ];
-  };
-
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -108,7 +100,7 @@
     loader = {
       systemd-boot.enable = true;
       systemd-boot.configurationLimit = 3;
-      timeout = 0;
+      timeout = 1;
       efi.canTouchEfiVariables = true;
     };
   };

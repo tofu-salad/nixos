@@ -14,12 +14,6 @@
   services.xserver.displayManager.lightdm.extraSeatDefaults = ''autologin-user=tofu'';
 
   environment.pathsToLink = [ "/libexec" ];
-  fhs.enable = true;
-  fonts = {
-    packages = with pkgs; [
-      adwaita-fonts
-    ];
-  };
 
   boot.loader.timeout = 0;
   boot.loader.grub.enable = true;

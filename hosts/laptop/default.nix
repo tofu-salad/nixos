@@ -35,14 +35,11 @@
     enable32Bit = true;
   };
 
-  fonts = {
-    packages = with pkgs; [
-      adwaita-fonts
-      # windows fonts
-      corefonts
-      vistafonts
-    ];
-  };
+  # windows fonts
+  fonts.packages = with pkgs; [
+    corefonts
+    vistafonts
+  ];
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -51,8 +48,8 @@
 
   programs.direnv.enable = true;
   environment.systemPackages = with pkgs; [
-    # browsres
-    firefox
+    # browsers
+    chromium
     google-chrome
 
     # media

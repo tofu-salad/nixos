@@ -299,17 +299,18 @@ in
         ++ screenshotApps;
     })
     (mkIf cfg.sway.enable {
-      services.greetd = {
+      services.displayManager.sddm = {
         enable = true;
-        settings = {
-          default_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
-            user = "greeter";
-          };
-        };
+        wayland.enable = true;
+        theme = "where_is_my_sddm_theme";
+        extraPackages = [
+          pkgs.where-is-my-sddm-theme
+          pkgs.kdePackages.qt5compat
+        ];
       };
-      security.pam.services.greetd.enableGnomeKeyring = true;
+
       services.gnome.gnome-keyring.enable = true;
+      services.gnome.localsearch.enable = true;
 
       programs.uwsm.enable = true;
       programs.uwsm.waylandCompositors = {
@@ -357,18 +358,18 @@ in
           ];
         };
       };
-      services.gnome.localsearch.enable = true;
 
       environment.systemPackages =
         with pkgs;
         [
-          waybar
           alacritty
           fuzzel
           mako
           pwvucontrol
           swaybg
           swayimg
+          waybar
+          where-is-my-sddm-theme
           wl-clipboard
         ]
         ++ gnomeApps
