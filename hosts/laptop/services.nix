@@ -1,5 +1,6 @@
 {
   security.rtkit.enable = true;
+  services.flatpak.enable = true;
   services = {
     logind.lidSwitch = "ignore";
     logind.lidSwitchExternalPower = "ignore";

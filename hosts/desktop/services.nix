@@ -1,15 +1,8 @@
 {
-  services.flatpak.enable = false;
+  services.flatpak.enable = true;
   services = {
     tailscale.enable = true;
     fstrim.enable = true;
-    xserver = {
-      updateDbusEnvironment = true;
-      xkb = {
-        variant = "";
-        layout = "us";
-      };
-    };
 
     # automount/unmount drives
     devmon.enable = true;
@@ -25,8 +18,8 @@
   services.pipewire = {
     enable = true;
     alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = false;
   };
 
   networking.firewall = {

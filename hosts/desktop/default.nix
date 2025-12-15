@@ -54,6 +54,7 @@
 
     # browsers
     google-chrome
+    firefox
 
     # cli
     btop-rocm
