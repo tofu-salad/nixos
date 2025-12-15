@@ -1,6 +1,6 @@
 {
-  security.rtkit.enable = true;
   services.flatpak.enable = true;
+  security.rtkit.enable = true;
   services = {
     logind.lidSwitch = "ignore";
     logind.lidSwitchExternalPower = "ignore";
@@ -13,9 +13,6 @@
       pulse.enable = true;
     };
     resolved.enable = true;
-    # tailscale = {
-    #   enable = true;
-    #   useRoutingFeatures = "client";
-    # };
+    tailscale.enable = true;
   };
 }

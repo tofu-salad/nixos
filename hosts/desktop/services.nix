@@ -2,7 +2,6 @@
   services.flatpak.enable = true;
   services = {
     tailscale.enable = true;
-    fstrim.enable = true;
 
     # automount/unmount drives
     devmon.enable = true;

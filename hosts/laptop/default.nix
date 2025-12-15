@@ -1,6 +1,7 @@
 {
-  pkgs,
   lib,
+  pkgs,
+  inputs,
   ...
 }:
 {
@@ -26,14 +27,7 @@
     ];
   };
   i18n.defaultLocale = lib.mkForce "es_ES.UTF-8";
-
-  gaming.enable = true;
   desktopEnvironment.gnome.enable = true;
-  zramSwap.enable = true;
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
 
   # windows fonts
   fonts.packages = with pkgs; [
@@ -53,7 +47,7 @@
     google-chrome
 
     # media
-    stremio
+    inputs.nixohess.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell
     vlc
 
     # gui
@@ -71,7 +65,7 @@
     ripgrep
     stow
     tmux
-    unstable.neovim
+    neovim
     wget
 
     gcc
@@ -99,6 +93,14 @@
       };
       efi.canTouchEfiVariables = true;
     };
+  };
+
+  fileSystems."/".options = [ "noatime" ];
+  services.fstrim.enable = true;
+  zramSwap.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
   };
 
   boot.kernelModules = [ "uinput" ];
