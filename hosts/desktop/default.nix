@@ -11,7 +11,7 @@
   ];
 
   desktopEnvironment = {
-    sway.enable = true;
+    hyprland.enable = true;
   };
 
   users = {

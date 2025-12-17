@@ -1,7 +1,7 @@
 {
   imports = [
-    ./desktops-environments.nix
-    # ./fhs.nix
+    ./desktop
+    ./display
     ./gaming.nix
     ./screencast-obs.nix
     ./virt.nix
