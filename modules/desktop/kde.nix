@@ -9,17 +9,19 @@ let
   cfg = config.desktopEnvironment.kde;
 in
 mkIf cfg.enable {
-  display.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    konsole
+    discover
     elisa
     khelpcenter
+    konsole
     plasma-browser-integration
   ];
   environment.systemPackages = with pkgs; [
+    alacritty
     wl-clipboard
   ];
 }

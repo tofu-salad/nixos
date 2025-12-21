@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -18,7 +17,7 @@
 
   users.users.tofu = {
     isNormalUser = true;
-    description = "laptop config";
+    description = "laptop";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -27,12 +26,12 @@
     ];
   };
   i18n.defaultLocale = lib.mkForce "es_ES.UTF-8";
-  desktopEnvironment.gnome.enable = true;
+  desktopEnvironment.kde.enable = true;
 
   # windows fonts
   fonts.packages = with pkgs; [
     corefonts
-    vistafonts
+    vista-fonts
   ];
 
   environment.sessionVariables = {
@@ -47,7 +46,7 @@
     google-chrome
 
     # media
-    inputs.nixohess.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell
+    # install stremio as a flatpak for now
     vlc
 
     # gui
@@ -102,6 +101,7 @@
     enable = true;
     enable32Bit = true;
   };
+  hardware.bluetooth.enable = true;
 
   boot.kernelModules = [ "uinput" ];
   system.stateVersion = "24.11";

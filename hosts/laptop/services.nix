@@ -1,10 +1,11 @@
 {
+  services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
+  services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
+
   services.flatpak.enable = true;
   security.rtkit.enable = true;
   services = {
-    logind.lidSwitch = "ignore";
-    logind.lidSwitchExternalPower = "ignore";
-    logind.lidSwitchDocked = "ignore";
     avahi.enable = true;
     pipewire = {
       enable = true;
