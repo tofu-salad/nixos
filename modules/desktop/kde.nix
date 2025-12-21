@@ -22,6 +22,7 @@ mkIf cfg.enable {
   ];
   environment.systemPackages = with pkgs; [
     alacritty
+    baobab
     wl-clipboard
   ];
 }
