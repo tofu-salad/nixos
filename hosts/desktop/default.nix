@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   ...
 }:
@@ -11,7 +10,7 @@
   ];
 
   desktopEnvironment = {
-    hyprland.enable = true;
+    gnome.enable = true;
   };
 
   users = {
@@ -72,7 +71,6 @@
     # media
     ffmpeg
     mpv
-    inputs.nixohess.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell
 
     # nvim+dependencies
     gcc
@@ -100,6 +98,10 @@
     enable32Bit = true;
   };
 
+  programs.steam.enable = true;
+  programs.steam.extraPackages = with pkgs; [
+    adwaita-icon-theme
+  ];
   boot = {
     loader = {
       systemd-boot.enable = true;
