@@ -37,7 +37,6 @@ in
         pwvucontrol
         swaybg
         swayimg
-        wlogout
         wl-clipboard
       ]
       ++ optionals cfg.screenshot.enable [

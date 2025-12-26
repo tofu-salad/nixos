@@ -24,6 +24,10 @@ mkIf cfg.enable {
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+      extraPackages = with pkgs; [
+        brightnessctl
+        swaylock
+      ];
     };
   };
 
