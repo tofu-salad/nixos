@@ -21,11 +21,9 @@
 
   outputs =
     {
-      self,
       emby-flake,
-      home-manager,
       nixpkgs,
-      nixpkgs-unstable,
+      self,
       ...
     }@inputs:
     let

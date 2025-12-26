@@ -9,9 +9,7 @@
     ./services.nix
   ];
 
-  desktopEnvironment = {
-    gnome.enable = true;
-  };
+  desktopEnvironment.sway.enable = true;
 
   users = {
     users = {
@@ -101,6 +99,7 @@
   programs.steam.enable = true;
   programs.steam.extraPackages = with pkgs; [
     adwaita-icon-theme
+    adwaita-icon-theme-legacy
   ];
   boot = {
     loader = {

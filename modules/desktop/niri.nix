@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -13,4 +14,8 @@ mkIf cfg.enable {
   desktop.standaloneGnomeSuite.enable = true;
   security.polkit.enable = true;
   programs.niri.enable = true;
+
+  environment.systemPackages = [
+    pkgs.xwayland-satellite
+  ];
 }

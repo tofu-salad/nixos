@@ -20,7 +20,10 @@ in
 
     extraPackages = mkOption {
       type = with types; listOf package;
-      default = [ ];
+      default = with pkgs; [
+        mako
+        waybar
+      ];
       description = "extra packages to install with the tiling wm base";
     };
   };
@@ -31,11 +34,10 @@ in
       [
         alacritty
         fuzzel
-        mako
         pwvucontrol
         swaybg
         swayimg
-        waybar
+        wlogout
         wl-clipboard
       ]
       ++ optionals cfg.screenshot.enable [
