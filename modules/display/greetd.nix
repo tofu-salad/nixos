@@ -22,6 +22,6 @@ in
         };
       };
     };
-    security.pam.services.greetd.enableGnomeKeyring = config.services.gnome-keyring.enable or false;
+    security.pam.services.greetd.enableGnomeKeyring = true;
   };
 }
