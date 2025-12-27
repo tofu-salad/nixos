@@ -9,7 +9,7 @@ let
   cfg = config.desktopEnvironment.sway;
 in
 mkIf cfg.enable {
-  display.sddm.enable = true;
+  display.greetd.enable = true;
   desktop.tilingWmBase.enable = true;
   desktop.standaloneGnomeSuite.enable = true;
 

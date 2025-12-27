@@ -7,6 +7,10 @@
 with lib;
 let
   cfg = config.desktop.tilingWmBase;
+  adwaita-cursor-default-theme = pkgs.runCommandLocal "adwaita-cursor-default-theme" { } ''
+    mkdir -p $out/share/icons
+    ln -s ${pkgs.adwaita-icon-theme}/share/icons/Adwaita $out/share/icons/default
+  '';
 in
 {
   options.desktop.tilingWmBase = {
@@ -32,6 +36,7 @@ in
     environment.systemPackages =
       with pkgs;
       [
+        adwaita-cursor-default-theme
         alacritty
         fuzzel
         pwvucontrol
