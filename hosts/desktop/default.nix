@@ -97,9 +97,6 @@
   };
 
   programs.steam.enable = true;
-  programs.steam.extraPackages = with pkgs; [
-    adwaita-icon-theme
-  ];
   boot = {
     loader = {
       systemd-boot.enable = true;
