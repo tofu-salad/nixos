@@ -29,7 +29,6 @@
     fontDir.enable = true;
     packages = with pkgs; [
       adwaita-fonts
-      nerd-fonts.adwaita-mono
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
