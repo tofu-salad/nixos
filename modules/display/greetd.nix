@@ -16,13 +16,12 @@ in
   config = mkIf cfg.enable {
     services.greetd = {
       enable = true;
+      useTextGreeter = true;
       settings = {
-        terminal.vt = lib.mkForce 7;
         default_session = {
           command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
         };
       };
     };
-    security.pam.services.greetd.enableGnomeKeyring = true;
   };
 }
