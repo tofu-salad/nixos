@@ -49,6 +49,11 @@ mkIf cfg.enable {
   xdg = {
     portal = {
       enable = true;
+      config = {
+        sway = {
+          default = lib.mkForce [ "gnome" ];
+        };
+      };
       wlr = {
         enable = true;
         settings = {
@@ -59,7 +64,7 @@ mkIf cfg.enable {
         };
       };
       extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gnome
       ];
     };
   };
