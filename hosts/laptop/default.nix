@@ -64,13 +64,18 @@
     ripgrep
     stow
     tmux
-    neovim
     wget
 
-    gcc
     p7zip
     unrar
     unzip
+
+    # neovim
+    gcc
+    lua51Packages.lua
+    luajitPackages.luarocks
+    tree-sitter
+    neovim
   ];
 
   boot = {
