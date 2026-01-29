@@ -10,6 +10,7 @@
   ];
 
   desktopEnvironment.sway.enable = true;
+  gaming.enable = true;
 
   users = {
     users = {
@@ -38,19 +39,6 @@
   };
 
   programs.direnv.enable = true;
-
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      "ddkjiahejlhfcafbddmgiahcphecmpfh;https://clients2.google.com/service/update2/crx" # ublock origin lite
-      "gkeojjjcdcopjkbelgbcpckplegclfeg;https://clients2.google.com/service/update2/crx" # adguard extra
-      "nngceckbapebfimnlniiiahkandclblb;https://clients2.google.com/service/update2/crx" # bitwarden
-    ];
-    extraOpts = {
-      "DnsOverHttpsMode" = "secure";
-      "DnsOverHttpsTemplates" = "https://cloudflare-dns.com/dns-query https://dns.google/dns-query";
-    };
-  };
 
   environment.systemPackages = with pkgs; [
     discord
@@ -84,6 +72,7 @@
     # media
     ffmpeg
     mpv
+    tidal-hifi
 
     # nvim+dependencies
     gcc
@@ -111,7 +100,6 @@
     enable32Bit = true;
   };
 
-  programs.steam.enable = true;
   boot = {
     loader = {
       systemd-boot.enable = true;
