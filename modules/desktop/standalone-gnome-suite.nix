@@ -30,6 +30,7 @@ in
       gnome-characters
       gnome-font-viewer
       gnome-text-editor
+      gnome-disk-utility
 
       adwaita-fonts
       adwaita-icon-theme

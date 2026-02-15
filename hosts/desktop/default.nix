@@ -11,6 +11,7 @@
 
   desktopEnvironment.sway.enable = true;
   gaming.enable = true;
+  services.flatpak.enable = true;
 
   users = {
     users = {
@@ -41,6 +42,7 @@
   programs.direnv.enable = true;
 
   environment.systemPackages = with pkgs; [
+    calibre
     discord
     qbittorrent
     gimp
