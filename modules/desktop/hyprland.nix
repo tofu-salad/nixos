@@ -71,6 +71,5 @@ mkIf cfg.enable {
 
   environment.systemPackages = with pkgs; [
     unstable.noctalia-shell
-    kdePackages.breeze
   ];
 }
