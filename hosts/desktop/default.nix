@@ -9,8 +9,9 @@
     ./services.nix
   ];
 
-  desktopEnvironment.sway.enable = true;
+  desktopEnvironment.hyprland.enable = true;
   gaming.enable = true;
+  screenCastOBS.enable = true;
   services.flatpak.enable = true;
 
   users = {

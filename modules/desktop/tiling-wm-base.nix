@@ -25,8 +25,12 @@ in
     extraPackages = mkOption {
       type = with types; listOf package;
       default = with pkgs; [
-        mako
+        fuzzel
+        pwvucontrol
+        swaybg
+        swayimg
         waybar
+        mako
       ];
       description = "extra packages to install with the tiling wm base";
     };
@@ -38,10 +42,6 @@ in
       [
         adwaita-cursor-default-theme
         alacritty
-        fuzzel
-        pwvucontrol
-        swaybg
-        swayimg
         wl-clipboard
       ]
       ++ optionals cfg.screenshot.enable [

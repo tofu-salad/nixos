@@ -11,7 +11,7 @@
   services.xserver.enable = true;
   services.xserver.windowManager.i3.enable = true;
   services.xserver.windowManager.i3.extraPackages = [ ];
-  services.xserver.displayManager.lightdm.extraSeatDefaults = ''autologin-user=tofu'';
+  services.xserver.displayManager.lightdm.extraSeatDefaults = "autologin-user=tofu";
 
   environment.pathsToLink = [ "/libexec" ];
 

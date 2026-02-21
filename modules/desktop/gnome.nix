@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -42,7 +41,7 @@ in
     ];
 
     environment.systemPackages = (if cfg.extensions.enable then cfg.extensions.packages else [ ]) ++ [
-      pkgs.ghostty
+      pkgs.alacritty
       pkgs.wl-clipboard
     ];
 
@@ -104,8 +103,8 @@ in
 
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
               binding = "<Super>Return";
-              command = "${pkgs.ghostty}/bin/ghostty +new-window";
-              name = "ghostty";
+              command = "${pkgs.alacritty}/bin/alacritty";
+              name = "alacritty";
             };
           }
 
