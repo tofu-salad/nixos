@@ -9,7 +9,7 @@
     ./services.nix
   ];
 
-  desktopEnvironment.hyprland.enable = true;
+  desktopEnvironment.mango.enable = true;
   gaming.enable = true;
   screenCastOBS.enable = true;
   services.flatpak.enable = true;

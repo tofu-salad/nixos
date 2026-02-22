@@ -31,21 +31,6 @@ mkIf cfg.enable {
     };
   };
 
-  systemd.user.services.mate-policykit-agent-1 = {
-    enable = true;
-    description = "mate-policykit-agent-1";
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
-
   xdg = {
     portal = {
       enable = true;

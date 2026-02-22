@@ -7,6 +7,7 @@ with lib;
     sway.enable = mkEnableOption "Sway";
     niri.enable = mkEnableOption "Niri";
     cosmic.enable = mkEnableOption "Cosmic";
+    mango.enable = mkEnableOption "mangowc";
     gnome = {
       enable = mkEnableOption "Gnome Desktop";
       online-accounts = mkOption {
@@ -41,5 +42,6 @@ with lib;
     ./tiling-wm-base.nix
     ./cosmic.nix
     ./standalone-kde-suite.nix
+    ./mango.nix
   ];
 }
