@@ -1,5 +1,6 @@
 {
   pkgs,
+  outputs,
   ...
 }:
 {
@@ -9,10 +10,13 @@
     ./services.nix
   ];
 
+  nixpkgs.overlays = [
+    outputs.overlays.stremio-pr
+  ];
+
   desktopEnvironment.mango.enable = true;
   gaming.enable = true;
   screenCastOBS.enable = true;
-  services.flatpak.enable = true;
 
   users = {
     users = {
@@ -47,11 +51,11 @@
     discord
     qbittorrent
     gimp
+    stremio-linux
 
     # browsers
-    (chromium.override { enableWideVine = true; })
+    brave
     google-chrome
-    firefox
 
     # cli
     btop-rocm
