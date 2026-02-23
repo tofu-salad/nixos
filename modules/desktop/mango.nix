@@ -18,7 +18,7 @@ in
     display.greetd.enable = true;
     desktop.tilingWmBase = {
       enable = true;
-      extraPackages = with pkgs; [ fuzzel ];
+      extraPackages = with pkgs; [ wofi ];
     };
     desktop.standaloneGnomeSuite.enable = true;
 
@@ -30,30 +30,13 @@ in
       };
     };
 
+    xdg.portal.config.mango = {
+      "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+    };
+
     xdg.portal.wlr.settings.screencast = {
       chooser_type = "dmenu";
-      chooser_cmd = "${pkgs.uwsm}/bin/uwsm app -- ${pkgs.fuzzel}/bin/fuzzel --dmenu";
-    };
-    xdg.portal = {
-      enable = true;
-      config = {
-        mango = {
-          default = [
-            "gtk"
-          ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-          "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
-          "org.freedesktop.impl.portal.FileChooser" = [ "gnome" ];
-          "org.freedesktop.impl.portal.ScreenShot" = [ "wlr" ];
-
-          "org.freedesktop.impl.portal.Inhibit" = [ ];
-        };
-      };
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-gnome
-      ];
+      chooser_cmd = "${pkgs.uwsm}/bin/uwsm app -- ${pkgs.wofi}/bin/wofi --dmenu --hide-search --width 300 --height 125";
     };
 
     programs.mango.enable = true;
