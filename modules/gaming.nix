@@ -30,6 +30,8 @@ with lib;
         environment.systemPackages = with pkgs; [
           lutris
           mangohud
+          wineWow64Packages.waylandFull
+          winetricks
         ];
         programs.gamescope.enable = true;
         programs.gamemode.enable = true;

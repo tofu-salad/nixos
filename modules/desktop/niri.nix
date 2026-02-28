@@ -12,13 +12,9 @@ mkIf cfg.enable {
   display.greetd.enable = true;
   desktop.tilingWmBase.enable = true;
   desktop.standaloneGnomeSuite.enable = true;
-  security.polkit.enable = true;
   programs.niri.enable = true;
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      xwayland-satellite
-    ]
-    ++ [ unstable.noctalia-shell ];
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite
+  ];
 }

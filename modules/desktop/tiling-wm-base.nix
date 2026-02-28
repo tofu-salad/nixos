@@ -126,7 +126,10 @@ in
       [
         adwaitaCursorTheme
         alacritty
+
+        wl-clip-persist
         wl-clipboard
+        xclip
       ]
       ++ optionals (cfg.screenshot.enable or false) [
         grim

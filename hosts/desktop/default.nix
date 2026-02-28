@@ -14,7 +14,7 @@
     outputs.overlays.stremio-pr
   ];
 
-  desktopEnvironment.mango.enable = true;
+  desktopEnvironment.niri.enable = true;
   gaming.enable = true;
   screenCastOBS.enable = true;
 
