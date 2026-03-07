@@ -125,7 +125,7 @@ in
       with pkgs;
       [
         adwaitaCursorTheme
-        alacritty
+        kitty
 
         wl-clip-persist
         wl-clipboard

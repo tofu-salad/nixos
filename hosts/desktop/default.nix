@@ -52,9 +52,9 @@
     qbittorrent
     gimp
     stremio-linux
+    localsend
 
     # browsers
-    brave
     google-chrome
 
     # cli
