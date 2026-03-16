@@ -114,6 +114,25 @@ in
       wantedBy = [ "graphical-session.target" ];
     };
 
+    systemd.user.services.wl-clip-persist = {
+      enable = true;
+      description = "Persist Wayland clipboard";
+
+      unitConfig = {
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+        Requisite = [ "graphical-session.target" ];
+      };
+
+      serviceConfig = {
+        ExecStart = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular --reconnect-tries 0";
+        Restart = "on-failure";
+        Type = "simple";
+      };
+
+      wantedBy = [ "graphical-session.target" ];
+    };
+
     environment.systemPackages =
       with pkgs;
       [
