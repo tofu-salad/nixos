@@ -41,7 +41,7 @@ in
     ];
 
     environment.systemPackages = (if cfg.extensions.enable then cfg.extensions.packages else [ ]) ++ [
-      pkgs.alacritty
+      pkgs.kitty
       pkgs.wl-clipboard
     ];
 
@@ -103,8 +103,8 @@ in
 
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
               binding = "<Super>Return";
-              command = "${pkgs.alacritty}/bin/alacritty";
-              name = "alacritty";
+              command = "${pkgs.kitty}/bin/kitty";
+              name = "kitty";
             };
           }
 

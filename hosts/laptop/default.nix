@@ -46,7 +46,6 @@
     google-chrome
 
     # media
-    # install stremio as a flatpak for now
     vlc
 
     # gui

@@ -1,6 +1,5 @@
 {
   pkgs,
-  outputs,
   ...
 }:
 {
@@ -10,34 +9,21 @@
     ./services.nix
   ];
 
-  nixpkgs.overlays = [
-    outputs.overlays.stremio-pr
-  ];
-
-  desktopEnvironment.niri.enable = true;
-  gaming.enable = true;
+  desktopEnvironment.gnome.enable = true;
   screenCastOBS.enable = true;
 
-  users = {
-    users = {
-      tofu = {
-        isNormalUser = true;
-        description = "tofu salad nixos config";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "plugdev"
-          "libvirtd"
-        ];
-      };
-    };
+  users.users.tofu = {
+    isNormalUser = true;
+    description = "tofu salad nixos config";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   networking = {
     hostName = "desktop";
-    networkmanager = {
-      enable = true;
-    };
+    networkmanager.enable = true;
   };
 
   environment.sessionVariables = {
@@ -49,12 +35,14 @@
   environment.systemPackages = with pkgs; [
     calibre
     discord
-    qbittorrent
     gimp
-    stremio-linux
     localsend
+    mpv
+    qbittorrent
+    stremio-linux-shell
 
     # browsers
+    brave
     google-chrome
 
     # cli
@@ -76,11 +64,6 @@
     cifs-utils
     openssl
     p7zip
-
-    # media
-    ffmpeg
-    mpv
-    tidal-hifi
 
     # nvim+dependencies
     gcc
