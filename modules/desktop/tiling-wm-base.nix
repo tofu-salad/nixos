@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -58,16 +57,7 @@ in
       description = "Enable mate polkit systemd agent";
     };
 
-    dms = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable DankMaterialShell";
-    };
   };
-
-  imports = [
-    inputs.dms.nixosModules.dank-material-shell
-  ];
 
   config = mkIf cfg.enable {
     qt = {
@@ -105,20 +95,23 @@ in
       };
     };
 
-    programs.dank-material-shell = mkIf cfg.dms {
+    systemd.user.services.swaybg = {
       enable = true;
-      systemd = {
-        enable = true;
-        restartIfChanged = true;
-      };
-      dgop.package = pkgs.unstable.dgop;
+      description = "Swaybg wallpaper service";
 
-      enableVPN = false;
-      enableSystemMonitoring = false;
-      enableDynamicTheming = false;
-      enableAudioWavelength = false;
-      enableCalendarEvents = false;
-      enableClipboardPaste = false;
+      unitConfig = {
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+        Requisite = [ "graphical-session.target" ];
+      };
+
+      serviceConfig = {
+        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i %h/Wallpapers/birmingham-museums-trust-1953P60-Chinese-Scene-With-Figures-Playing.jpg";
+        Restart = "on-failure";
+        Type = "simple";
+      };
+
+      wantedBy = [ "graphical-session.target" ];
     };
 
     environment.systemPackages =
@@ -133,9 +126,9 @@ in
       ]
       ++ optionals (cfg.screenshot.enable or false) [
         grim
-        slurp
-        swappy
         hyprpicker
+        satty
+        slurp
       ]
       ++ (cfg.extraPackages or [ ]);
   };

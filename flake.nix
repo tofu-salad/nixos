@@ -17,15 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emby-flake.url = "github:tofu-salad/emby-server-flake";
-    mango = {
-      url = "github:DreamMaoMao/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =

@@ -9,7 +9,10 @@
     ./services.nix
   ];
 
-  desktopEnvironment.gnome.enable = true;
+  desktopEnvironment.niri = {
+    enable = true;
+  };
+
   screenCastOBS.enable = true;
 
   users.users.tofu = {
@@ -42,7 +45,6 @@
     stremio-linux-shell
 
     # browsers
-    brave
     google-chrome
 
     # cli
