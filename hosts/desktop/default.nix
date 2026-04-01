@@ -64,6 +64,7 @@
     wget
     # libs
     cifs-utils
+    man-pages
     openssl
     p7zip
 

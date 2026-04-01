@@ -35,6 +35,13 @@
     ];
   };
 
+  # nix lsp and formatter
+  environment.systemPackages = with pkgs; [
+    nixd
+    nixfmt-rfc-style
+    nixfmt-tree
+  ];
+
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages
