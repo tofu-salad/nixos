@@ -37,6 +37,7 @@
 
   # nix lsp and formatter
   environment.systemPackages = with pkgs; [
+    gnumake
     nixd
     nixfmt-rfc-style
     nixfmt-tree
