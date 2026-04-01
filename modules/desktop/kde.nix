@@ -18,11 +18,16 @@ mkIf cfg.enable {
     elisa
     khelpcenter
     konsole
+    kate
+    okular
+    gwenview
     plasma-browser-integration
   ];
   environment.systemPackages = with pkgs; [
-    alacritty
-    baobab
+    gnome-text-editor
+    kitty
+    loupe
+    papers
     wl-clipboard
   ];
 }

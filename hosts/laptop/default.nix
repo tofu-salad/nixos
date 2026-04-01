@@ -42,7 +42,7 @@
   programs.direnv.enable = true;
   environment.systemPackages = with pkgs; [
     # browsers
-    chromium
+    firefox
     google-chrome
 
     # media
@@ -60,7 +60,9 @@
     gh
     git
     jq
+    man-pages
     ripgrep
+    starship
     stow
     tmux
     wget
