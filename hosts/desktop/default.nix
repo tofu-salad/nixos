@@ -45,6 +45,7 @@
     stremio-linux-shell
 
     # browsers
+    (chromium.override { enableWideVine = true; })
     google-chrome
 
     # cli

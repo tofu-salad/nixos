@@ -125,7 +125,7 @@ in
       };
 
       serviceConfig = {
-        ExecStart = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular --reconnect-tries 0";
+        ExecStart = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular";
         Restart = "on-failure";
         Type = "simple";
       };
