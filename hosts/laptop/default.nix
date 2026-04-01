@@ -51,6 +51,7 @@
     # gui
     libreoffice
     qbittorrent
+    stremio-linux-shell
 
     # cli
     btop
