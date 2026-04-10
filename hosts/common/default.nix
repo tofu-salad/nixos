@@ -1,5 +1,4 @@
 {
-  inputs,
   outputs,
   pkgs,
   ...
@@ -35,11 +34,15 @@
     ];
   };
 
-  # nix lsp and formatter
   environment.systemPackages = with pkgs; [
+    starship
+    stow
+    man-pages
     gnumake
+    unstable.neovim
+
     nixd
-    nixfmt-rfc-style
+    nixfmt
     nixfmt-tree
   ];
 
@@ -62,6 +65,5 @@
       options = "--delete-older-than 30d";
     };
     optimise.automatic = true;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 }

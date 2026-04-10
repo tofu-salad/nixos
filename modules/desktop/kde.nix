@@ -9,8 +9,10 @@ let
   cfg = config.desktopEnvironment.kde;
 in
 mkIf cfg.enable {
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
   services.desktopManager.plasma6.enable = true;
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -23,6 +25,7 @@ mkIf cfg.enable {
     gwenview
     plasma-browser-integration
   ];
+
   environment.systemPackages = with pkgs; [
     gnome-text-editor
     kitty

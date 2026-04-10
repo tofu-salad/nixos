@@ -21,8 +21,6 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "plugdev"
-      "input"
     ];
   };
   i18n.defaultLocale = lib.mkForce "es_ES.UTF-8";
@@ -36,17 +34,21 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    GSK_RENDERER = "ngl";
+    GSK_RENDERER = "gl";
+    LIBVA_DRIVER_NAME = "i965";
   };
 
   programs.direnv.enable = true;
   environment.systemPackages = with pkgs; [
     # browsers
-    firefox
     google-chrome
+    (chromium.override {
+      enableWideVine = true;
+    })
 
     # media
-    vlc
+    celluloid
+    localsend
 
     # gui
     libreoffice
@@ -61,23 +63,12 @@
     gh
     git
     jq
-    man-pages
-    ripgrep
-    starship
-    stow
-    tmux
-    wget
-
     p7zip
+    ripgrep
+    tmux
     unrar
     unzip
-
-    # neovim
-    gcc
-    lua51Packages.lua
-    luajitPackages.luarocks
-    tree-sitter
-    neovim
+    wget
   ];
 
   boot = {
@@ -88,8 +79,6 @@
       "quiet"
       "splash"
       "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
     ];
     loader = {
       timeout = 0;
@@ -103,13 +92,15 @@
 
   fileSystems."/".options = [ "noatime" ];
   services.fstrim.enable = true;
+
   zramSwap.enable = true;
   hardware.graphics = {
     enable = true;
-    enable32Bit = true;
+    extraPackages = with pkgs; [
+      intel-vaapi-driver
+    ];
   };
   hardware.bluetooth.enable = true;
 
-  boot.kernelModules = [ "uinput" ];
   system.stateVersion = "24.11";
 }
