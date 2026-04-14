@@ -36,16 +36,12 @@
   programs.direnv.enable = true;
 
   environment.systemPackages = with pkgs; [
-    calibre
-    discord
     gimp
     localsend
-    mpv
+    celluloid
     qbittorrent
-    stremio-linux-shell
 
     # browsers
-    (chromium.override { enableWideVine = true; })
     google-chrome
 
     # cli
@@ -57,24 +53,15 @@
     git
     jq
     ripgrep
-    starship
-    stow
     tmux
     tree
     unzip
     wget
+
     # libs
     cifs-utils
-    man-pages
     openssl
     p7zip
-
-    # nvim+dependencies
-    gcc
-    lua51Packages.lua
-    luajitPackages.luarocks
-    tree-sitter
-    neovim
   ];
 
   fileSystems."/mnt/share" = {
@@ -90,10 +77,7 @@
   fileSystems."/".options = [ "noatime" ];
   services.fstrim.enable = true;
   zramSwap.enable = true;
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  hardware.graphics.enable = true;
 
   boot = {
     loader = {

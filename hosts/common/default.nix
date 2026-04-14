@@ -24,6 +24,7 @@
       LC_TIME = "es_AR.UTF-8";
     };
   };
+
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
