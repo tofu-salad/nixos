@@ -10,10 +10,7 @@
     ./services.nix
   ];
 
-  networking = {
-    hostName = "laptop";
-    networkmanager.enable = true;
-  };
+  desktopEnvironment.kde.enable = true;
 
   users.users.tofu = {
     isNormalUser = true;
@@ -23,8 +20,12 @@
       "wheel"
     ];
   };
+
   i18n.defaultLocale = lib.mkForce "es_ES.UTF-8";
-  desktopEnvironment.kde.enable = true;
+  networking = {
+    hostName = "laptop";
+    networkmanager.enable = true;
+  };
 
   # windows fonts
   fonts.packages = with pkgs; [
@@ -39,12 +40,11 @@
   };
 
   programs.direnv.enable = true;
+
   environment.systemPackages = with pkgs; [
     # browsers
     google-chrome
-    (chromium.override {
-      enableWideVine = true;
-    })
+    brave
 
     # media
     celluloid
@@ -53,15 +53,11 @@
     # gui
     libreoffice
     qbittorrent
-    stremio-linux-shell
 
     # cli
-    btop
-    curl
     fd
     fzf
     gh
-    git
     jq
     p7zip
     ripgrep

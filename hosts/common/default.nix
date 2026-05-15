@@ -36,10 +36,13 @@
   };
 
   environment.systemPackages = with pkgs; [
+    btop
+    curl
+    git
+    gnumake
+    man-pages
     starship
     stow
-    man-pages
-    gnumake
     unstable.neovim
 
     nixd
@@ -63,6 +66,7 @@
     };
     gc = {
       automatic = true;
+      dates = "weekly";
       options = "--delete-older-than 30d";
     };
     optimise.automatic = true;

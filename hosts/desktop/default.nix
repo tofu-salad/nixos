@@ -9,10 +9,7 @@
     ./services.nix
   ];
 
-  desktopEnvironment.niri = {
-    enable = true;
-  };
-
+  desktopEnvironment.sway.enable = true;
   screenCastOBS.enable = true;
 
   users.users.tofu = {
@@ -31,6 +28,7 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    LIBVA_DRIVER_NAME = "iHD";
   };
 
   programs.direnv.enable = true;
@@ -45,18 +43,16 @@
     google-chrome
 
     # cli
-    btop-rocm
-    curl
     fd
     fzf
     gh
-    git
     jq
     ripgrep
     tmux
     tree
     unzip
     wget
+    cargo
 
     # libs
     cifs-utils
@@ -74,18 +70,34 @@
       [ "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100" ];
   };
 
+  fileSystems."/mnt/1tb-hdd" = {
+    device = "/dev/disk/by-uuid/5A89-762E";
+    fsType = "exfat";
+    options = [
+      "uid=1000"
+      "gid=100"
+      "umask=022"
+      "users"
+      "nofail"
+      "x-gvfs-show"
+    ];
+  };
+
   fileSystems."/".options = [ "noatime" ];
   services.fstrim.enable = true;
   zramSwap.enable = true;
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # Accelerated Video Playback
+    ];
+  };
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 3;
-      timeout = 1;
-      efi.canTouchEfiVariables = true;
-    };
+  boot.loader = {
+    systemd-boot.enable = true;
+    systemd-boot.configurationLimit = 3;
+    timeout = 1;
+    efi.canTouchEfiVariables = true;
   };
 
   system.stateVersion = "25.11";

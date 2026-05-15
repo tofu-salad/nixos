@@ -4,17 +4,22 @@
   pkgs,
   ...
 }:
+
 with lib;
 let
   cfg = config.desktopEnvironment.niri;
 in
-mkIf cfg.enable {
-  display.greetd.enable = true;
-  desktop.tilingWmBase.enable = true;
-  desktop.standaloneGnomeSuite.enable = true;
-  programs.niri.enable = true;
+{
+  options.desktopEnvironment.niri.enable = mkEnableOption "Niri";
+  config = mkIf cfg.enable {
+    programs.niri.enable = true;
+    display.greetd.enable = true;
+    desktop.tilingWmBase.enable = true;
+    desktop.standaloneGnomeSuite.enable = true;
+    systemd.user.services.niri.enableDefaultPath = false;
 
-  environment.systemPackages = with pkgs; [
-    xwayland-satellite
-  ];
+    environment.systemPackages = with pkgs; [
+      xwayland-satellite
+    ];
+  };
 }

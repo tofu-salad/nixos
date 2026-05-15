@@ -4,33 +4,37 @@
   pkgs,
   ...
 }:
+
 with lib;
 let
   cfg = config.desktopEnvironment.kde;
 in
-mkIf cfg.enable {
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
+{
+  options.desktopEnvironment.kde.enable = mkEnableOption "KDE";
+  config = mkIf cfg.enable {
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    services.desktopManager.plasma6.enable = true;
+
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
+      discover
+      elisa
+      khelpcenter
+      konsole
+      kate
+      okular
+      gwenview
+      plasma-browser-integration
+    ];
+
+    environment.systemPackages = with pkgs; [
+      gnome-text-editor
+      kitty
+      loupe
+      papers
+      wl-clipboard
+    ];
   };
-  services.desktopManager.plasma6.enable = true;
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    discover
-    elisa
-    khelpcenter
-    konsole
-    kate
-    okular
-    gwenview
-    plasma-browser-integration
-  ];
-
-  environment.systemPackages = with pkgs; [
-    gnome-text-editor
-    kitty
-    loupe
-    papers
-    wl-clipboard
-  ];
 }

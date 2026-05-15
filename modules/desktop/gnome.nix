@@ -6,11 +6,34 @@
 }:
 
 with lib;
-
 let
   cfg = config.desktopEnvironment.gnome;
 in
 {
+  options.desktopEnvironment.gnome = {
+    enable = mkEnableOption "Gnome Desktop";
+    online-accounts = mkOption {
+      type = types.bool;
+      default = false;
+      description = "enable gnome online account sync daemon";
+    };
+    extensions = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable GNOME Shell extensions";
+      };
+      packages = mkOption {
+        type = with types; listOf package;
+        default = with pkgs.gnomeExtensions; [
+          dash-to-dock
+          appindicator
+        ];
+        description = "list of gnome shell extensions to install";
+      };
+    };
+  };
+
   config = mkIf cfg.enable {
     services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
@@ -41,7 +64,7 @@ in
     ];
 
     environment.systemPackages = (if cfg.extensions.enable then cfg.extensions.packages else [ ]) ++ [
-      pkgs.kitty
+      pkgs.ghostty
       pkgs.wl-clipboard
     ];
 
@@ -103,8 +126,8 @@ in
 
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
               binding = "<Super>Return";
-              command = "${pkgs.kitty}/bin/kitty";
-              name = "kitty";
+              command = "${pkgs.ghostty}/bin/ghostty +new-window";
+              name = "ghostty";
             };
           }
 
