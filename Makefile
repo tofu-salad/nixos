@@ -18,7 +18,7 @@ help:
 	@echo "  make update/stable       - Update nixpkgs"
 	@echo "  make update/unstable     - Update nixpkgs-unstable"
 	@echo
-	@echo "  make format  	           - Format nix files using nixfmt-rfc-style and nixfmt-tree (can be accessed with nix develop)"
+	@echo "  make format  	           - Format nix files"
 format:
 	treefmt .
 # hosts

@@ -8,7 +8,7 @@
 with lib;
 
 let
-  cfg = config.desktop.tilingWmBase or { enable = false; };
+  cfg = config.desktop.tilingWmBase;
   adwaitaCursorTheme = pkgs.runCommandLocal "adwaita-cursor-default-theme" { } ''
     		    mkdir -p $out/share/icons
     		    ln -s ${pkgs.adwaita-icon-theme}/share/icons/Adwaita $out/share/icons/default
@@ -26,17 +26,17 @@ in
   };
 
   config = mkIf cfg.enable {
-
-    security.polkit.enable = true; # make sure to check if using gnome or kde to config their polkit agent
+    security.polkit.enable = true;
     environment.systemPackages =
       with pkgs;
       [
         adwaitaCursorTheme
         fuzzel
-        ghostty
+        kitty
         mako
         pwvucontrol
         swayidle
+        swaylock
         waybar
 
         wl-clip-persist
@@ -50,7 +50,7 @@ in
         slurp
       ];
 
-    # Services
+    # services
     systemd.user.services.swaybg = {
       enable = true;
       description = "Swaybg wallpaper service";
