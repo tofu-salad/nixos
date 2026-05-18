@@ -49,6 +49,7 @@
     # media
     celluloid
     localsend
+    stremio-linux-shell
 
     # gui
     libreoffice
@@ -97,6 +98,11 @@
     ];
   };
   hardware.bluetooth.enable = true;
+
+  virt = {
+    enable = true;
+    virt-manager.enable = true;
+  };
 
   system.stateVersion = "24.11";
 }

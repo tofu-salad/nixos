@@ -56,12 +56,15 @@ with lib;
 
       (mkIf config.virt.virt-manager.enable {
         programs.virt-manager.enable = true;
-        virtualisation = {
-          libvirtd = {
-            enable = true;
-          };
-          spiceUSBRedirection.enable = true;
+        virtualisation.libvirtd = {
+          enable = true;
+          qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
         };
+        environment.systemPackages = with pkgs; [
+          dnsmasq
+        ];
+        users.users.tofu.extraGroups = [ "libvirtd" ];
+        networking.firewall.trustedInterfaces = [ "virbr0" ];
       })
       (mkIf config.virt.virt-manager.gpuPass.enable {
         boot.initrd.kernelModules = [
