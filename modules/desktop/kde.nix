@@ -27,7 +27,6 @@ in
     ];
 
     environment.systemPackages = with pkgs; [
-      gnome-text-editor
       kitty
       wl-clipboard
     ];
