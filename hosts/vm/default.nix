@@ -36,7 +36,6 @@
     alacritty
     btop
     curl
-    direnv
     fd
     fzf
     gcc

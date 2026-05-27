@@ -35,15 +35,22 @@
     ];
   };
 
+  programs.direnv.enable = true;
   environment.systemPackages = with pkgs; [
     btop
     curl
+    fd
+    fzf
     git
     gnumake
+    jq
     man-pages
-    starship
+    ripgrep
     stow
+    tmux
+    tree
     unstable.neovim
+    wget
 
     nixd
     nixfmt

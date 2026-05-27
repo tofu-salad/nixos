@@ -5,16 +5,17 @@
     HandleLidSwitchExternalPower = "ignore";
   };
 
+  services.avahi.enable = true;
+  services.resolved.enable = true;
+  services.tailscale.enable = true;
+
   security.rtkit.enable = true;
   services = {
-    avahi.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
-      jack.enable = false;
+      alsa.support32Bit = true;
       pulse.enable = true;
     };
-    resolved.enable = true;
-    tailscale.enable = true;
   };
 }

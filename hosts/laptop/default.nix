@@ -39,33 +39,24 @@
     LIBVA_DRIVER_NAME = "i965";
   };
 
-  programs.direnv.enable = true;
-
   environment.systemPackages = with pkgs; [
     # browsers
     google-chrome
     brave
 
     # media
-    celluloid
     localsend
-    stremio-linux-shell
+    mpv
 
     # gui
     libreoffice
     qbittorrent
 
     # cli
-    fd
-    fzf
     gh
-    jq
     p7zip
-    ripgrep
-    tmux
     unrar
     unzip
-    wget
   ];
 
   boot = {
