@@ -23,17 +23,12 @@ in
       elisa
       khelpcenter
       konsole
-      kate
-      okular
-      gwenview
       plasma-browser-integration
     ];
 
     environment.systemPackages = with pkgs; [
       gnome-text-editor
       kitty
-      loupe
-      papers
       wl-clipboard
     ];
   };
