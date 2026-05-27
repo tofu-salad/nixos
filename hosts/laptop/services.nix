@@ -5,6 +5,8 @@
     HandleLidSwitchExternalPower = "ignore";
   };
 
+  services.flatpak.enable = true;
+
   services.avahi.enable = true;
   services.resolved.enable = true;
   services.tailscale.enable = true;
