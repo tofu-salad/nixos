@@ -34,6 +34,7 @@ in
         fuzzel
         kitty
         mako
+	libnotify
         pwvucontrol
         swayidle
         swaylock

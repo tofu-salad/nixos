@@ -11,6 +11,10 @@
 
   desktopEnvironment.sway.enable = true;
   screenCastOBS.enable = true;
+  virt = {
+    enable = true;
+    virt-manager.enable = true;
+  };
 
   users.users.tofu = {
     isNormalUser = true;
@@ -41,6 +45,7 @@
 
     # browsers
     google-chrome
+    firefox
 
     # cli
     fd
