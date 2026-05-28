@@ -25,6 +25,8 @@
     ];
   };
 
+  programs.fish.enable = true;
+
   networking = {
     hostName = "desktop";
     networkmanager.enable = true;
@@ -40,23 +42,15 @@
   environment.systemPackages = with pkgs; [
     gimp
     localsend
-    celluloid
+    mpv
     qbittorrent
 
     # browsers
     google-chrome
-    firefox
 
     # cli
-    fd
-    fzf
     gh
-    jq
-    ripgrep
-    tmux
-    tree
     unzip
-    wget
     cargo
 
     # libs
