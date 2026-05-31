@@ -49,7 +49,7 @@
     stow
     tmux
     tree
-    unstable.neovim
+    neovim
     wget
 
     nixd

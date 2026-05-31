@@ -34,7 +34,7 @@ in
         fuzzel
         kitty
         mako
-	libnotify
+        libnotify
         pwvucontrol
         swayidle
         swaylock
@@ -50,6 +50,10 @@ in
         satty
         slurp
       ];
+
+    fonts.packages = with pkgs; [
+      nerd-fonts.adwaita-mono
+    ];
 
     # services
     systemd.user.services.swaybg = {
