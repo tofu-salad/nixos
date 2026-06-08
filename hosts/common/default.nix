@@ -50,6 +50,7 @@
     tmux
     tree
     neovim
+    tree-sitter # this is for neovim
     wget
 
     nixd

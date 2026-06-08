@@ -8,6 +8,6 @@
     ./sway.nix
     ./tiling-wm-base.nix
     ./standalone-kde-suite.nix
-    # ./mango.nix
+    ./mangowc.nix
   ];
 }

@@ -32,28 +32,5 @@ in
         ];
       };
     };
-
-    xdg = {
-      portal = {
-        enable = true;
-        config = {
-          sway = {
-            default = lib.mkForce [ "gnome" ];
-          };
-        };
-        wlr = {
-          enable = true;
-          settings = {
-            screencast = {
-              chooser_type = "dmenu";
-              chooser_cmd = "${pkgs.fuzzel}/bin/fuzzel --dmenu --minimal-lines --hide-prompt --font 'Adwaita Mono:size=16' --no-exit-on-keyboard-focus-loss";
-            };
-          };
-        };
-        extraPortals = [
-          pkgs.xdg-desktop-portal-gnome
-        ];
-      };
-    };
   };
 }

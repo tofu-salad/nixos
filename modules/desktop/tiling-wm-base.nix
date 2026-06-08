@@ -13,6 +13,8 @@ let
     		    mkdir -p $out/share/icons
     		    ln -s ${pkgs.adwaita-icon-theme}/share/icons/Adwaita $out/share/icons/default
     		  '';
+  wlrTwm = config.programs.sway.enable || config.programs.mangowc.enable;
+  screenCastChooser = "${pkgs.fuzzel}/bin/fuzzel --dmenu --minimal-lines --hide-prompt --font 'Adwaita Mono:size=16' --no-exit-on-keyboard-focus-loss";
 in
 {
   options.desktop.tilingWmBase = {
@@ -54,6 +56,20 @@ in
     fonts.packages = with pkgs; [
       nerd-fonts.adwaita-mono
     ];
+
+    # XDG Desktop Portals
+    xdg = {
+      portal = {
+        enable = wlrTwm;
+        wlr = {
+          enable = wlrTwm;
+          settings.screencast = {
+            chooser_type = "dmenu";
+            chooser_cmd = screenCastChooser;
+          };
+        };
+      };
+    };
 
     # services
     systemd.user.services.swaybg = {

@@ -9,7 +9,7 @@
     ./services.nix
   ];
 
-  desktopEnvironment.sway.enable = true;
+  desktopEnvironment.mangowc.enable = true;
   screenCastOBS.enable = true;
   virt = {
     enable = true;
