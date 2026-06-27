@@ -31,11 +31,19 @@ in
       gnome-font-viewer
       gnome-text-editor
       gnome-disk-utility
+      libsForQt5.qt5ct
 
+      adwaita-qt
+      adwaita-qt6
       adwaita-fonts
       adwaita-icon-theme
       adwaita-icon-theme-legacy
     ];
+
+    qt = {
+      enable = true;
+      platformTheme = "qt5ct";
+    };
 
     programs.dconf.enable = true;
     programs.dconf.profiles.user.databases = [

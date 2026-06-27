@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   services.flatpak.enable = true;
   services = {
@@ -19,6 +20,16 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+  # this case has some front panel audio problems
+  systemd.user.services.fix-automute = {
+    description = "Disable ALSA auto-mute";
+    wantedBy = [ "default.target" ];
+    after = [ "wireplumber.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.alsa-utils}/bin/amixer -c 1 sset 'Auto-Mute Mode' Disabled";
+    };
   };
 
   networking.firewall = {

@@ -29,7 +29,6 @@ in
       with pkgs.kdePackages;
       [
         qtsvg
-        breeze
         dolphinFixed
         filelight
         ark
