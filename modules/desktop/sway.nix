@@ -7,10 +7,10 @@
 
 with lib;
 let
-  cfg = config.desktopEnvironment.sway;
+  cfg = config.desktop.sway;
 in
 {
-  options.desktopEnvironment.sway.enable = mkEnableOption "Sway";
+  options.desktop.sway.enable = mkEnableOption "Sway";
   config = mkIf cfg.enable {
     display.greetd.enable = true;
     desktop.tilingWmBase.enable = true;

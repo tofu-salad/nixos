@@ -10,7 +10,7 @@
     ./services.nix
   ];
 
-  desktopEnvironment.kde.enable = true;
+  desktop.kde.enable = true;
 
   users.users.tofu = {
     isNormalUser = true;

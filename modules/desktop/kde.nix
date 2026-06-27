@@ -7,10 +7,10 @@
 
 with lib;
 let
-  cfg = config.desktopEnvironment.kde;
+  cfg = config.desktop.kde;
 in
 {
-  options.desktopEnvironment.kde.enable = mkEnableOption "KDE";
+  options.desktop.kde.enable = mkEnableOption "KDE";
   config = mkIf cfg.enable {
     services.displayManager.sddm = {
       enable = true;

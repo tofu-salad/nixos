@@ -6,10 +6,10 @@
 
 with lib;
 let
-  cfg = config.desktopEnvironment.mangowc;
+  cfg = config.desktop.mangowc;
 in
 {
-  options.desktopEnvironment.mangowc.enable = mkEnableOption "MangoWC";
+  options.desktop.mangowc.enable = mkEnableOption "MangoWC";
   config = mkIf cfg.enable {
     display.greetd.enable = true;
     desktop.tilingWmBase.enable = true;

@@ -24,47 +24,34 @@
     }@inputs:
     let
       inherit (self) outputs;
+      mkHost =
+        modules:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          inherit modules;
+        };
     in
     {
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            ./modules
-            ./hosts/desktop
-          ];
-        };
-
-        homelab = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            ./hosts/homelab
-            emby-flake.nixosModules.default
-          ];
-        };
-        laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            ./modules
-            ./hosts/laptop
-          ];
-        };
-        vm = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            ./modules
-            ./hosts/vm
-          ];
-        };
+        desktop = mkHost [
+          ./modules
+          ./hosts/desktop
+        ];
+        homelab = mkHost [
+          ./hosts/homelab
+          emby-flake.nixosModules.default
+        ];
+        laptop = mkHost [
+          ./modules
+          ./hosts/laptop
+        ];
+        vm = mkHost [
+          ./modules
+          ./hosts/vm
+        ];
       };
     };
 }

@@ -6,15 +6,7 @@
 }:
 with lib;
 {
-  options = {
-    screenCastOBS = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = "enable screen casting with audio using obs + vlc + nginx in a rtmp server";
-      };
-    };
-  };
+  options.screenCastOBS.enable = mkEnableOption "screencasting with OBS + nginx RTMP";
   config = mkMerge [
     (mkIf config.screenCastOBS.enable (mkMerge [
       {

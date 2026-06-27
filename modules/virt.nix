@@ -8,40 +8,20 @@ with lib;
 {
   options = {
     virt = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = "enable different virtualisation programs (docker, virt-manager, looking glass";
-      };
+      enable = mkEnableOption "virtualisation";
       docker = {
-        enable = mkOption {
-          default = false;
-          type = types.bool;
-          description = "enable docker";
-        };
+        enable = mkEnableOption "Docker";
       };
       virt-manager = {
-        enable = mkOption {
-          default = false;
-          type = types.bool;
-          description = "enable virt-manager";
-        };
+        enable = mkEnableOption "virt-manager";
         gpuPass = {
-          enable = mkOption {
-            default = false;
-            type = types.bool;
-            description = "enable virt-manager";
-          };
+          enable = mkEnableOption "GPU passthrough";
           gpu = mkOption {
             type = types.str;
             description = "gpu id example (1002:67df,1002:aaf0)";
           };
           lookingGlass = {
-            enable = mkOption {
-              default = false;
-              type = types.bool;
-              description = "enable looking glass";
-            };
+            enable = mkEnableOption "Looking Glass";
             user = mkOption {
               type = types.str;
               description = "current user";

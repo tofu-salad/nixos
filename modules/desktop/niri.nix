@@ -7,10 +7,10 @@
 
 with lib;
 let
-  cfg = config.desktopEnvironment.niri;
+  cfg = config.desktop.niri;
 in
 {
-  options.desktopEnvironment.niri.enable = mkEnableOption "Niri";
+  options.desktop.niri.enable = mkEnableOption "Niri";
   config = mkIf cfg.enable {
     programs.niri.enable = true;
     display.greetd.enable = true;

@@ -6,10 +6,10 @@
 
 with lib;
 let
-  cfg = config.desktopEnvironment.hyprland;
+  cfg = config.desktop.hyprland;
 in
 {
-  options.desktopEnvironment.hyprland.enable = mkEnableOption "Hyprland";
+  options.desktop.hyprland.enable = mkEnableOption "Hyprland";
 
   config = mkIf cfg.enable {
     display.greetd.enable = true;

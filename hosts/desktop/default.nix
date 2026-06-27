@@ -9,7 +9,7 @@
     ./services.nix
   ];
 
-  desktopEnvironment.mangowc.enable = true;
+  desktop.mangowc.enable = true;
   screenCastOBS.enable = true;
   virt = {
     enable = true;
@@ -85,12 +85,7 @@
   fileSystems."/".options = [ "noatime" ];
   services.fstrim.enable = true;
   zramSwap.enable = true;
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # Accelerated Video Playback
-    ];
-  };
+  hardware.graphics.enable = true;
 
   boot.loader = {
     systemd-boot.enable = true;
