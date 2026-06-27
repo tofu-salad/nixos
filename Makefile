@@ -20,7 +20,7 @@ help:
 	@echo
 	@echo "  make format  	           - Format nix files"
 format:
-	treefmt .
+	find . -name '*.nix' -not -path './.git/*' -exec nix fmt {} +
 # hosts
 laptop:
 	sudo nixos-rebuild switch --flake .#laptop

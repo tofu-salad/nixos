@@ -23,6 +23,7 @@
       ...
     }@inputs:
     let
+      system = "x86_64-linux";
       inherit (self) outputs;
       mkHost =
         modules:
@@ -35,6 +36,7 @@
     in
     {
       overlays = import ./overlays { inherit inputs; };
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
       nixosConfigurations = {
         desktop = mkHost [
           ./modules

@@ -34,10 +34,7 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    LIBVA_DRIVER_NAME = "iHD";
   };
-
-  programs.direnv.enable = true;
 
   environment.systemPackages = with pkgs; [
     gimp

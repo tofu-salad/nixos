@@ -54,8 +54,6 @@
     wget
 
     nixd
-    nixfmt
-    nixfmt-tree
   ];
 
   nixpkgs = {
